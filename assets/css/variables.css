@@ -11,20 +11,10 @@
     --color-warning: #f59e0b;
     --color-danger: #ef4444;
 
-    /* Background Colors */
-    --bg-primary: #0a0e27;
-    --bg-secondary: #151b3b;
-    --bg-tertiary: #1f2747;
-    --bg-card: #1a2039;
-
     /* Text Colors */
-    --text-primary: #f1f5f9;
-    --text-secondary: #e2e8f0;
-    --text-muted: #64748b;
     --text-link: #38bdf8;
 
     /* Border & Dividers */
-    --border-color: #334155;
     --border-color-light: #475569;
 
     /* Spacing */
@@ -43,9 +33,6 @@
     --border-radius-full: 9999px;
 
     /* Shadows */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
     --shadow-xl: 0 15px 40px rgba(0, 217, 255, 0.2);
     --shadow-primary: 0 4px 12px rgba(0, 217, 255, 0.3);
 

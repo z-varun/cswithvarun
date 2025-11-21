@@ -2,8 +2,6 @@
    Homepage Styles
    ================================ */
 
-/* Remove the @import 'variables.css'; line - variables are already in theme.css */
-
 .hero {
   min-height: 85vh;
   display: flex;
