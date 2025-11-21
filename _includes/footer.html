@@ -1,47 +1,56 @@
 <footer class="site-footer">
     <div class="container">
         <div class="footer-content">
-            <!-- About Section -->
             <div class="footer-section">
-                <h3>{{ site.author.name }}</h3>
-                <p>{{ site.description }}</p>
+                <h3>CS with Varun</h3>
+                <p>Simplifying Computer Science, Security & DevOps.</p>
+                <div class="social-links">
+                    <a href="https://github.com/z-varun" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/varun-bhandari5" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/varun_bhandari" target="_blank" rel="noopener noreferrer"
+                        aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="mailto:hello@cswithvarun.com" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
             </div>
 
-            <!-- Quick Links -->
             <div class="footer-section">
-                <h3>Quick Links</h3>
+                <h4>Quick Links</h4>
                 <ul class="footer-links">
+
                     {% for item in site.navigation %}
-                    <li>
-                        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-                    </li>
-                    {% endfor %}
+                     <li>
+                         <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                     </li>
+                     {% endfor %}
+
                 </ul>
             </div>
 
-            <!-- Connect -->
             <div class="footer-section">
-                <h3>Connect</h3>
-                <div class="social-links">
-                    <a href="https://github.com/{{ site.github_username }}" target="_blank" 
-                        rel="noopener noreferrer" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank"
-                        rel="noopener noreferrer" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://topmate.io/varun_bhandari5" target="_blank"
-                        rel="noopener noreferrer" aria-label="Topmate" class="topmate-icon">
-                        <img src="{{ '/assets/images/topmate.svg' | relative_url }}" alt="Topmate" width="24" height="24" loading="lazy" />
+                <h4>Newsletter</h4>
+                <p>Join 1000+ developers getting weekly insights.</p>
+                <div class="newsletter-form">
+                    <!-- Changed image to have explicit dimensions for stability -->
+                    <a href="https://topmate.io/varun_bhandari5" target="_blank" rel="noopener noreferrer"
+                        aria-label="Topmate" class="topmate-icon">
+                        <img src="{{ '/assets/images/topmate.svg' | relative_url }}" alt="Topmate" width="24"
+                            height="24" loading="lazy" />
                     </a>
                 </div>
             </div>
         </div>
-
-        <!-- Footer Bottom -->
         <div class="footer-bottom">
-            <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author.name }}. All rights reserved.</p>
+            <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
         </div>
     </div>
 </footer>
