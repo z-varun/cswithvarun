@@ -62,7 +62,7 @@
 
 .filter-more {
   background-color: var(--bg-tertiary);
-  border: 1px dashed var(--border-color);
+  border: 1px var(--border-color);
 }
 
 .filter-more:hover {
@@ -390,50 +390,111 @@
   }
 }
 
-@media (max-width <= 768px) {
+@media (width <= 768px) {
+  /* 1. Stack blog posts vertically (1 Column) */
+  .blog-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+      padding: 0; /* Remove extra side padding if container handles it */
+  }
+
+  /* 2. Ensure Search Bar takes full width but doesn't overflow */
+  .blog-controls {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+  }
+
+  .search-wrapper {
+      width: 100%;
+      max-width: 100%;
+  }
+
+  .search-input {
+      width: 100%;
+      font-size: 16px; /* Critical: Prevents iOS zooming in when tapping search */
+      padding: 12px 16px;
+  }
+
+  /* 3. Make Filter Tags Scrollable (Horizontal Swipe) */
+  .filter-tags {
+      display: flex;
+      flex-wrap: nowrap; /* Don't wrap to next line */
+      overflow-x: auto; /* Allow horizontal scrolling */
+      padding-bottom: var(--spacing-sm);
+      width: 100%;
+      -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+      gap: var(--spacing-sm);
+
+      /* Optional: Hide scrollbar for cleaner look */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+  }
+
+  .filter-tags::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+  }
+
+  .filter-tag {
+      white-space: nowrap; /* Prevent text wrapping inside tag */
+      flex-shrink: 0; /* Prevent tags from getting squished */
+  }
+
+  /* 4. Additional Layout Fixes */
   .blog-page {
-    padding: 0 var(--spacing-md);
+      padding: 0 var(--spacing-md);
   }
 
   .filter-search-container,
   .blog-filters {
-    padding: 0 var(--spacing-md);
+      padding: 0 var(--spacing-md);
   }
 
   .blog-container {
-    gap: var(--spacing-lg);
+      display: flex; /* Switch from grid to flex column on mobile */
+      flex-direction: column;
+      gap: var(--spacing-lg);
+  }
+  
+  /* Hide Sidebar or move it if necessary - usually sidebar is hidden or moved to bottom on mobile */
+  .blog-sidebar {
+      position: static;
+      width: 100%;
+      display: none; /* Often better to hide sidebar on mobile, or move filter-tags out of it */
   }
 
   .post-content-preview {
-    padding: var(--spacing-lg);
+      padding: var(--spacing-lg);
   }
 
   .post-title a {
-    font-size: var(--font-size-lg);
+      font-size: var(--font-size-lg);
   }
 
   .post-excerpt {
-    font-size: var(--font-size-xs);
+      font-size: var(--font-size-xs);
   }
 
   .post-date-badge {
-    padding: var(--spacing-sm) var(--spacing-md);
+      padding: var(--spacing-sm) var(--spacing-md);
   }
 
   .post-date-badge .day {
-    font-size: var(--font-size-xl);
+      font-size: var(--font-size-xl);
   }
 
   .post-meta-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-sm);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
   }
 
   .blog-filters {
-    gap: var(--spacing-sm);
+      gap: var(--spacing-sm);
   }
 }
+
 
 @media (max-width <= 480px) {
   .post-title a {
