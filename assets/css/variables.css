@@ -2,6 +2,7 @@
    CSS Variables - Design System
    ================================ */
 
+
 :root {
     /* Colors - Primary Palette */
     --color-primary: #00d9ff;
@@ -19,7 +20,7 @@
     /* Text Colors */
     --text-primary: #f1f5f9;
     --text-secondary: #e2e8f0;
-    --text-muted: #94a3b8;
+    --text-muted: #64748b;
     --text-link: #38bdf8;
 
     /* Border & Dividers */
