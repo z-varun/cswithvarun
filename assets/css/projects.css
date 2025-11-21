@@ -455,6 +455,7 @@
 .impact-item {
   text-align: center;
   padding: var(--spacing-xl);
+  margin: 2% 4%;
   background-color: rgba(0, 217, 255, 0.05);
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);
