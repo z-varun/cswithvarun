@@ -213,17 +213,6 @@
   }
 
   // ============================================
-  // DOM Ready Helper
-  // ============================================
-  function onDomReady(callback) {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', callback);
-    } else {
-      callback();
-    }
-  }
-
-  // ============================================
   // Initialize All
   // ============================================
   function init() {

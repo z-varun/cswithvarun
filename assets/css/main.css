@@ -163,6 +163,10 @@ a:hover {
     transition: color 0.3s ease;
 }
 
+.logo-short {
+    display: none;
+}
+
 /* Navigation Menu */
 .nav-menu {
     display: flex;
@@ -185,6 +189,8 @@ a:hover {
     transition: all 0.3s ease;
     font-weight: var(--font-weight-medium);
     position: relative;
+    display: inline-block;
+    white-space: nowrap;
 }
 
 .nav-link::after {
@@ -201,7 +207,6 @@ a:hover {
 .nav-link:hover,
 .nav-link.active {
     color: var(--color-primary);
-    background-color: var(--bg-tertiary);
 }
 
 .nav-link:hover::after,
@@ -605,6 +610,18 @@ a:hover {
         padding: 0 var(--spacing-md);
     }
 
+    .logo-full {
+        display: none;
+    }
+
+    .logo-short {
+        display: block;
+    }
+
+    .nav-logo {
+        font-size: var(--font-size-lg);
+    }
+
     .nav-menu {
         display: none;
     }
@@ -647,5 +664,30 @@ a:hover {
 
     .logo-text {
         display: none;
+    }
+}
+
+/* ==========================================
+   Fix for Mid-Sized Screens (Tablet/Laptop)
+   ========================================== */
+@media (max-width: 1100px) {
+    /* 1. Reduce the gap between menu items so they fit */
+    .nav-menu {
+        gap: var(--spacing-md); /* Reduce from xl to md */
+    }
+
+    /* 2. Prevent the logo/name from wrapping */
+    .nav-logo {
+        white-space: nowrap;
+    }
+
+    /* 3. Slightly reduce logo text size to save space */
+    .nav-logo {
+        font-size: 1.25rem;
+    }
+
+    /* 4. Reduce link padding slightly */
+    .nav-link {
+        padding: var(--spacing-sm);
     }
 }
