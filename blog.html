@@ -50,7 +50,8 @@ custom_js: blog
 
         {% if has_more_tags %}
         <div class="filter-dropdown">
-            <button class="filter-btn filter-more" id="moreFiltersBtn">
+
+            <button class="filter-btn filter-more" id="moreFiltersBtn" aria-haspopup="true" aria-expanded="false" aria-controls="moreFilters">
                 More Filters <i class="fas fa-chevron-down"></i>
             </button>
             <div class="filter-dropdown-content" id="moreFilters">
