@@ -62,6 +62,32 @@
   margin-bottom: 3rem;
 }
 
+/* ADD THESE RULES to fix mobile layout breaking */
+
+/* 1. Prevent images from overflowing */
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Optional: makes images look nicer */
+}
+
+/* 2. Handle Code Blocks */
+.post-content pre, 
+.post-content code {
+    white-space: pre-wrap; /* Wraps long lines of code instead of scrolling */
+    word-wrap: break-word; /* Breaks long words if necessary */
+    max-width: 100%;
+    overflow-x: auto; /* Allows internal scrolling only if really needed */
+}
+
+/* 3. Make Tables Scrollable */
+.post-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto; /* Horizontal scroll for wide tables */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
 .post-content h1,
 .post-content h2,
 .post-content h3,
