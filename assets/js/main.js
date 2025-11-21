@@ -142,9 +142,11 @@
         if (isActive) {
           mobileNav.classList.remove('active');
           navToggle.classList.remove('active');
+          navToggle.setAttribute('aria-expanded', 'false')
         } else {
           mobileNav.classList.add('active');
           navToggle.classList.add('active');
+          navToggle.setAttribute('aria-expanded', 'true');
         }
       });
 

@@ -190,16 +190,24 @@
     if (elements.moreFiltersBtn) {
       elements.moreFiltersBtn.addEventListener('click', (e) => {
         e.stopPropagation();
+        const isExpanded = elements.moreFiltersBtn.getAttribute('aria-expanded') === 'true';
+
         Utils.toggle(elements.moreFilters, 'show');
         Utils.toggle(elements.moreFiltersBtn, 'active');
+
+        // Toggle ARIA state
+        elements.moreFiltersBtn.setAttribute('aria-expanded', !isExpanded);
       });
     }
 
     // Close dropdown on outside click
     document.addEventListener('click', (e) => {
       if (elements.moreFilters && !e.target.closest('.filter-dropdown')) {
-        elements.moreFilters.classList.remove('show');
-        elements.moreFiltersBtn?.classList.remove('active');
+        if (elements.moreFilters.classList.contains('show')) {
+            elements.moreFilters.classList.remove('show');
+            elements.moreFiltersBtn?.classList.remove('active');
+            elements.moreFiltersBtn?.setAttribute('aria-expanded', 'false'); // Fix ARIA
+        }
       }
     });
 
@@ -228,8 +236,10 @@
       // ESC to close dropdown or clear search
       if (e.key === 'Escape') {
         if (elements.moreFilters?.classList.contains('show')) {
-          elements.moreFilters.classList.remove('show');
-          elements.moreFiltersBtn?.classList.remove('active');
+            elements.moreFilters.classList.remove('show');
+            elements.moreFiltersBtn?.classList.remove('active');
+            elements.moreFiltersBtn?.setAttribute('aria-expanded', 'false'); // Fix ARIA
+            elements.moreFiltersBtn?.focus(); // Fix Focus
         } else if (isSearching) {
           clearSearch();
         }
