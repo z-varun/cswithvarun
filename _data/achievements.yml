@@ -1,11 +1,11 @@
 - icon: "fas fa-code-branch"
-  title: "CI/CD Pipeline Security"
+  title: "Zero-Vulnerability Ship Rate"
   description: "Designed and implemented comprehensive security gates across multi-cloud CI/CD pipelines, integrating SAST, DAST, SCA, container scanning, and artifact signing."
   metric_value: "75%"
   metric_label: "Reduction in Production Vulnerabilities"
 
 - icon: "fas fa-shield-alt"
-  title: "Kubernetes Security Hardening"
+  title: "Bulletproof Orchestration"
   description: "Led initiatives to harden Kubernetes clusters through network policies, Pod Security Standards, admission controllers (OPA Gatekeeper), and runtime security monitoring."
   metric_value: "100%"
   metric_label: "Cluster Compliance Rate"
@@ -17,7 +17,7 @@
   metric_label: "Cloud Platforms Secured"
 
 - icon: "fas fa-users"
-  title: "Security Champions Program"
+  title: "Scaling Human Firewalls"
   description: "Established and led Security Champions program across 15+ engineering teams, empowering developers with security expertise and training."
   metric_value: "50+"
   metric_label: "Security Champions Trained"
