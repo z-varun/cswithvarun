@@ -12,7 +12,8 @@ custom_js: about-page
     <section class="about-hero">
         <div class="stats-grid">
             {% for stat in site.data.stats %}
-            <div class="stat-card card-hover-lift" data-animate="fade-up" {% if stat.delay> 0 %}data-delay="{{ stat.delay }}"{% endif
+            <div class="stat-card card-hover-lift" data-animate="fade-up" {% if stat.delay> 0 %}data-delay="{{
+                stat.delay }}"{% endif
                 %}>
                 <div class="stat-number gradient-text" data-target="{{ stat.number }}">0</div>
                 {% if stat.suffix != "" %}<div class="stat-suffix">{{ stat.suffix }}</div>{% endif %}
@@ -22,6 +23,15 @@ custom_js: about-page
             {% endfor %}
         </div>
     </section>
+
+    <!-- Opening Quote -->
+    <section class="quote-section" data-animate="fade-in">
+        <blockquote class="animated-quote">
+            <p>Security shouldn't be a gatekeeper saying 'No'. It should be a guardrail saying 'Here is the safe way to
+                go fast'.</p>
+        </blockquote>
+    </section>
+
 
     <!-- Professional Philosophy with Interactive Cards -->
     <section class="philosophy-section" data-animate="fade-in">
