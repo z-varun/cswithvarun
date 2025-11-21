@@ -13,6 +13,7 @@
    ================================ */
 
 .featured-project {
+  background-color: var(--bg-card);
   background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-tertiary) 100%);
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);
@@ -20,6 +21,7 @@
   margin-bottom: var(--spacing-3xl);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-md);
 }
 
 .project-badge {
@@ -147,7 +149,7 @@
 
 .project-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
+  box-shadow: var(--shadow-lg);
   border-color: var(--color-primary);
 }
 
@@ -298,9 +300,15 @@
    ================================ */
 
 .skills-showcase-section {
-  padding: var(--spacing-3xl) 0;
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-card);
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-tertiary) 100%);
   border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-2xl);
+  margin-bottom: var(--spacing-3xl);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
 }
 
 .skills-showcase {
