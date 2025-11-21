@@ -324,8 +324,16 @@
 /* Mobile */
 @media (width <= 768px) {
   .hero {
-    padding: clamp(50px, 8vh, 80px) 0 clamp(40px, 6vh, 60px);
-    min-height: clamp(400px, 60vh, 600px);
+    padding: var(--spacing-xl) 0;
+    min-height: auto;
+  }
+  .hero h1 {
+    font-size: 2rem; /* Prevent massive headings taking up the whole screen */
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .hero .lead {
+      font-size: 1.1rem;
   }
 
   .hero-content {
