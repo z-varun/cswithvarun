@@ -84,65 +84,6 @@
     }
   }
 
-  // ============================================
-  // Search Posts
-  // ============================================
-  const performSearch = Utils.debounce((searchTerm) => {
-    if (searchTerm.length > 0) {
-      isSearching = true;
-      elements.blogFilters.classList.add('searching');
-      elements.clearSearchBtn.style.display = 'block';
-      elements.activeFilterDisplay.style.display = 'none';
-
-      let matchCount = 0;
-
-      elements.posts.forEach(post => {
-        const tags = post.getAttribute('data-tags')?.toLowerCase() || '';
-        const title = post.querySelector('.post-title')?.textContent.toLowerCase() || '';
-        const excerpt = post.querySelector('.post-excerpt')?.textContent.toLowerCase() || '';
-
-        const matches = tags.includes(searchTerm) ||
-          title.includes(searchTerm) ||
-          excerpt.includes(searchTerm);
-
-        if (matches) {
-          post.style.display = 'flex';
-          post.style.opacity = '1';
-          post.style.transform = 'translateY(0)';
-          matchCount++;
-        } else {
-          post.style.opacity = '0';
-          post.style.transform = 'translateY(20px)';
-          setTimeout(() => post.style.display = 'none', 300);
-        }
-      });
-
-      // Show search results count
-      elements.searchResultsCount.style.display = 'block';
-      elements.resultsCountText.innerHTML =
-        `Found <strong>${matchCount}</strong> post${matchCount !== 1 ? 's' : ''} matching "<strong>${searchTerm}</strong>"`;
-
-      updateNoResultsMessage(matchCount, `search: ${searchTerm}`);
-    } else {
-      clearSearch();
-    }
-  }, 300);
-
-  function clearSearch() {
-    if (elements.searchInput) {
-      elements.searchInput.value = '';
-    }
-    isSearching = false;
-    elements.blogFilters.classList.remove('searching');
-    elements.clearSearchBtn.style.display = 'none';
-    elements.searchResultsCount.style.display = 'none';
-
-    // Reapply current filter
-    const activeBtn = document.querySelector('.filter-btn.active');
-    if (activeBtn) {
-      applyFilter(currentFilter, activeBtn);
-    }
-  }
 
   // ============================================
   // No Results Message
@@ -211,18 +152,6 @@
       }
     });
 
-    // Search input
-    if (elements.searchInput) {
-      elements.searchInput.addEventListener('input', (e) => {
-        performSearch(e.target.value.toLowerCase().trim());
-      });
-    }
-
-    // Clear search button
-    if (elements.clearSearchBtn) {
-      elements.clearSearchBtn.addEventListener('click', clearSearch);
-    }
-
     // Clear filter button
     if (elements.clearFilterBtn) {
       elements.clearFilterBtn.addEventListener('click', () => {
@@ -230,27 +159,6 @@
         applyFilter('all', allPostsBtn);
       });
     }
-
-    // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-      // ESC to close dropdown or clear search
-      if (e.key === 'Escape') {
-        if (elements.moreFilters?.classList.contains('show')) {
-            elements.moreFilters.classList.remove('show');
-            elements.moreFiltersBtn?.classList.remove('active');
-            elements.moreFiltersBtn?.setAttribute('aria-expanded', 'false'); // Fix ARIA
-            elements.moreFiltersBtn?.focus(); // Fix Focus
-        } else if (isSearching) {
-          clearSearch();
-        }
-      }
-
-      // Ctrl/Cmd + K to focus search
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        elements.searchInput?.focus();
-      }
-    });
   }
 
   // ============================================
@@ -263,9 +171,6 @@
     elements.moreFiltersBtn = document.getElementById('moreFiltersBtn');
     elements.moreFilters = document.getElementById('moreFilters');
     elements.posts = document.querySelectorAll('.blog-post-item');
-    elements.searchInput = document.getElementById('tagSearchInput');
-    elements.clearSearchBtn = document.getElementById('clearSearchBtn');
-    elements.searchResultsCount = document.getElementById('searchResultsCount');
     elements.resultsCountText = document.getElementById('resultsCountText');
     elements.activeFilterDisplay = document.getElementById('activeFilterDisplay');
     elements.activeFilterTag = document.getElementById('activeFilterTag');

@@ -31,16 +31,6 @@
 }
 
 /* ================================
-   Search Bar
-   ================================ */
-
-.filter-search-container {
-  max-width: 600px;
-  margin: var(--spacing-2xl) auto var(--spacing-lg);
-  padding: 0 var(--spacing-xl);
-}
-
-/* ================================
    Blog Filters
    ================================ */
 
@@ -452,17 +442,6 @@ div.highlighter-rouge, figure.highlight {
       margin-bottom: var(--spacing-xl);
   }
 
-  .search-wrapper {
-      width: 100%;
-      max-width: 100%;
-  }
-
-  .search-input {
-      width: 100%;
-      font-size: 16px; /* Critical: Prevents iOS zooming in when tapping search */
-      padding: 12px 16px;
-  }
-
   /* 3. Make Filter Tags Scrollable (Horizontal Swipe) */
   .filter-tags {
       display: flex;
@@ -489,11 +468,6 @@ div.highlighter-rouge, figure.highlight {
 
   /* 4. Additional Layout Fixes */
   .blog-page {
-      padding: 0 var(--spacing-md);
-  }
-
-  .filter-search-container,
-  .blog-filters {
       padding: 0 var(--spacing-md);
   }
 
@@ -536,9 +510,6 @@ div.highlighter-rouge, figure.highlight {
       gap: var(--spacing-sm);
   }
 
-  .blog-filters {
-      gap: var(--spacing-sm);
-  }
 }
 
 
