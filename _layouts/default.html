@@ -83,19 +83,14 @@
                "name": "{{ site.author.name }}",
                "url": "{{ site.url }}",
                "image": "{{ site.url }}/assets/images/profile.jpg",
-               "jobTitle": "Senior Security Engineer",
+               "jobTitle": "{{ site.author.title }}",
                "description": "{{ site.description }}",
                "sameAs": [
-                    "https://linkedin.com/in/varunbhandari",
-                    "https://github.com/yourgithub"
+                    "https://linkedin.com/in/{{ site.linkedin_username }}",
+                    "https://github.com/{{ site.github_username }}",
+                    "https://www.varunbhandari.in/"
                ],
-               "knowsAbout": [
-                    "DevSecOps",
-                    "Cloud Security",
-                    "Kubernetes Security",
-                    "CI/CD Pipeline Security",
-                    "Infrastructure as Code"
-               ]
+               "knowsAbout": {{ site.knowsAbout | jsonify }}
           }
      </script>
 
