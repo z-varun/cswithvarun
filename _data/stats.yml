@@ -1,7 +1,7 @@
 - number: 9
   label: "Years of Experience"
   icon: "💼"
-  suffix: ""
+  suffix: "+"
   delay: 0
 
 - number: 4
@@ -10,7 +10,7 @@
   suffix: "+"
   delay: 100
 
-- number: 100
+- number: 20
   label: "Projects Delivered"
   icon: "🚀"
   suffix: "+"
