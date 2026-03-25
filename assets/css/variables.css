@@ -38,7 +38,7 @@
 
     /* Typography */
     --font-primary: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, oxygen, ubuntu, cantarell, sans-serif;
-    --font-mono: 'Fira Code', 'Courier New', monospace;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
