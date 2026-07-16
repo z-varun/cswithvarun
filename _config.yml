@@ -104,6 +104,12 @@ navigation:
 sass:
   style: compressed
 
+# Include files for Cloudflare Pages
+include:
+  - .well-known
+  - _headers
+  - _redirects
+
 # Exclude from processing
 exclude:
   - README.md
