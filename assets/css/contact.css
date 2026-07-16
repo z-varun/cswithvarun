@@ -38,10 +38,8 @@
    ================================ */
 
 .contact-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: var(--spacing-3xl);
-    margin-bottom: var(--spacing-3xl);
+    max-width: 700px;
+    margin: 0 auto var(--spacing-3xl);
 }
 
 /* ================================
@@ -137,69 +135,14 @@
     transform: translateX(4px);
 }
 
-/* ================================
-   Contact Info Sidebar
-   ================================ */
-
-.contact-info-section {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-}
-
-.contact-card {
-    background-color: var(--bg-card);
-    padding: var(--spacing-xl);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
-    text-align: center;
-    transition: all var(--transition-base);
-}
-
-.contact-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
-    border-color: var(--color-primary);
-}
-
-.contact-card i {
-    font-size: 2.5rem;
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-md);
-    display: block;
-}
-
-.contact-card h3 {
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-md);
-    color: var(--text-primary);
-}
-
-.contact-card a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-weight: var(--font-weight-medium);
-    transition: color var(--transition-base);
-    word-break: break-word;
-}
-
-.contact-card a:hover {
-    color: var(--color-primary);
-}
+/* Responsive Design rules starting here */
 
 /* ================================
    Responsive Design
    ================================ */
 
 @media (width <= 968px) {
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-
-    .contact-info-section {
-        flex-direction: row;
-    }
+    /* container tweaks no longer needed */
 }
 
 @media (width <= 768px) {
@@ -217,13 +160,6 @@
 
     .contact-intro p {
         font-size: var(--font-size-base);
-    }
-}
-
-@media (width <= 640px) {
-    .contact-info-section {
-        flex-direction: column;
-    }
 }
 
 @media (width <= 480px) {
@@ -238,19 +174,4 @@
     .submit-btn {
         font-size: var(--font-size-base);
     }
-}
-
-/* .contact-card .contact-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--text-primary);
-}
-.contact-card h3 { margin: 0; font-size: 1rem; }
-.contact-cta { font-weight: 600; color: var(--color-primary); } */
-.contact-icon svg {
-    width: 45px;
-    height: 45px;
-    fill: currentcolor
 }

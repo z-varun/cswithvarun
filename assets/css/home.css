@@ -109,13 +109,16 @@
 }
 
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--spacing-2xl);
   margin-top: var(--spacing-2xl);
 }
 
 .skill-card {
+  flex: 1 1 300px;
+  max-width: 400px;
   background-color: var(--bg-card);
   padding: var(--spacing-2xl);
   border-radius: var(--border-radius);
@@ -370,5 +373,38 @@
 
   .skill-icon {
     font-size: 2.5rem;
+  }
+}
+
+/* ================================
+   Hero Scroll Chevron
+   ================================ */
+.hero-scroll-down {
+  position: absolute;
+  bottom: var(--spacing-2xl);
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+}
+
+.hero-scroll-down a {
+  color: var(--color-primary);
+  font-size: 2rem;
+  transition: opacity var(--transition-speed);
+}
+
+.hero-scroll-down a:hover {
+  opacity: 0.8;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-20px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-10px) translateX(-50%);
   }
 }

@@ -438,12 +438,12 @@ a:hover {
     margin-bottom: var(--spacing-sm);
 }
 
-.footer-section a {
+.footer-section a:not(.btn) {
     color: var(--text-muted);
     transition: color var(--transition-base);
 }
 
-.footer-section a:hover {
+.footer-section a:not(.btn):hover {
     color: var(--color-primary);
 }
 
