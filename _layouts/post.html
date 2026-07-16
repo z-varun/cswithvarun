@@ -80,8 +80,13 @@ layout: default
         </div>
 
         <div class="author-bio">
-            <h2>About the Author</h2>
-            <p>{{ site.author.bio }}</p>
+            {% if site.author.image %}
+            <img src="{{ site.author.image | relative_url }}" alt="{{ site.author.name }}" class="author-avatar" loading="lazy">
+            {% endif %}
+            <div class="author-text">
+                <h2>About the Author</h2>
+                <p><strong><a href="{{ '/about/' | relative_url }}">{{ site.author.name }}</a></strong> - {{ site.author.bio }}</p>
+            </div>
         </div>
     </footer>
 </article>

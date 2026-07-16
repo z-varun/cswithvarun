@@ -183,10 +183,6 @@
 
 .project-achievements {
   margin-top: var(--spacing-md);
-  padding: var(--spacing-md);
-  background-color: var(--bg-tertiary);
-  border-radius: var(--border-radius-sm);
-  border-left: 3px solid var(--color-primary);
 }
 
 .project-achievements h4 {
@@ -366,77 +362,7 @@
   border-color: var(--color-primary);
 }
 
-/* ================================
-   Certifications Section
-   ================================ */
 
-.certifications-section {
-  padding: var(--spacing-3xl) 0;
-  background-color: var(--bg-primary);
-}
-
-.certifications-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-xl);
-  margin-top: var(--spacing-2xl);
-}
-
-.cert-card {
-  background-color: var(--bg-card);
-  padding: var(--spacing-2xl);
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
-  text-align: center;
-  transition: all var(--transition-base);
-  position: relative;
-  overflow: hidden;
-}
-
-.cert-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
-  transition: left 0.6s ease;
-}
-
-.cert-card:hover::before {
-  left: 100%;
-}
-
-.cert-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--color-primary);
-}
-
-.cert-icon {
-  font-size: 3rem;
-  margin-bottom: var(--spacing-lg);
-  display: block;
-  transition: transform var(--transition-base);
-}
-
-.cert-card:hover .cert-icon {
-  transform: scale(1.2) rotate(10deg);
-}
-
-.cert-card h3 {
-  font-size: var(--font-size-xl);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-md);
-}
-
-.cert-card p {
-  color: var(--text-secondary);
-  line-height: var(--line-height-relaxed);
-  font-size: var(--font-size-base);
-  margin: 0;
-}
 
 /* ================================
    Impact Summary Section
@@ -526,10 +452,6 @@
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
 
-  .certifications-grid {
-    grid-template-columns: 1fr;
-  }
-
   .impact-stats {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -555,16 +477,9 @@
 
 @media (width <= 480px) {
   .skills-showcase-section,
-  .certifications-section,
   .impact-summary {
     padding: var(--spacing-xl) 0;
   }
 
-  .cert-card {
-    padding: var(--spacing-xl);
-  }
-
-  .cert-icon {
-    font-size: 2.5rem;
   }
 }
