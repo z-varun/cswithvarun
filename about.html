@@ -39,7 +39,7 @@ custom_js: about-page
         <h2 class="section-title">My Philosophy</h2>
         <div class="philosophy-grid">
             {% for item in site.data.philosophy %}
-            <div class="philosophy-card card-hover-lift" data-tilt>
+            <div class="philosophy-card card-hover-lift">
                 <div class="card-icon">{{ item.icon }}</div>
                 <h3>{{ item.title }}</h3>
                 <p>{{ item.description }}</p>
@@ -257,7 +257,7 @@ custom_js: about-page
         <h2 class="section-title">Key Achievements</h2>
         <div class="achievements-grid">
             {% for achievement in site.data.achievements %}
-            <div class="achievement-card card-hover-lift" data-hover-lift>
+            <div class="achievement-card card-hover-lift">
                 <div class="achievement-icon">
                     <i class="{{ achievement.icon }}"></i>
                 </div>
