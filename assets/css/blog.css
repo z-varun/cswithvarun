@@ -207,8 +207,8 @@
   justify-content: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-md) var(--spacing-lg);
-  background: var(--gradient-primary);
-  color: white;
+  background: rgba(0, 217, 255, 0.1);
+  color: var(--color-primary);
   font-weight: var(--font-weight-bold);
 }
 
