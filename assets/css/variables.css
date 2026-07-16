@@ -32,7 +32,10 @@
     --border-radius-lg: 16px;
     --border-radius-full: 9999px;
 
-    /* Shadows */
+    --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    --gradient-primary-90: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    
+    /* Layout */
     --shadow-xl: 0 15px 40px rgba(0, 217, 255, 0.2);
     --shadow-primary: 0 4px 12px rgba(0, 217, 255, 0.3);
 

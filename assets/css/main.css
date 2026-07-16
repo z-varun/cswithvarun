@@ -91,7 +91,7 @@ a:hover {
    ================================ */
 
 .container {
-    max-width: 1200px;
+    max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 var(--spacing-xl);
 }
@@ -130,7 +130,7 @@ a:hover {
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 var(--spacing-lg);
     display: flex;
@@ -200,7 +200,7 @@ a:hover {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    background: var(--gradient-primary-90);
     transition: width 0.3s ease;
 }
 
@@ -216,7 +216,7 @@ a:hover {
 
 /* Resume Button */
 .btn-resume {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: var(--gradient-primary);
     color: white !important;
     border: none;
     padding: var(--spacing-sm) var(--spacing-lg);
@@ -514,10 +514,10 @@ a:hover {
 .page-title {
     font-size: var(--font-size-4xl);
     margin-bottom: var(--spacing-md);
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .page-subtitle {

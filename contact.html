@@ -17,6 +17,7 @@ custom_css: contact
                 <input type="hidden" name="access_key" value="8dbc121e-aa45-4726-88d0-a3fca1c45295">
                 <input type="hidden" name="redirect" value="https://cswithvarun.com/thank-you/">
                 <input type="hidden" name="subject" value="New Contact Form Submission from cswithvarun.com">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
                 <div class="form-group">
                     <label for="name">Name <span class="required">*</span></label>
@@ -50,7 +51,7 @@ custom_css: contact
             <div class="contact-card">
                 <i class="fas fa-envelope"></i>
                 <h3>Email</h3>
-                <a href="mailto:varun@cswithvarun.com">varun@cswithvarun.com</a>
+                <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
             </div>
 
             <div class="contact-card">

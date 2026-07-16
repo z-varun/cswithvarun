@@ -3,7 +3,7 @@
    ================================ */
 
 .about-page-interactive {
-    max-width: 1200px;
+    max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 var(--spacing-xl); /* Added default padding */
 }
@@ -106,7 +106,7 @@
     inset: 0;
     border-radius: var(--border-radius);
     padding: 2px;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: var(--gradient-primary);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: xor;
     mask-composite: exclude;
@@ -177,7 +177,7 @@
 }
 
 .end-marker {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: var(--gradient-primary);
     box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
     animation: pulseBlue 2s ease-in-out infinite;
 }
@@ -252,7 +252,7 @@
 .timeline-item .timeline-marker {
     width: 20px;
     height: 20px;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: var(--gradient-primary);
     border-radius: 50%;
     position: absolute;
     left: 50%;
@@ -395,7 +395,7 @@
 
 .skill-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    background: var(--gradient-primary-90);
     border-radius: var(--border-radius-full);
     width: 0;
     transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);

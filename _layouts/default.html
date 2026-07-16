@@ -4,28 +4,12 @@
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta name="description" content="{{ page.description | default: site.description }}">
-     <meta name="author" content="{{ site.author.name }}">
 
      <!-- Security headers -->
      <meta name="referrer" content="strict-origin-when-cross-origin">
 
-     <!-- ============================================
-         SEO & Social Media Meta Tags
-         ============================================ -->
-     <!-- Open Graph / Facebook -->
-     <meta property="og:type" content="website">
-     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-     <meta property="og:title" content="{{ page.title | default: site.title }}">
-     <meta property="og:description" content="{{ page.description | default: site.description }}">
-     <meta property="og:image" content="{{ site.url }}/assets/images/og-image.jpg">
-
-     <!-- Twitter -->
-     <meta name="twitter:card" content="summary_large_image">
-     <meta name="twitter:url" content="{{ site.url }}{{ page.url }}">
-     <meta name="twitter:title" content="{{ page.title | default: site.title }}">
-     <meta name="twitter:description" content="{{ page.description | default: site.description }}">
-     <meta name="twitter:image" content="{{ site.url }}/assets/images/og-image.jpg">
+     <!-- SEO tags -->
+     {% seo %}
 
      <title>{{ page.title | default: site.title }}</title>
 
@@ -34,9 +18,6 @@
      <link rel="apple-touch-icon" type="image/png"
           href="{{ '/assets/images/icons8-apple-inc-100.png' | relative_url }}">
 
-     <!-- ============================================
-         Performance Optimizations
-         ============================================ -->
      <!-- Preconnect for faster resource loading -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +25,7 @@
      <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
      <!-- Main CSS -->
-     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
      <!-- Google Fonts with display=swap for better performance -->
      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
@@ -53,7 +34,7 @@
      <!-- Optimized Font Awesome Loading -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-          crossorigin="anonymous" media="print" id="fontawesome-css">
+          crossorigin="anonymous" media="print" onload="this.media='all'" id="fontawesome-css">
 
      <noscript>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -62,37 +43,17 @@
      </noscript>
 
      <!-- Theme Detection Script (Prevents Flash of Unstyled Theme) -->
-     <script nonce="cswithvarun">
-          (function () {
-               const theme = localStorage.getItem('theme-preference') ||
-                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-               document.documentElement.setAttribute('data-theme', theme);
-          })();
-     </script>
+     <script src="{{ '/assets/js/theme-init.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 
      <!-- Page-specific CSS -->
      {% if page.custom_css %}
-     <link rel="stylesheet" href="{{ '/assets/css/' | append: page.custom_css | append: '.css' | relative_url }}">
+     <link rel="stylesheet" href="{{ '/assets/css/' | append: page.custom_css | append: '.css' | relative_url }}?v={{ site.time | date: '%s' }}">
      {% endif %}
 
-     <!-- Structured Data for SEO - JSON-LD is safe, not executable -->
-     <script type="application/ld+json">
-          {
-               "@context": "https://schema.org",
-               "@type": "Person",
-               "name": "{{ site.author.name }}",
-               "url": "{{ site.url }}",
-               "image": "{{ site.url }}/assets/images/profile.jpg",
-               "jobTitle": "{{ site.author.title }}",
-               "description": "{{ site.description }}",
-               "sameAs": [
-                    "https://linkedin.com/in/{{ site.linkedin_username }}",
-                    "https://github.com/{{ site.github_username }}",
-                    "https://www.varunbhandari.in/"
-               ],
-               "knowsAbout": {{ site.knowsAbout | jsonify }}
-          }
-     </script>
+     <!-- Load post-specific styles -->
+     {% if page.layout == 'post' %}
+     <link rel="stylesheet" href="{{ '/assets/css/post.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+     {% endif %}
 
 </head>
 
@@ -106,33 +67,28 @@
      {% include footer.html %}
 
      <!-- External JavaScript Files (loaded at the end for performance) -->
-     <script src="{{ '/assets/js/utils.js' | relative_url }}" nonce="cswithvarun"></script>
-     <script src="{{ '/assets/js/main.js' | relative_url }}" nonce="cswithvarun"></script>
+     <script src="{{ '/assets/js/utils.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+     <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 
      {% if page.url == '/blog' or page.url == '/blog/' or page.url == '/blog/index.html' %}
-     <script src="{{ '/assets/js/blog.js' | relative_url }}" nonce="cswithvarun"></script>
+     <script src="{{ '/assets/js/blog.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
      {% endif %}
 
      {% if page.url == '/about' or page.url == '/about/' or page.url == '/about.html' %}
-     <script src="{{ '/assets/js/about-page.js' | relative_url }}" nonce="cswithvarun"></script>
+     <script src="{{ '/assets/js/about-page.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
      {% endif %}
 
      {% if page.url == '/thank-you' or page.url == '/thank-you/' %}
-     <script src="{{ '/assets/js/thank-you.js' | relative_url }}" nonce="cswithvarun"></script>
-     {% endif %}
-
-     <!-- Load post-specific styles -->
-     {% if page.layout == 'post' %}
-     <link rel="stylesheet" href="{{ '/assets/css/post.css' | relative_url }}">
+     <script src="{{ '/assets/js/thank-you.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
      {% endif %}
 
      <!-- Load reading progress script for blog posts -->
      {% if page.layout == 'post' %}
-     <script src="/assets/js/reading-progress.js" nonce="cswithvarun"></script>
+     <script src="{{ '/assets/js/reading-progress.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
      {% endif %}
 
      <!-- Theme Toggle Script -->
-     <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}" nonce="cswithvarun"></script>
+     <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 
 </body>
 

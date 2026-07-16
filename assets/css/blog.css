@@ -3,7 +3,7 @@
    ================================ */
 
 .blog-page {
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 var(--spacing-xl);
 }
@@ -207,7 +207,7 @@
   justify-content: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-md) var(--spacing-lg);
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: var(--gradient-primary);
   color: white;
   font-weight: var(--font-weight-bold);
 }
@@ -427,62 +427,6 @@ div.highlighter-rouge, figure.highlight {
 }
 
 @media (width <= 768px) {
-  /* 1. Stack blog posts vertically (1 Column) */
-  .blog-grid {
-      grid-template-columns: 1fr;
-      gap: var(--spacing-lg);
-      padding: 0; /* Remove extra side padding if container handles it */
-  }
-
-  /* 2. Ensure Search Bar takes full width but doesn't overflow */
-  .blog-controls {
-      flex-direction: column;
-      align-items: stretch;
-      gap: var(--spacing-md);
-      margin-bottom: var(--spacing-xl);
-  }
-
-  /* 3. Make Filter Tags Scrollable (Horizontal Swipe) */
-  .filter-tags {
-      display: flex;
-      flex-wrap: nowrap; /* Don't wrap to next line */
-      overflow-x: auto; /* Allow horizontal scrolling */
-      padding-bottom: var(--spacing-sm);
-      width: 100%;
-      -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
-      gap: var(--spacing-sm);
-
-      /* Optional: Hide scrollbar for cleaner look */
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE/Edge */
-  }
-
-  .filter-tags::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
-  }
-
-  .filter-tag {
-      white-space: nowrap; /* Prevent text wrapping inside tag */
-      flex-shrink: 0; /* Prevent tags from getting squished */
-  }
-
-  /* 4. Additional Layout Fixes */
-  .blog-page {
-      padding: 0 var(--spacing-md);
-  }
-
-  .blog-container {
-      display: flex; /* Switch from grid to flex column on mobile */
-      flex-direction: column;
-      gap: var(--spacing-lg);
-  }
-  
-  /* Hide Sidebar or move it if necessary - usually sidebar is hidden or moved to bottom on mobile */
-  .blog-sidebar {
-      position: static;
-      width: 100%;
-      display: none; /* Often better to hide sidebar on mobile, or move filter-tags out of it */
-  }
 
   .post-content-preview {
       padding: var(--spacing-lg);

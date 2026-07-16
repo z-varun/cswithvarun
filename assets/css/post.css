@@ -266,31 +266,7 @@
   margin-bottom: 3rem;
 }
 
-.share-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
 
-.share-button:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--color-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
-.share-button i {
-  font-size: 1.125rem;
-}
 
 .share-btn {
   display: inline-flex;
@@ -359,7 +335,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  background: var(--gradient-primary-90);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -524,7 +500,7 @@
   left: 0;
   width: 0%;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  background: var(--gradient-primary-90);
   box-shadow: 0 2px 4px rgba(0, 217, 255, 0.3);
   z-index: 9999;
   transition: width 0.2s ease-out;
