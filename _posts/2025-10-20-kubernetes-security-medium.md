@@ -6,6 +6,7 @@ excerpt: "Learn essential Kubernetes security practices from production experien
 tags: [Kubernetes, Security, DevSecOps]
 external_url: "https://medium.com/@varunbhandari/kubernetes-security-best-practices"
 platform: "Medium"
+sitemap: false
 ---
 
 This post is published on Medium. Click to read the full article.
