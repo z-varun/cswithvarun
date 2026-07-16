@@ -76,7 +76,7 @@
     display: block;
     width: 60px;
     height: 4px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    background: var(--gradient-primary-90);
     margin: var(--spacing-md) auto 0;
     border-radius: var(--border-radius-sm);
 }
@@ -144,7 +144,7 @@
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: var(--gradient-primary);
     color: white;
     border-color: transparent;
     box-shadow: var(--shadow-primary);
@@ -172,7 +172,7 @@
 }
 
 .badge-primary {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: var(--gradient-primary);
     color: white;
     box-shadow: var(--shadow-primary);
 }
@@ -185,10 +185,10 @@
 
 /* Gradient Text */
 .gradient-text {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
     display: inline-block;
 }
 
@@ -211,10 +211,10 @@
     display: block;
     font-size: var(--font-size-3xl);
     font-weight: var(--font-weight-bold);
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
     margin-bottom: var(--spacing-sm);
 }
 
@@ -248,7 +248,7 @@
 }
 
 .filter-btn.active {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: var(--gradient-primary);
   color: white;
   border-color: transparent;
   box-shadow: var(--shadow-primary);

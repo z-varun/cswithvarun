@@ -29,6 +29,8 @@ author:
   email: varun@cswithvarun.com
   title: "Senior Security Engineer"
 
+resume_url: /assets/files/VarunBhandari-9Yrs-DevSecOps.pdf
+
 knowsAbout:
   - "DevSecOps"
   - "SRE"
@@ -112,6 +114,7 @@ include:
 
 # Exclude from processing
 exclude:
+  - _backup
   - README.md
   - Gemfile
   - Gemfile.lock

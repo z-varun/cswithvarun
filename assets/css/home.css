@@ -45,10 +45,10 @@
 }
 
 .hero-title .highlight {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
   display: inline;
 }
 

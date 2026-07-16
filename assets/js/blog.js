@@ -26,6 +26,16 @@
   };
 
   // ============================================
+  // Clear Search
+  // ============================================
+  function clearSearch() {
+    if (elements.searchInput) {
+      elements.searchInput.value = '';
+    }
+    isSearching = false;
+  }
+
+  // ============================================
   // Filter Posts
   // ============================================
   function applyFilter(filter, buttonElement) {

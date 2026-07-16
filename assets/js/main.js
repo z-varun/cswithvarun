@@ -21,7 +21,7 @@
   function initNavigation() {
     const resumeToggle = document.getElementById('resumeToggle');
     const resumeDropdown = document.getElementById('resumeDropdown');
-    const _mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNav = document.getElementById('mobileNav');
     const _navMenu = document.getElementById('navMenu');
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');

@@ -2,7 +2,7 @@
 /old-blog/*          /blog/:splat          301
 /github              https://github.com/z-varun  302
 /linkedin            https://linkedin.com/in/varun-bhandari5  302
-/resume              /assets/files/VarunBhandari-8Yrs-DevSecOps.pdf    302
+/resume              /assets/files/VarunBhandari-9Yrs-DevSecOps.pdf    302
 
 # Redirect from legacy Netlify domain
 https://z-varun.netlify.app/*  https://cswithvarun.com/:splat  301
