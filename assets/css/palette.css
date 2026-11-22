@@ -1,5 +1,5 @@
 /* ================================
-   Palette: Soft (sage surfaces, forest-green accent)
+   Palette: Soft (mint surfaces, forest-green text, fresh-green accents)
    The only file that changes between colour themes. Everything else derives from
    these tokens (theme.css), and scripts/generate-brand-assets.mjs reads the accent
    and surface colours from here for the logo, favicons and share images.
@@ -9,31 +9,31 @@
 :root {
     color-scheme: light;
 
-    /* Surfaces: white cards floating on a soft sage page */
-    --bg-primary: #f3f5f1;
-    --bg-secondary: #eaeee7;
-    --bg-tertiary: #e3e8df;
+    /* Surfaces: pale mint page, mint section bands, white cards on top */
+    --bg-primary: #f1f8ee;
+    --bg-secondary: #e4f2de;
+    --bg-tertiary: #d6ebce;
     --bg-card: #fff;
 
-    /* Text */
-    --text-primary: #121512;
-    --text-secondary: #3d443e;
-    --text-muted: #5a625b;
+    /* Text: dark forest green instead of black (11.9:1 on the page) */
+    --text-primary: #14391c;
+    --text-secondary: #2f4a35;
+    --text-muted: #4b6650;
 
     /* Accent, in three roles:
        text    - links and small labels; must reach 4.5:1 on every surface
        fill    - buttons, active pills, chips, logo; a fresh mint with dark text on it (8.7:1)
        display - large headlines and big numbers; brighter, as large text needs only 3:1 */
     --color-primary: #1f6b38;
-    --color-secondary: #165029;
+    --color-secondary: #14391c;
     --accent-fill: #8ad897;
     --on-accent: #0f2e17;
     --accent-display: #2b9147;
     --color-danger: #b91c1c;
 
-    /* Borders: barely-there card edges; stronger edge for form controls (3:1) */
-    --border-color: #e2e7de;
-    --border-strong: #7d877e;
+    /* Borders: soft mint card edges; stronger edge for form controls (3:1) */
+    --border-color: #d5e6ce;
+    --border-strong: #6f8a72;
     --focus-ring: var(--color-primary);
 
     /* Platform badges */
@@ -41,19 +41,19 @@
     --platform-substack: #9a3412;
 
     /* Code */
-    --code-bg: #eef1ec;
+    --code-bg: #e8f3e3;
     --code-inline: var(--color-primary);
-    --code-comment: #5a625b;
+    --code-comment: #4b6650;
     --code-keyword: #6d28d9;
     --code-string: #047857;
     --code-number: #b45309;
     --code-name: #0e7490;
     --code-builtin: #9d174d;
 
-    /* Soft, diffuse shadows instead of hard borders */
-    --shadow-sm: 0 1px 2px rgb(18 28 18 / 0.04), 0 1px 3px rgb(18 28 18 / 0.04);
-    --shadow-md: 0 4px 16px rgb(18 28 18 / 0.06);
-    --shadow-lg: 0 12px 32px rgb(18 28 18 / 0.08);
+    /* Soft, green-tinted shadows */
+    --shadow-sm: 0 1px 2px rgb(20 57 28 / 0.05), 0 1px 3px rgb(20 57 28 / 0.05);
+    --shadow-md: 0 4px 16px rgb(20 57 28 / 0.07);
+    --shadow-lg: 0 12px 32px rgb(20 57 28 / 0.09);
 }
 
 [data-theme='dark'] {
