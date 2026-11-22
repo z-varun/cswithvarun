@@ -1,6 +1,6 @@
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests;
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
@@ -8,20 +8,18 @@
   Cross-Origin-Resource-Policy: same-origin
   Cross-Origin-Opener-Policy: same-origin
 
+# CSS and JS URLs carry a ?v=<build time> query string, so they can be cached forever.
 /assets/css/*
   Cache-Control: public, max-age=31536000, immutable
-  Cross-Origin-Resource-Policy: same-origin
 
 /assets/js/*
   Cache-Control: public, max-age=31536000, immutable
-  Cross-Origin-Resource-Policy: same-origin
 
+# Images and files are not versioned: cache for a day, revalidate after.
 /assets/images/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=86400, must-revalidate
+  ! Cross-Origin-Resource-Policy
   Cross-Origin-Resource-Policy: cross-origin
-  Access-Control-Allow-Origin: *
 
-/assets/fonts/*
-  Cache-Control: public, max-age=31536000, immutable
-  Cross-Origin-Resource-Policy: cross-origin
-  Access-Control-Allow-Origin: *
+/assets/files/*
+  Cache-Control: public, max-age=86400, must-revalidate

@@ -1,13 +1,16 @@
 # Site settings
 title: "CSWithVarun"
 description: "Senior Security Engineer with 9+ years of DevSecOps, SRE, and Cloud Security experience. Specializing in Kubernetes, multi-cloud architecture, and secure CI/CD pipelines."
-keywords: "DevSecOps Engineer, Cloud Security Architecture, Kubernetes Security, Multi-Cloud Infrastructure, CI/CD Pipeline Security, Infrastructure as Code"
-url: "https://cswithvarun.com"
+url: "https://www.cswithvarun.com"
 baseurl: ""
+timezone: Asia/Kolkata
+lang: en_US
+
+# Logo for jekyll-seo-tag; the default share image is set under defaults below
+logo: /assets/images/icons8-cyber-security-100.png
 
 # Build settings
 markdown: kramdown
-theme: null
 
 plugins:
   - jekyll-feed
@@ -29,7 +32,7 @@ author:
   email: varun@cswithvarun.com
   title: "Senior Security Engineer"
 
-resume_url: /assets/files/VarunBhandari-9Yrs-DevSecOps.pdf
+resume_url: /assets/files/VarunBhandari-Resume.pdf
 
 knowsAbout:
   - "DevSecOps"
@@ -89,6 +92,13 @@ knowsAbout:
 github_username: z-varun
 linkedin_username: varun-bhandari5
 
+# Profiles for jekyll-seo-tag (emitted as schema.org sameAs)
+social:
+  name: "Varun Bhandari"
+  links:
+    - https://github.com/z-varun
+    - https://www.linkedin.com/in/varun-bhandari5
+
 # Site navigation
 navigation:
   - title: Home
@@ -102,10 +112,6 @@ navigation:
   - title: Contact
     url: /contact/
 
-# Performance settings
-sass:
-  style: compressed
-
 # Include files for Cloudflare Pages
 include:
   - .well-known
@@ -114,8 +120,8 @@ include:
 
 # Exclude from processing
 exclude:
-  - _backup
   - README.md
+  - LICENSE
   - Gemfile
   - Gemfile.lock
   - node_modules
@@ -125,9 +131,22 @@ exclude:
   - vendor/ruby/
   - .gitignore
   - .git
+  - .ruby-version
+  - .ruby-lsp
+  - package.json
+  - package-lock.json
+  - eslint.config.js
+  - .stylelintrc.json
+  - .prettierrc.json
+  - .prettierignore
 
 # Defaults for posts and pages
 defaults:
+  - scope:
+      path: ""
+    values:
+      # Open Graph / Twitter card image unless a page sets its own
+      image: /assets/images/og-default.png
   - scope:
       path: ""
       type: "posts"

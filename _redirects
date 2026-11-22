@@ -1,13 +1,15 @@
-# Redirect old URLs to new ones
-/old-blog/*          /blog/:splat          301
-/github              https://github.com/z-varun  302
-/linkedin            https://linkedin.com/in/varun-bhandari5  302
-/resume              /assets/files/VarunBhandari-9Yrs-DevSecOps.pdf    302
+# Short links
+/github     https://github.com/z-varun                     302
+/linkedin   https://www.linkedin.com/in/varun-bhandari5    302
+/resume     /assets/files/VarunBhandari-Resume.pdf         302
 
-# Redirect from legacy Netlify domain
-https://z-varun.netlify.app/*  https://cswithvarun.com/:splat  301
+# Old resume filenames (the 8Yrs one was in the sitemap)
+/assets/files/VarunBhandari-8Yrs-DevSecOps.pdf  /assets/files/VarunBhandari-Resume.pdf  301
+/assets/files/VarunBhandari-9Yrs-DevSecOps.pdf  /assets/files/VarunBhandari-Resume.pdf  301
 
-# Force HTTPS & WWW resolution
-http://cswithvarun.com/*  https://cswithvarun.com/:splat  301
-http://www.cswithvarun.com/*  https://cswithvarun.com/:splat  301
-https://www.cswithvarun.com/*  https://cswithvarun.com/:splat  301
+# Some clients request /favicon.ico regardless of <link rel="icon">
+/favicon.ico  /assets/images/icons8-cyber-security-100.png  301
+
+# Host canonicalisation (apex -> www, http -> https) is handled by a
+# Cloudflare Redirect Rule at the zone level, not here: Pages ignores
+# domain-level rules in this file.
