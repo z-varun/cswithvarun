@@ -1,5 +1,5 @@
 /* ================================
-   Blog Page Specific Styles
+   Blog Index
    ================================ */
 
 .blog-page {
@@ -9,29 +9,7 @@
 }
 
 /* ================================
-   Page Header Overrides
-   ================================ */
-
-.blog-page .page-header {
-  padding: 30px 0 15px;
-  margin-bottom: 0;
-  text-align: center;
-}
-
-.blog-page .page-title {
-  margin-bottom: 12px !important;
-  font-size: clamp(1.75rem, 4vw, 2.75rem);
-}
-
-.blog-page .page-subtitle {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  color: var(--text-muted);
-}
-
-/* ================================
-   Blog Filters
+   Filters
    ================================ */
 
 .blog-filters {
@@ -39,12 +17,10 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin: var(--spacing-xl) auto var(--spacing-lg);
-  padding: 0 var(--spacing-xl);
+  margin: 0 auto var(--spacing-lg);
   max-width: 1000px;
 }
 
-/* Dropdown Filters */
 .filter-dropdown {
   position: relative;
   display: inline-block;
@@ -52,27 +28,21 @@
 
 .filter-more {
   background-color: var(--bg-tertiary);
-  border: 1px var(--border-color);
-}
-
-.filter-more:hover {
-  border-style: solid;
 }
 
 .filter-more i {
-  margin-left: 0.25rem;
   font-size: 0.75rem;
   transition: transform var(--transition-base);
 }
 
-.filter-more.active i {
+.filter-more[aria-expanded="true"] i {
   transform: rotate(180deg);
 }
 
 .filter-dropdown-content {
   display: none;
   position: absolute;
-  top: calc(100% + 0.75rem);
+  top: calc(100% + 0.5rem);
   right: 0;
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -87,23 +57,26 @@
 
 .filter-dropdown-content.show {
   display: block;
-  animation: dropdownSlide 0.3s ease;
+  animation: dropdownSlide 0.25s ease;
 }
 
 .filter-btn-dropdown {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--spacing-md);
   width: 100%;
-  padding: 0.75rem var(--spacing-md);
+  min-height: 40px;
+  padding: 0.5rem var(--spacing-md);
   background: none;
   border: none;
   color: var(--text-secondary);
+  font: inherit;
+  font-size: var(--font-size-sm);
   text-align: left;
   cursor: pointer;
   border-radius: var(--border-radius-sm);
-  transition: all var(--transition-fast);
-  font-size: var(--font-size-sm);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .filter-btn-dropdown:hover {
@@ -113,25 +86,21 @@
 
 .filter-btn-dropdown.active {
   background-color: var(--color-primary);
-  color: white;
+  color: var(--on-accent);
 }
 
-.filter-btn-dropdown.active .filter-count {
-  opacity: 1;
-}
-
-/* Active Filter Display */
+/* Active filter display */
 .active-filter-display {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-md);
   margin: 0 auto var(--spacing-xl);
-  padding: 0.75rem var(--spacing-lg);
+  padding: 0.5rem var(--spacing-lg);
   background-color: var(--bg-tertiary);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  max-width: fit-content;
+  width: fit-content;
 }
 
 .active-filter-label {
@@ -146,75 +115,70 @@
 }
 
 .clear-filter-btn {
+  min-height: 36px;
   background: none;
   border: none;
   color: var(--text-muted);
+  font: inherit;
+  font-size: var(--font-size-sm);
   cursor: pointer;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-sm);
-  transition: all var(--transition-fast);
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  font-size: var(--font-size-sm);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
 }
 
 .clear-filter-btn:hover {
   color: var(--color-danger);
-  background-color: rgba(239, 68, 68, 0.1);
+  background-color: color-mix(in srgb, var(--color-danger) 10%, transparent);
 }
 
 /* ================================
-   Blog Posts Container - 2 COLUMN GRID
+   Post grid
    ================================ */
 
 .blog-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
-  gap: var(--spacing-2xl);
-  margin-top: var(--spacing-2xl);
+  grid-template-columns: repeat(auto-fill, minmax(min(480px, 100%), 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
 }
 
 .blog-post-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-lg);
-  padding: 0;
   overflow: hidden;
-  transition: all var(--transition-base);
-  height: 100%;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
 }
 
-.blog-post-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(0, 217, 255, 0.2);
+.blog-post-item:hover,
+.blog-post-item:focus-within {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
   border-color: var(--color-primary);
 }
 
-.blog-post-item.hidden {
-  display: none;
-}
-
-/* ================================
-   Post Date Badge - Compact Header
-   ================================ */
-
+/* Date badge */
 .post-date-badge {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-md) var(--spacing-lg);
-  background: rgba(0, 217, 255, 0.1);
+  background: var(--accent-tint);
   color: var(--color-primary);
   font-weight: var(--font-weight-bold);
 }
 
 .post-date-badge .month {
   text-transform: uppercase;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   letter-spacing: 1px;
 }
 
@@ -224,14 +188,10 @@
 }
 
 .post-date-badge .year {
-  font-size: var(--font-size-xs);
-  opacity: 0.9;
+  font-size: var(--font-size-sm);
 }
 
-/* ================================
-   Post Content Preview
-   ================================ */
-
+/* Preview */
 .post-content-preview {
   padding: var(--spacing-xl);
   display: flex;
@@ -241,40 +201,32 @@
 
 .post-title {
   margin-bottom: var(--spacing-md);
-  line-height: var(--line-height-tight);
+  font-size: var(--font-size-xl);
 }
 
 .post-title a {
   color: var(--text-primary);
-  text-decoration: none;
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  transition: color var(--transition-base);
-  display: block;
 }
 
-.post-title a:hover {
+.blog-post-item:hover .post-title a {
   color: var(--color-primary);
 }
 
 .external-icon {
   font-size: 0.7em;
-  opacity: 0.6;
+  opacity: 0.7;
   margin-left: var(--spacing-xs);
 }
-
-/* ================================
-   Post Tags
-   ================================ */
 
 .post-tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-xs);
   margin-bottom: var(--spacing-md);
+  list-style: none;
 }
 
-/* Platform Badge */
+/* Platform badge */
 .platform-badge {
   display: inline-flex;
   align-items: center;
@@ -289,47 +241,33 @@
 }
 
 .platform-medium {
-  background-color: rgba(0, 171, 85, 0.1);
-  color: #00ab55;
-  border-color: rgba(0, 171, 85, 0.3);
+  color: var(--platform-medium);
+  background-color: color-mix(in srgb, var(--platform-medium) 10%, transparent);
+  border-color: color-mix(in srgb, var(--platform-medium) 35%, transparent);
 }
 
 .platform-substack {
-  background-color: rgba(255, 107, 0, 0.1);
-  color: #ff6b00;
-  border-color: rgba(255, 107, 0, 0.3);
+  color: var(--platform-substack);
+  background-color: color-mix(in srgb, var(--platform-substack) 10%, transparent);
+  border-color: color-mix(in srgb, var(--platform-substack) 35%, transparent);
 }
-
-.platform-dev {
-  background-color: rgba(10, 10, 10, 0.1);
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-/* ================================
-   Post Excerpt
-   ================================ */
 
 .post-excerpt {
-  color: var(--text-secondary);
-  line-height: var(--line-height-relaxed);
   margin-bottom: var(--spacing-lg);
   font-size: var(--font-size-sm);
   flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
-/* ================================
-   Post Meta Footer
-   ================================ */
 
 .post-meta-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--spacing-sm);
   padding-top: var(--spacing-md);
   border-top: 1px solid var(--border-color);
   margin-top: auto;
@@ -337,7 +275,7 @@
 
 .read-time {
   color: var(--text-muted);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
@@ -346,75 +284,23 @@
 .read-more-link {
   color: var(--color-primary);
   font-weight: var(--font-weight-semibold);
-  text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);
-  transition: all var(--transition-base);
   font-size: var(--font-size-sm);
-}
-
-.read-more-link:hover {
-  gap: var(--spacing-sm);
-  color: var(--color-secondary);
+  margin-left: auto;
 }
 
 .read-more-link i {
   transition: transform var(--transition-base);
 }
 
-.read-more-link:hover i {
+.blog-post-item:hover .read-more-link i {
   transform: translateX(4px);
 }
 
-
-/* =========================================
-   Copy Code Button Styles
-   ========================================= */
-.code-header {
-    display: flex;
-    justify-content: flex-end;
-    background: var(--bg-secondary);
-    padding: 0.5rem 1rem;
-    border-radius: 8px 8px 0 0;
-    border: 1px solid var(--border-color);
-    border-bottom: none;
-    margin-bottom: -5px; /* Connect to the code block below */
-}
-
-.copy-btn {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-muted);
-    cursor: pointer;
-    font-size: 0.85rem;
-    padding: 4px 12px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.copy-btn:hover {
-    background: var(--bg-tertiary);
-    color: var(--color-primary);
-    border-color: var(--color-primary);
-}
-
-.copy-btn.copied {
-    color: #10b981; /* Green success color */
-    border-color: #10b981;
-}
-
-/* Adjust standard Jekyll code blocks to fit nicely */
-div.highlighter-rouge, figure.highlight {
-    position: relative;
-    margin-top: 0;
-}
-
 /* ================================
-   Responsive Design
+   Responsive
    ================================ */
 
 @media (width <= 1100px) {
@@ -427,42 +313,26 @@ div.highlighter-rouge, figure.highlight {
 }
 
 @media (width <= 768px) {
+  .blog-page {
+    padding: 0 var(--spacing-md);
+  }
+
+  .blog-filters {
+    gap: var(--spacing-sm);
+  }
 
   .post-content-preview {
-      padding: var(--spacing-lg);
-  }
-
-  .post-title a {
-      font-size: var(--font-size-lg);
-  }
-
-  .post-excerpt {
-      font-size: var(--font-size-xs);
+    padding: var(--spacing-lg);
   }
 
   .post-date-badge {
-      padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
   }
-
-  .post-date-badge .day {
-      font-size: var(--font-size-xl);
-  }
-
-  .post-meta-footer {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--spacing-sm);
-  }
-
 }
 
-
-@media (max-width <= 480px) {
-  .post-title a {
-    font-size: var(--font-size-base);
-  }
-
+@media (width <= 480px) {
   .post-excerpt {
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
   }
 }

@@ -1,5 +1,5 @@
 /* ================================
-   Contact Page Specific Styles
+   Contact Page
    ================================ */
 
 .contact-page {
@@ -8,22 +8,9 @@
     padding: 0 var(--spacing-xl);
 }
 
-/* ================================
-   Contact Intro
-   ================================ */
-
 .contact-intro {
     text-align: center;
-    margin-bottom: var(--spacing-3xl);
-}
-
-.contact-intro h1 {
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-md);
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    margin-bottom: var(--spacing-2xl);
 }
 
 .contact-intro p {
@@ -33,18 +20,10 @@
     margin: 0 auto;
 }
 
-/* ================================
-   Contact Container
-   ================================ */
-
 .contact-container {
     max-width: 700px;
     margin: 0 auto var(--spacing-3xl);
 }
-
-/* ================================
-   Contact Form
-   ================================ */
 
 .contact-form-section {
     background-color: var(--bg-card);
@@ -54,10 +33,7 @@
 }
 
 .contact-form .form-group label {
-    display: block;
-    color: var(--text-primary);
     font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--spacing-sm);
     font-size: var(--font-size-sm);
 }
 
@@ -68,31 +44,18 @@
 
 .contact-form input,
 .contact-form textarea {
-    width: 100%;
-    padding: var(--spacing-md);
     background-color: var(--bg-secondary);
-    border: 2px solid var(--border-color);
-    border-radius: var(--border-radius);
-    color: var(--text-primary);
-    font-family: var(--font-primary);
-    font-size: var(--font-size-base);
-    transition: all var(--transition-base);
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-    &:focus-visible {
-        outline: 2px solid var(--color-primary);
-        outline-offset: 2px;
-    }
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
     background-color: var(--bg-card);
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
     color: var(--text-muted);
+    opacity: 1;
 }
 
 .contact-form textarea {
@@ -100,17 +63,28 @@
     min-height: 150px;
 }
 
+.form-note {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+}
+
+.form-note .required {
+    margin: 0;
+}
+
 .submit-btn {
     width: 100%;
+    min-height: 48px;
     padding: var(--spacing-md) var(--spacing-xl);
     background: var(--gradient-primary);
-    color: white;
+    color: var(--on-accent);
     border: none;
     border-radius: var(--border-radius);
+    font: inherit;
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-lg);
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,43 +109,16 @@
     transform: translateX(4px);
 }
 
-/* Responsive Design rules starting here */
-
-/* ================================
-   Responsive Design
-   ================================ */
-
-@media (width <= 968px) {
-    /* container tweaks no longer needed */
-}
-
 @media (width <= 768px) {
     .contact-page {
         padding: 0 var(--spacing-md);
     }
 
     .contact-form-section {
-        padding: var(--spacing-xl);
-    }
-
-    .contact-intro h1 {
-        font-size: var(--font-size-3xl);
+        padding: var(--spacing-xl) var(--spacing-lg);
     }
 
     .contact-intro p {
-        font-size: var(--font-size-base);
-}
-
-@media (width <= 480px) {
-    .contact-form-section {
-        padding: var(--spacing-lg);
-    }
-
-    .contact-intro h1 {
-        font-size: var(--font-size-2xl);
-    }
-
-    .submit-btn {
         font-size: var(--font-size-base);
     }
 }

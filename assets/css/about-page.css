@@ -13,8 +13,7 @@
    ================================ */
 
 .about-hero {
-    padding: var(--spacing-3xl) 0;
-    margin-bottom: var(--spacing-3xl);
+    padding: var(--spacing-2xl) 0;
 }
 
 .stats-grid {
@@ -31,7 +30,7 @@
     position: relative;
     overflow: hidden;
     border: 1px solid var(--border-color);
-    transition: all 0.4s ease;
+    transition: border-color var(--transition-base);
 }
 
 .stat-card::before {
@@ -41,12 +40,20 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, var(--accent-tint-strong), transparent);
     transition: left 0.6s ease;
+    pointer-events: none;
 }
 
 .stat-card:hover::before {
     left: 100%;
+}
+
+.stat-value {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin: 0;
 }
 
 .stat-number {
@@ -65,7 +72,7 @@
 .stat-label {
     font-size: var(--font-size-base);
     color: var(--text-secondary);
-    margin-top: var(--spacing-md);
+    margin: var(--spacing-md) 0 0;
     font-weight: var(--font-weight-medium);
 }
 
@@ -80,8 +87,7 @@
    ================================ */
 
 .philosophy-section {
-    padding: var(--spacing-3xl) 0;
-    margin-bottom: var(--spacing-3xl);
+    padding: var(--spacing-2xl) 0;
 }
 
 .philosophy-grid {
@@ -95,8 +101,7 @@
     padding: 2.5rem 2rem;
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
-    transition: all var(--transition-base);
-    cursor: pointer;
+    transition: border-color var(--transition-base);
     position: relative;
 }
 
@@ -111,6 +116,7 @@
     mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
+    pointer-events: none;
     transition: opacity var(--transition-base);
 }
 
@@ -135,8 +141,7 @@
    ================================ */
 
 .timeline-section {
-    padding: var(--spacing-3xl) 0;
-    margin-bottom: var(--spacing-3xl);
+    padding: var(--spacing-2xl) 0;
 }
 
 .timeline-start,
@@ -178,8 +183,8 @@
 
 .end-marker {
     background: var(--gradient-primary);
-    box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
-    animation: pulseBlue 2s ease-in-out infinite;
+    box-shadow: 0 5px 20px var(--accent-glow);
+    animation: pulseAccent 2s ease-in-out infinite;
 }
 
 .timeline-icon {
@@ -214,7 +219,7 @@
     top: -20px;
     width: 3px;
     height: 30px;
-    background: linear-gradient(to top, rgba(0, 217, 255, 0.5), var(--color-secondary));
+    background: linear-gradient(to top, var(--accent-glow), var(--color-secondary));
 }
 
 .timeline {
@@ -293,7 +298,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     display: inline-block;
-    background-color: rgba(0, 217, 255, 0.1);
+    background-color: var(--accent-tint);
     padding: 0.375rem 0.75rem;
     border-radius: var(--border-radius-sm);
 }
@@ -306,6 +311,7 @@
 
 .company-name {
     color: var(--color-primary);
+    line-height: var(--line-height-normal);
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
     margin-bottom: 0.75rem;
@@ -342,8 +348,7 @@
    ================================ */
 
 .skills-meters-section {
-    padding: var(--spacing-3xl) 0;
-    margin-bottom: var(--spacing-3xl);
+    padding: var(--spacing-2xl) 0;
 }
 
 .skills-categories {
@@ -397,10 +402,32 @@
     height: 100%;
     background: var(--gradient-primary-90);
     border-radius: var(--border-radius-full);
-    width: 0;
+    width: var(--skill-width, 0);
     transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+}
+
+/* Widths come from classes (no inline styles under the CSP); the bars
+   start empty and fill when the section scrolls into view. */
+.skill-fill.w-30 { --skill-width: 30%; }
+.skill-fill.w-35 { --skill-width: 35%; }
+.skill-fill.w-40 { --skill-width: 40%; }
+.skill-fill.w-45 { --skill-width: 45%; }
+.skill-fill.w-50 { --skill-width: 50%; }
+.skill-fill.w-55 { --skill-width: 55%; }
+.skill-fill.w-60 { --skill-width: 60%; }
+.skill-fill.w-65 { --skill-width: 65%; }
+.skill-fill.w-70 { --skill-width: 70%; }
+.skill-fill.w-75 { --skill-width: 75%; }
+.skill-fill.w-80 { --skill-width: 80%; }
+.skill-fill.w-85 { --skill-width: 85%; }
+.skill-fill.w-90 { --skill-width: 90%; }
+.skill-fill.w-95 { --skill-width: 95%; }
+.skill-fill.w-100 { --skill-width: 100%; }
+
+@media (prefers-reduced-motion: no-preference) {
+    .js .skills-meters-section:not(.animated) .skill-fill {
+        width: 0;
+    }
 }
 
 /* ================================
@@ -408,8 +435,7 @@
    ================================ */
 
 .achievements-section {
-    padding: var(--spacing-3xl) 0;
-    margin-bottom: var(--spacing-3xl);
+    padding: var(--spacing-2xl) 0;
 }
 
 .achievements-grid {
@@ -423,8 +449,7 @@
     padding: var(--spacing-xl);
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
-    transition: all 0.4s ease;
-    cursor: pointer;
+    transition: border-color var(--transition-base);
 }
 
 .achievement-icon {
@@ -464,8 +489,7 @@
    ================================ */
 
 .beyond-work-section {
-    padding: var(--spacing-3xl) 0;
-    margin-bottom: var(--spacing-3xl);
+    padding: var(--spacing-2xl) 0;
 }
 
 .interests-grid {
@@ -480,8 +504,7 @@
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     text-align: center;
-    transition: all var(--transition-base);
-    cursor: pointer;
+    transition: border-color var(--transition-base);
 }
 
 .interest-emoji {
@@ -495,7 +518,7 @@
     transform: scale(1.2) rotate(10deg);
 }
 
-.interest-card h4 {
+.interest-card h3 {
     color: var(--text-primary);
     margin-bottom: var(--spacing-sm);
     font-size: var(--font-size-base);
@@ -512,8 +535,7 @@
    ================================ */
 
 .quote-section {
-    padding: var(--spacing-3xl) 0;
-    margin-bottom: var(--spacing-3xl);
+    padding: var(--spacing-2xl) 0;
     text-align: center;
 }
 
@@ -539,27 +561,13 @@
 }
 
 .animated-quote p {
-    font-size: 1.75rem;
+    font-size: clamp(1.25rem, 1rem + 1.2vw, 1.75rem);
     font-style: italic;
     color: var(--text-primary);
     margin: 0;
     line-height: 1.6;
 }
 
-.animated-quote footer {
-    color: var(--color-primary);
-    margin-top: var(--spacing-md);
-    font-size: var(--font-size-lg);
-    font-style: normal;
-}
-
-.quote-context {
-    max-width: 700px;
-    margin: 0 auto;
-    color: var(--text-secondary);
-    line-height: var(--line-height-loose);
-    font-size: var(--font-size-lg);
-}
 
 /* ================================
    CTA Section
@@ -567,29 +575,38 @@
 
 .cta-section {
     text-align: center;
-    padding: var(--spacing-3xl) 0;
+    padding: var(--spacing-3xl) var(--spacing-xl);
     background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-tertiary) 100%);
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
 }
 
 .cta-section h2 {
-    font-size: 2.25rem;
+    font-size: var(--font-size-3xl);
     margin-bottom: var(--spacing-md);
     color: var(--text-primary);
 }
 
 .cta-section p {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-xl);
+    max-width: 60ch;
+    margin: 0 auto var(--spacing-xl);
 }
 
 /* ================================
    Responsive Design
    ================================ */
 
-@media (width <= 768px){
+@media (width <= 768px) {
+    .about-page-interactive {
+        padding: 0 var(--spacing-md);
+    }
+
+    .cta-section {
+        padding: var(--spacing-2xl) var(--spacing-lg);
+    }
+
     .timeline::before {
         left: 20px;
         transform: translateX(0);
@@ -678,7 +695,7 @@
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);
   text-align: center;
-  transition: all var(--transition-base);
+  transition: border-color var(--transition-base);
   position: relative;
   overflow: hidden;
 }
@@ -690,8 +707,9 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, var(--accent-tint-strong), transparent);
   transition: left 0.6s ease;
+  pointer-events: none;
 }
 
 .cert-card:hover::before {
@@ -699,8 +717,6 @@
 }
 
 .cert-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
   border-color: var(--color-primary);
 }
 

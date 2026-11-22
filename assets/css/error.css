@@ -1,0 +1,63 @@
+/* ================================
+   404 page (moved out of an inline <style> block, which the CSP blocks)
+   ================================ */
+
+.error-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 var(--spacing-md) var(--spacing-2xl);
+}
+
+.error-content {
+    max-width: 700px;
+}
+
+.error-code {
+    font-size: clamp(6rem, 4rem + 10vw, 10rem);
+    font-weight: 900;
+    line-height: 1;
+    margin: 0 0 var(--spacing-md);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.error-message {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.error-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.search-suggestion {
+    padding: var(--spacing-xl);
+    background: var(--bg-tertiary);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.search-suggestion p {
+    margin-bottom: var(--spacing-md);
+}
+
+.search-suggestion ul {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-md) var(--spacing-xl);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.search-suggestion a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}

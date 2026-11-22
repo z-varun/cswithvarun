@@ -3,87 +3,55 @@
    ========================================== */
 
 .post {
-  max-width: 800px;
+  /* about 70-75 characters per line at the 18px body size */
+  max-width: var(--reading-width);
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: var(--spacing-xl) var(--spacing-md);
 }
 
-/* Post Header */
+/* Header */
 .post-header {
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-top: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-2xl);
+  padding-bottom: var(--spacing-xl);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post-title {
+  font-size: var(--font-size-4xl);
+  line-height: 1.2;
+  margin: 0 0 var(--spacing-md);
 }
 
 .post-meta {
   display: flex;
-  gap: 1.5rem;
+  align-items: center;
+  gap: 0.5rem 1rem;
   flex-wrap: wrap;
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   color: var(--text-secondary);
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .post-meta i {
   margin-right: 0.25rem;
 }
 
-.post-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 1rem 0;
-  color: var(--text-primary);
-}
-
 .post-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 1rem;
+  list-style: none;
 }
 
-.post-tags .tag {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: var(--bg-tertiary);
-  color: var(--color-primary);
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  border: 1px solid var(--border-color);
-}
+/* ==========================================
+   Content typography
+   ========================================== */
 
-/* Post Content Typography */
 .post-content {
-  font-size: 1.125rem;
-  line-height: 1.8;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-loose);
   color: var(--text-primary);
-  margin-bottom: 3rem;
-}
-
-/* 1. Prevent images from overflowing */
-.post-content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-/* 2. Handle Code Blocks */
-.post-content pre,
-.post-content code {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    max-width: 100%;
-    overflow-x: auto;
-}
-
-/* 3. Make Tables Scrollable */
-.post-content table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  margin-bottom: var(--spacing-2xl);
 }
 
 .post-content h1,
@@ -92,56 +60,45 @@
 .post-content h4,
 .post-content h5,
 .post-content h6 {
-  color: var(--text-primary);
-  font-weight: 700;
   line-height: 1.3;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
 
 .post-content h2 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
   padding-bottom: 0.5rem;
   border-bottom: 2px solid var(--border-color);
 }
 
 .post-content h3 {
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
 }
 
 .post-content h4 {
-  font-size: 1.25rem;
+  font-size: var(--font-size-xl);
 }
 
 .post-content p {
   margin-bottom: 1.5rem;
   color: var(--text-primary);
+  line-height: inherit;
 }
 
 .post-content strong {
-  font-weight: 600;
-  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
 }
 
-.post-content em {
-  font-style: italic;
-}
-
-/* Links in post content */
 .post-content a {
-  color: var(--color-primary);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
-  transition: all 0.3s ease;
 }
 
 .post-content a:hover {
-  color: var(--color-secondary);
   text-decoration-thickness: 2px;
 }
 
-/* Lists */
 .post-content ul,
 .post-content ol {
   margin: 1.5rem 0;
@@ -150,7 +107,6 @@
 
 .post-content li {
   margin-bottom: 0.75rem;
-  color: var(--text-primary);
 }
 
 .post-content ul li {
@@ -161,23 +117,28 @@
   list-style-type: decimal;
 }
 
-/* Code blocks */
+/* Inline code */
 .post-content code {
-  font-family: 'JetBrains Mono', 'Courier New', monospace;
-  background: var(--bg-tertiary);
-  padding: 0.2rem 0.4rem;
+  font-family: var(--font-mono);
+  background: var(--code-bg);
+  padding: 0.15rem 0.4rem;
   border-radius: 4px;
-  font-size: 0.9em;
-  color: var(--color-primary);
+  font-size: 0.875em;
+  color: var(--code-inline);
+  overflow-wrap: anywhere;
 }
 
+/* Code blocks scroll sideways rather than wrap, so diagrams and commands keep their shape */
 .post-content pre {
-  background: var(--bg-tertiary);
+  background: var(--code-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: 1.25rem 1.5rem;
   overflow-x: auto;
   margin: 1.5rem 0;
+  line-height: 1.6;
+  white-space: pre;
+  tab-size: 2;
 }
 
 .post-content pre code {
@@ -185,7 +146,31 @@
   padding: 0;
   font-size: 0.875rem;
   color: var(--text-primary);
+  overflow-wrap: normal;
+  white-space: inherit;
 }
+
+.post-content div.highlighter-rouge,
+.post-content figure.highlight {
+  margin: 1.5rem 0;
+}
+
+.post-content div.highlighter-rouge pre,
+.post-content figure.highlight pre {
+  margin: 0;
+}
+
+/* Syntax highlighting for Rouge (```lang fenced blocks) */
+.highlight .c, .highlight .c1, .highlight .cm, .highlight .cs, .highlight .cp, .highlight .ch, .highlight .cd { color: var(--code-comment); font-style: italic; }
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kr, .highlight .kt, .highlight .kc, .highlight .kp, .highlight .ow { color: var(--code-keyword); }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx, .highlight .sr, .highlight .ss, .highlight .dl { color: var(--code-string); }
+.highlight .m, .highlight .mi, .highlight .mf, .highlight .mh, .highlight .mo, .highlight .il { color: var(--code-number); }
+.highlight .na, .highlight .nt, .highlight .nf, .highlight .nc, .highlight .nn, .highlight .py { color: var(--code-name); }
+.highlight .nb, .highlight .bp, .highlight .nv, .highlight .vi, .highlight .vg, .highlight .vc, .highlight .no { color: var(--code-builtin); }
+.highlight .gp, .highlight .gh, .highlight .gu { color: var(--code-comment); font-weight: var(--font-weight-semibold); }
+.highlight .gd { color: var(--color-danger); }
+.highlight .gi { color: var(--code-string); }
+.highlight .err { color: inherit; }
 
 /* Blockquotes */
 .post-content blockquote {
@@ -198,22 +183,26 @@
   font-style: italic;
 }
 
+.post-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
 /* Images */
 .post-content img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
   margin: 2rem 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
-/* Tables */
+/* Tables scroll on small screens */
 .post-content table {
+  display: block;
   width: 100%;
+  overflow-x: auto;
   border-collapse: collapse;
   margin: 1.5rem 0;
-  overflow-x: auto;
-  display: block;
 }
 
 .post-content th,
@@ -225,15 +214,9 @@
 
 .post-content th {
   background: var(--bg-tertiary);
-  font-weight: 600;
-  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
 }
 
-.post-content td {
-  color: var(--text-primary);
-}
-
-/* Horizontal rule */
 .post-content hr {
   border: none;
   border-top: 2px solid var(--border-color);
@@ -241,90 +224,82 @@
 }
 
 /* ==========================================
-   Post Footer
+   Post footer
    ========================================== */
 
 .post-footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
+  margin-top: var(--spacing-2xl);
+  padding-top: var(--spacing-xl);
   border-top: 1px solid var(--border-color);
 }
 
-/* Share Buttons */
-.post-share {
-  margin-bottom: 2rem;
-}
-
-.post-share h3 {
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-primary);
-  font-weight: 600;
+.post-footer h2 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-md);
 }
 
 .share-buttons {
-  margin-bottom: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
 }
 
-
+.share-buttons h2 {
+  flex-basis: 100%;
+}
 
 .share-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  margin-right: 1rem;
+  min-height: 44px;
+  padding: 0.625rem 1.5rem;
   background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  transition: all var(--transition-speed);
+  transition: background-color var(--transition-base), color var(--transition-base), transform var(--transition-base);
 }
 
 .share-btn:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  color: #fff;
 }
 
 .share-btn.twitter:hover {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #0f1419; /* white on this: 18.5 */
 }
 
 .share-btn.linkedin:hover {
-  background-color: #0077b5;
-  color: white;
+  background-color: #0a66c2; /* white on this: 5.7 */
 }
 
-
-/* ==========================================
-   Post Navigation (Previous/Next)
-   ========================================== */
-
+/* Previous / next */
 .post-navigation {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  margin: 2rem 0;
-  padding: 2rem 0;
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  margin: var(--spacing-xl) 0;
 }
 
 .post-navigation a {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  border-radius: var(--border-radius);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
   position: relative;
+  overflow: hidden;
 }
 
 .post-navigation a:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-lg);
   border-color: var(--color-primary);
 }
 
@@ -337,27 +312,24 @@
   height: 3px;
   background: var(--gradient-primary-90);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity var(--transition-base);
 }
 
 .post-navigation a:hover::before {
   opacity: 1;
 }
 
-.nav-previous {
-  justify-content: flex-start;
-}
-
 .nav-next {
+  grid-column: 2;
   justify-content: flex-end;
   text-align: right;
 }
 
 .post-navigation a i {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: var(--color-primary);
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  transition: transform var(--transition-base);
 }
 
 .nav-previous:hover i {
@@ -368,99 +340,65 @@
   transform: translateX(5px);
 }
 
-.post-navigation a>div {
+.post-navigation a > div {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.375rem;
 }
 
 .nav-label {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--text-secondary);
 }
 
 .nav-title {
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
   color: var(--text-primary);
   line-height: 1.4;
 }
 
-/* ==========================================
-   About the Author Section
-   ========================================== */
-
+/* About the author */
 .author-bio {
-  display: flex;
-  gap: var(--spacing-xl);
-  align-items: center;
-  padding: 2.5rem;
-  margin-top: 4rem;
+  padding: var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
   background-color: var(--bg-tertiary);
   border: 1px solid var(--border-color);
   border-left: 4px solid var(--color-primary);
-  border-radius: 12px;
+  border-radius: var(--border-radius);
 }
 
-.author-avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-  border: 2px solid var(--color-primary);
-}
-
-.author-bio h3 {
-  font-size: 1.5rem;
-  margin: 0 0 0.5rem;
-  color: var(--text-primary);
-  font-weight: 600;
+.author-bio h2 {
+  margin-bottom: var(--spacing-sm);
 }
 
 .author-bio p {
-  color: var(--text-secondary);
-  line-height: 1.7;
   margin: 0;
-  font-size: 1rem;
 }
 
 /* ==========================================
-   Mobile Responsive
+   Mobile
    ========================================== */
 
 @media (width <= 768px) {
   .post {
-    padding: 1rem;
-  }
-
-  .post-title {
-    font-size: 1.75rem;
+    padding: var(--spacing-lg) var(--spacing-md);
   }
 
   .post-content {
-    font-size: 1rem;
+    font-size: var(--font-size-base);
   }
 
-  .post-content h2 {
-    font-size: 1.5rem;
+  .post-content pre {
+    padding: 1rem;
   }
 
-  .post-content h3 {
-    font-size: 1.25rem;
-  }
-
-  .post-meta {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .post-footer {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
+  /* Meta wraps onto one or two lines; the bullets would otherwise dangle */
+  .post-meta .meta-separator {
+    display: none;
   }
 
   .post-navigation {
@@ -469,63 +407,39 @@
   }
 
   .nav-next {
+    grid-column: auto;
     text-align: left;
-    justify-content: flex-start;
-  }
-
-  .post-navigation a {
-    padding: 1.5rem 1rem;
-  }
-
-  .nav-title {
-    font-size: 1rem;
-  }
-
-  .post-navigation a i {
-    font-size: 1.25rem;
+    justify-content: space-between;
   }
 
   .author-bio {
-    padding: 1.5rem;
-  }
-
-  .author-bio h3 {
-    font-size: 1.25rem;
-  }
-
-  .author-bio p {
-    font-size: 0.95rem;
-  }
-
-  .share-buttons {
-    flex-direction: row;
+    padding: var(--spacing-lg);
   }
 }
 
+/* ==========================================
+   Reading progress bar
+   ========================================== */
 
-/* ================================
-   Reading Progress Bar
-   ================================ */
 .reading-progress-bar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 0%;
+  width: 100%;
   height: 4px;
   background: var(--gradient-primary-90);
-  box-shadow: 0 2px 4px rgba(0, 217, 255, 0.3);
+  box-shadow: 0 2px 4px var(--accent-glow);
   z-index: 9999;
-  transition: width 0.2s ease-out;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .reading-progress-bar::after {
   content: '';
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.3), transparent);
   animation: shimmer 2s infinite;
 }

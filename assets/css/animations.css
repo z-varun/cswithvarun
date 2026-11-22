@@ -2,39 +2,32 @@
    Animations & Keyframes
    ================================ */
 
-/* Animation Base Classes */
-[data-animate] {
+/* Scroll-in animations only apply when JS is running (theme-init.js adds
+   .js to <html>), so content is never left invisible without it. */
+.js [data-animate] {
     opacity: 0;
-    transition: all 0.8s ease;
 }
 
-[data-animate].animated {
+.js [data-animate].animated {
     opacity: 1;
 }
 
-/* Fade Animations */
-[data-animate="fade-up"].animated {
+.js [data-animate="fade-up"].animated {
     animation: fadeUp 0.8s ease forwards;
 }
 
-[data-animate="fade-in"].animated {
+.js [data-animate="fade-in"].animated {
     animation: fadeIn 0.8s ease forwards;
 }
 
-[data-animate="fade-down"].animated {
-    animation: fadeDown 0.8s ease forwards;
-}
-
-/* Slide Animations */
-[data-animate="slide-right"].animated {
+.js [data-animate="slide-right"].animated {
     animation: slideRight 0.8s ease forwards;
 }
 
-[data-animate="slide-left"].animated {
+.js [data-animate="slide-left"].animated {
     animation: slideLeft 0.8s ease forwards;
 }
 
-/* Keyframe Definitions */
 @keyframes fadeUp {
     from {
         opacity: 0;
@@ -54,18 +47,6 @@
 
     to {
         opacity: 1;
-    }
-}
-
-@keyframes fadeDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
     }
 }
 
@@ -93,7 +74,6 @@
     }
 }
 
-/* Shimmer Effect */
 @keyframes shimmer {
     0% {
         transform: translateX(-100%);
@@ -104,61 +84,43 @@
     }
 }
 
-.shimmer::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    animation: shimmer 2s infinite;
-}
-
-/* Pulse Animations */
 @keyframes pulse {
     0%,
     100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.05);
     }
 }
 
 @keyframes pulseGold {
-
     0%,
     100% {
         transform: scale(1);
-        box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        box-shadow: 0 5px 20px rgb(255 215 0 / 0.4);
     }
 
     50% {
         transform: scale(1.05);
-        box-shadow: 0 8px 30px rgba(255, 215, 0, 0.6);
+        box-shadow: 0 8px 30px rgb(255 215 0 / 0.6);
     }
 }
 
-@keyframes pulseBlue {
-
+@keyframes pulseAccent {
     0%,
     100% {
         transform: scale(1);
-        box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        box-shadow: 0 5px 20px var(--accent-glow);
     }
 
     50% {
         transform: scale(1.05);
-        box-shadow: 0 8px 30px rgba(0, 217, 255, 0.6);
+        box-shadow: 0 8px 30px var(--accent-glow);
     }
 }
 
-/* Spin Animation */
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Dropdown Slide */
 @keyframes dropdownSlide {
     from {
         opacity: 0;
@@ -171,55 +133,25 @@
     }
 }
 
-/* Bounce Animation */
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-/* Scale Pulse */
-@keyframes scalePulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.05);
-    }
-}
-
 /* ================================
-   Accessibility: Reduced Motion
+   Reduced motion: stop everything, including pseudo-elements
    ================================ */
 @media (prefers-reduced-motion: reduce) {
-    [data-animate] {
-        opacity: 1 !important;
-        animation: none !important;
-        transition: none !important;
-        transform: none !important;
-    }
-
-    .shimmer::after {
-        animation: none !important;
-    }
-
-    .reading-progress-bar {
-        animation: none !important;
-    }
-
-    * {
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+
+    .js [data-animate] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .reading-progress-bar::after {
+        display: none;
     }
 }

@@ -1,22 +1,9 @@
 /* ================================
-   CSS Variables - Design System
+   Design tokens that do not change with the theme
+   (colour tokens live in theme.css)
    ================================ */
 
-
 :root {
-    /* Colors - Primary Palette */
-    --color-primary: #00d9ff;
-    --color-secondary: #7c3aed;
-    --color-success: #10b981;
-    --color-warning: #f59e0b;
-    --color-danger: #ef4444;
-
-    /* Text Colors */
-    --text-link: #38bdf8;
-
-    /* Border & Dividers */
-    --border-color-light: #475569;
-
     /* Spacing */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
@@ -24,33 +11,27 @@
     --spacing-lg: 1.5rem;
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
-    --spacing-3xl: 4rem;
+    --spacing-3xl: clamp(2.5rem, 1.75rem + 3vw, 4rem);
 
-    /* Border Radius */
+    /* Border radius */
     --border-radius-sm: 6px;
     --border-radius: 12px;
     --border-radius-lg: 16px;
     --border-radius-full: 9999px;
 
-    --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-    --gradient-primary-90: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-    
-    /* Layout */
-    --shadow-xl: 0 15px 40px rgba(0, 217, 255, 0.2);
-    --shadow-primary: 0 4px 12px rgba(0, 217, 255, 0.3);
-
     /* Typography */
-    --font-primary: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, oxygen, ubuntu, cantarell, sans-serif;
-    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
+    /* Fluid type scale: no per-breakpoint overrides needed */
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
     --font-size-lg: 1.125rem;
     --font-size-xl: 1.25rem;
-    --font-size-2xl: 1.5rem;
-    --font-size-3xl: 2.5rem;
-    --font-size-4xl: 3rem;
+    --font-size-2xl: clamp(1.25rem, 1.1rem + 0.8vw, 1.5rem);
+    --font-size-3xl: clamp(1.5rem, 1.2rem + 1.6vw, 2.5rem);
+    --font-size-4xl: clamp(1.875rem, 1.4rem + 2.4vw, 3rem);
 
     --font-weight-normal: 400;
     --font-weight-medium: 500;
@@ -63,20 +44,13 @@
     --line-height-loose: 1.8;
 
     --max-width: 1200px;
+    --reading-width: 44rem;
 
     /* Transitions */
     --transition-speed: 0.3s;
     --transition-fast: 0.15s ease;
     --transition-base: 0.3s ease;
-    --transition-slow: 0.5s ease;
-    --transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    /* Z-Index Scale */
+    /* Z-index scale */
     --z-dropdown: 1000;
-    --z-sticky: 1020;
-    --z-fixed: 1030;
-    --z-modal-backdrop: 1040;
-    --z-modal: 1050;
-    --z-popover: 1060;
-    --z-tooltip: 1070;
 }

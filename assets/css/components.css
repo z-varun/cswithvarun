@@ -2,71 +2,26 @@
    Reusable Components
    ================================ */
 
-/* Card Base Styles */
-.card {
-    background-color: var(--bg-card);
-    padding: var(--spacing-xl);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
-    transition: all var(--transition-base);
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-xl);
-    border-color: var(--color-primary);
-}
-
-/* Shared hover elevation for cards */
+/* Non-clickable cards only get a border highlight on hover; lifting is
+   reserved for cards that are links (post cards). */
 .card-hover-lift {
-  transition: all var(--transition-base);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
 .card-hover-lift:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
-/* Card with Gradient Background */
-.card-gradient {
-    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-tertiary) 100%);
-}
-
-/* Card Icon */
+/* Card icon */
 .card-icon {
     font-size: 3rem;
     margin-bottom: var(--spacing-lg);
-    transition: transform var(--transition-base);
 }
 
-.card:hover .card-icon {
-    transform: scale(1.2) rotate(5deg);
-}
-
-/* Grid Layouts */
-.grid-auto-fit {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-xl);
-}
-
-.grid-auto-fit-sm {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--spacing-xl);
-}
-
-.grid-auto-fit-lg {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: var(--spacing-xl);
-}
-
-/* Section Titles */
+/* Section titles */
 .section-title {
     text-align: center;
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-2xl);
     font-size: var(--font-size-3xl);
     position: relative;
 }
@@ -81,9 +36,10 @@
     border-radius: var(--border-radius-sm);
 }
 
-/* Tags */
+/* Tags: informational, not interactive */
 .tag {
     display: inline-block;
+    list-style: none;
     background-color: var(--bg-tertiary);
     color: var(--text-secondary);
     padding: var(--spacing-xs) var(--spacing-md);
@@ -91,17 +47,8 @@
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
     border: 1px solid var(--border-color);
-    transition: all var(--transition-base);
 }
 
-.tag:hover {
-    background-color: var(--color-primary);
-    color: white;
-    transform: translateY(-2px);
-    border-color: var(--color-primary);
-}
-
-/* Tech/Platform Tags */
 .tech-tag {
     background-color: var(--bg-tertiary);
     color: var(--color-primary);
@@ -110,80 +57,86 @@
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
     border: 1px solid var(--border-color);
-    transition: all var(--transition-base);
-}
-
-.tech-tag:hover {
-    background-color: var(--color-primary);
-    color: white;
-    transform: translateY(-2px);
 }
 
 /* Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: var(--spacing-sm);
-    padding: var(--spacing-md) var(--spacing-xl);
+    min-height: 44px;
+    padding: 0.75rem var(--spacing-xl);
     background-color: var(--bg-card);
     color: var(--text-primary);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
+    font: inherit;
     font-weight: var(--font-weight-medium);
     cursor: pointer;
-    transition: all var(--transition-base);
-    text-decoration: none;
-    font-family: var(--font-primary);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base), border-color var(--transition-base), color var(--transition-base);
 }
 
 .btn:hover {
     background-color: var(--bg-tertiary);
     border-color: var(--color-primary);
+    color: var(--text-primary);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
 
-.btn-primary {
+.btn-primary,
+.btn-primary:hover {
     background: var(--gradient-primary);
-    color: white;
+    color: var(--on-accent);
     border-color: transparent;
+}
+
+.btn-primary {
     box-shadow: var(--shadow-primary);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px) scale(1.02);
     box-shadow: var(--shadow-xl);
 }
 
-.btn-large {
-    padding: 1.125rem 2.5rem;
-    font-size: var(--font-size-lg);
-}
-
-/* Badges */
-.badge {
-    display: inline-block;
-    padding: var(--spacing-xs) var(--spacing-md);
-    border-radius: var(--border-radius-full);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-semibold);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.badge-primary {
-    background: var(--gradient-primary);
-    color: white;
-    box-shadow: var(--shadow-primary);
-}
-
-.badge-secondary {
-    background-color: var(--bg-tertiary);
-    color: var(--text-muted);
+.btn-secondary {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
     border: 1px solid var(--border-color);
 }
 
-/* Gradient Text */
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--color-primary);
+    color: var(--on-accent);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-primary);
+}
+
+.btn-large {
+    padding: 1rem 2.5rem;
+    font-size: var(--font-size-lg);
+}
+
+/* Text-style button */
+.link-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+}
+
+/* Gradient text */
 .gradient-text {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
@@ -192,19 +145,13 @@
     display: inline-block;
 }
 
-/* Metric/Stat Display */
+/* Metric / stat display */
 .metric {
     text-align: center;
     padding: var(--spacing-lg);
     background-color: var(--bg-secondary);
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
-    transition: all var(--transition-base);
-}
-
-.metric:hover {
-    border-color: var(--color-primary);
-    transform: translateY(-5px);
 }
 
 .metric-number {
@@ -224,17 +171,19 @@
     color: var(--text-muted);
 }
 
-/* Filter Buttons */
+/* Filter buttons */
 .filter-btn {
-    padding: 0.75rem 1.25rem;
+    min-height: 44px;
+    padding: 0.625rem 1.25rem;
     background-color: var(--bg-card);
     color: var(--text-secondary);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-strong);
     border-radius: var(--border-radius);
+    font: inherit;
     font-weight: var(--font-weight-medium);
-    cursor: pointer;
-    transition: all var(--transition-base);
     font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: background-color var(--transition-base), border-color var(--transition-base), color var(--transition-base);
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-sm);
@@ -244,25 +193,17 @@
     background-color: var(--bg-tertiary);
     border-color: var(--color-primary);
     color: var(--color-primary);
-    transform: translateY(-2px);
 }
 
-.filter-btn.active {
-  background: var(--gradient-primary);
-  color: white;
-  border-color: transparent;
-  box-shadow: var(--shadow-primary);
+.filter-btn.active,
+.filter-btn.active:hover {
+    background: var(--gradient-primary);
+    color: var(--on-accent);
+    border-color: transparent;
+    box-shadow: var(--shadow-primary);
 }
 
-/* Mobile responsive */
-@media (width <= 768px) {
-  .filter-btn {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: var(--font-size-xs);
-  }
-}
-
-/* Form Elements */
+/* Form elements */
 .form-group {
     margin-bottom: var(--spacing-lg);
 }
@@ -279,20 +220,22 @@
     width: 100%;
     padding: var(--spacing-md);
     background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-strong);
     border-radius: var(--border-radius);
     color: var(--text-primary);
     font-family: var(--font-primary);
     font-size: var(--font-size-base);
-    transition: all var(--transition-base);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    &:focus-visible {
-        outline: 2px solid var(--color-primary);
-        outline-offset: 2px;
-    }
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+    box-shadow: 0 0 0 3px var(--accent-tint-strong);
+}
+
+.form-group input:focus-visible,
+.form-group textarea:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
 }
