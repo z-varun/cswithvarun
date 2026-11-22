@@ -17,10 +17,7 @@
       if (onToggle) onToggle(open);
     };
 
-    button.addEventListener('click', (e) => {
-      e.stopPropagation();
-      set(!isOpen());
-    });
+    button.addEventListener('click', () => set(!isOpen()));
 
     document.addEventListener('click', (e) => {
       if (isOpen() && !panel.contains(e.target) && !button.contains(e.target)) set(false);

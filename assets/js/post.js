@@ -7,6 +7,17 @@
     const content = document.querySelector('.post-content');
     if (!content) return;
 
+    // Kramdown gives Markdown headings ids; raw-HTML headings don't, so add one.
+    const used = new Set(Array.from(content.querySelectorAll('[id]')).map((el) => el.id));
+    content.querySelectorAll('h2:not([id]), h3:not([id])').forEach((heading) => {
+      const base = heading.textContent.trim().toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-') || 'section';
+      let id = base;
+      for (let i = 2; used.has(id); i++) id = `${base}-${i}`;
+      used.add(id);
+      heading.id = id;
+    });
+
     const headings = Array.from(content.querySelectorAll('h2[id], h3[id]'));
 
     // 1. Link to each section (Kramdown gives headings ids automatically).

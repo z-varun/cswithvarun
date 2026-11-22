@@ -366,6 +366,14 @@ a:hover {
     display: block;
 }
 
+/* If the menu was opened on a narrow screen and the window then widens past the
+   breakpoint (e.g. rotating a tablet), hide it: the desktop nav takes over. */
+@media (width > 900px) {
+    .mobile-nav.active {
+        display: none;
+    }
+}
+
 .mobile-nav-links {
     list-style: none;
     padding: var(--spacing-md) var(--spacing-lg);
@@ -534,16 +542,21 @@ a:hover {
 
 .palette-swatch-graphite {
     background: #18181b;
+    /* light ring so the near-black dot stays visible on dark backgrounds */
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.45), 0 0 0 1px rgb(0 0 0 / 0.15);
 }
 
 .palette-swatch-mauve {
     background: linear-gradient(135deg, #463d4f 50%, #e2aaa4 50%);
 }
 
-/* Small screens: drop the label and tighten spacing so all four options fit */
+/* Small screens: drop the label and tighten spacing; with seven options the
+   picker wraps onto two rows, so it uses a softer radius than a single-row pill */
 @media (width <= 480px) {
     .palette-picker {
         max-width: 100%;
+        justify-content: center;
+        border-radius: 16px;
     }
 
     .palette-label {
@@ -637,6 +650,15 @@ a:hover {
 }
 
 /* Makes a whole card clickable through the link inside it */
+/* Links inside running text are underlined so they don't rely on colour alone
+   (some palettes use a link colour close to the body text) */
+.main-content p a:not(.btn),
+.site-footer p a:not(.btn) {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
 .card-link::after {
     content: '';
     position: absolute;

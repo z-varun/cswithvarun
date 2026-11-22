@@ -4,7 +4,7 @@ description: "Senior Security Engineer with 9+ years of DevSecOps, SRE, and Clou
 url: "https://www.cswithvarun.com"
 baseurl: ""
 timezone: Asia/Kolkata
-lang: en_US
+lang: en-US
 
 # Logo for jekyll-seo-tag; the default share image is set under defaults below
 logo: /assets/images/logo-512.png
@@ -118,7 +118,6 @@ navigation:
 
 # Include files for Cloudflare Pages
 include:
-  - .well-known
   - _headers
   - _redirects
 

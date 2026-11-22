@@ -79,6 +79,21 @@
       });
     });
 
+    // Keep other open tabs, and pages restored from the back/forward cache, in sync.
+    function syncFromStorage() {
+      let palette = null;
+      try { palette = localStorage.getItem(PALETTE_KEY); } catch (e) { /* storage blocked */ }
+      renderPalette(PALETTES.includes(palette) ? palette : 'mint');
+      const stored = readStored();
+      if (stored === 'dark' || stored === 'light') render(stored);
+    }
+    window.addEventListener('storage', (e) => {
+      if (e.key === PALETTE_KEY || e.key === STORAGE_KEY || e.key === null) syncFromStorage();
+    });
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) syncFromStorage();
+    });
+
     // Follow OS changes only while the visitor has not chosen a theme.
     if (darkQuery && darkQuery.addEventListener) {
       darkQuery.addEventListener('change', (e) => {

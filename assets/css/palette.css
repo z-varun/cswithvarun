@@ -1,8 +1,9 @@
 /* ================================
    Palette: Soft (mint surfaces, forest-green text, fresh-green accents)
-   The only file that changes between colour themes. Everything else derives from
-   these tokens (theme.css), and scripts/generate-brand-assets.mjs reads the accent
-   and surface colours from here for the logo, favicons and share images.
+   The default (mint) palette. Optional visitor palettes live in palette-<name>.css.
+   Other colours derive from these tokens (theme.css), and
+   scripts/generate-brand-assets.mjs reads the accent and surface colours from here
+   for the logo, favicons and share images.
    Text colours are all 4.5:1 or better against every surface they sit on.
    ================================ */
 
@@ -48,7 +49,7 @@
     --code-comment: #4b6650;
     --code-keyword: #6d28d9;
     --code-string: #047857;
-    --code-number: #b45309;
+    --code-number: #9a4507;
     --code-name: #0e7490;
     --code-builtin: #9d174d;
 

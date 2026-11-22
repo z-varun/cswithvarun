@@ -57,17 +57,11 @@
     }
 
     filterButtons.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        applyFilter(btn.getAttribute('data-filter'));
-      });
+      btn.addEventListener('click', () => applyFilter(btn.getAttribute('data-filter')));
     });
 
     if (moreBtn) {
-      moreBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        setMoreMenu(moreBtn.getAttribute('aria-expanded') !== 'true');
-      });
+      moreBtn.addEventListener('click', () => setMoreMenu(moreBtn.getAttribute('aria-expanded') !== 'true'));
 
       document.addEventListener('click', (e) => {
         if (!e.target.closest('.filter-dropdown')) setMoreMenu(false);

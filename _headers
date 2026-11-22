@@ -1,7 +1,9 @@
 # Cloudflare Web Analytics (enable it in the Pages dashboard) needs the
 # cloudflareinsights.com entries in script-src and connect-src.
+# HSTS is also set zone-wide in Cloudflare (SSL/TLS > Edge Certificates > HSTS), which covers the apex
+# redirect and takes precedence. Keep the two in step. Not preloaded: that is a separate, hard-to-undo opt-in.
 /*
-  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
   Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
@@ -17,14 +19,17 @@
 /assets/js/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Images and files are not versioned: cache for a day, revalidate after.
+# Images and files are not versioned: browsers cache for a day; Cloudflare's edge only
+# for 5 minutes, so a new share image or resume goes live shortly after a deploy.
 /assets/images/*
   Cache-Control: public, max-age=86400, must-revalidate
+  Cloudflare-CDN-Cache-Control: max-age=300
   ! Cross-Origin-Resource-Policy
   Cross-Origin-Resource-Policy: cross-origin
 
 /assets/files/*
   Cache-Control: public, max-age=86400, must-revalidate
+  Cloudflare-CDN-Cache-Control: max-age=300
 
 # Font filenames change if the font changes, so they can be cached forever.
 /assets/fonts/*

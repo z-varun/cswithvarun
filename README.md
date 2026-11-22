@@ -86,6 +86,11 @@ button in `_includes/footer.html`, its name in `PALETTES` in `theme-toggle.js` a
 and an `include_relative` line in `main.css`. Favicons and share images stay
 mint.
 
+## security.txt
+
+`/.well-known/security.txt` is served by Cloudflare's Security Center feature on both the apex and `www` (the apex
+redirect rule exempts that path), not from this repo. Renew its `Expires` there before February 2027.
+
 ## Content security policy
 
 `_headers` allows no inline scripts, inline styles or `style=""` attributes, and no third-party scripts except

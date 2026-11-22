@@ -32,7 +32,9 @@ const Utils = {
 
   createObserver(callback, options = {}) {
     return new IntersectionObserver(callback, {
-      threshold: 0.15,
+      // 0, not a ratio: a very tall element (e.g. the About skills section, ~4,500px on
+      // phones) can never have 15% of itself on a small screen at once.
+      threshold: 0,
       rootMargin: '0px 0px -60px 0px',
       ...options
     });
