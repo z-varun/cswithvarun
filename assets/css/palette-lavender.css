@@ -1,6 +1,6 @@
 /* ================================
    Optional palette: Lavender
-   Pale lilac with a violet accent (between Rose and Sky).
+   Pale lilac with a soft, dusty violet accent (between Rose and Sky).
    Applies only when a visitor picks it (data-palette="lavender" on <html>).
    Dark mode uses the same neutral greys as the default palette.
    Text is 4.5:1 or better on every surface; large display text 3:1 or better.
@@ -19,11 +19,11 @@
     --text-muted: #5d5180;
 
     /* Accent roles: text, fill, display */
-    --color-primary: #5536c0;
-    --color-secondary: #3b2491;
-    --accent-fill: #6d4ae0;
-    --on-accent: #fff;
-    --accent-display: #7254e3;
+    --color-primary: #5a4a96;
+    --color-secondary: #3f3270;
+    --accent-fill: #cbbcf0;
+    --on-accent: #2a1f4d;
+    --accent-display: #7f6bbf;
     --color-danger: #b91c1c;
 
     --border-color: #e3dcf6;
@@ -59,11 +59,11 @@
     --text-secondary: #c8c8cd;
     --text-muted: #a0a0a8;
 
-    --color-primary: #b8a4ff;
-    --color-secondary: #d2c6ff;
-    --accent-fill: #b8a4ff;
+    --color-primary: #c3b6ec;
+    --color-secondary: #dcd3f6;
+    --accent-fill: #c3b6ec;
     --on-accent: #0f0f10;
-    --accent-display: #b8a4ff;
+    --accent-display: #c3b6ec;
     --color-danger: #fca5a5;
 
     --border-color: #2a2a2e;

@@ -24,3 +24,6 @@ run.sh
 .env
 *.env
 _audit-screenshots/
+
+# Unpublished drafts stay local (the repo is public)
+_drafts/
