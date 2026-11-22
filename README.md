@@ -10,7 +10,7 @@ Personal site and blog of Varun Bhandari: a static [Jekyll](https://jekyllrb.com
   `_data/icons.yml` and rendered with `{% include icon.html name="rocket" %}`. No third-party CSS, fonts or scripts.
 - **CSS:** hand-written, no preprocessor. `assets/css/main.css` concatenates the shared partials
   (`variables.css`, `theme.css`, `components.css`, `animations.css`) at build time; each page adds its own
-  stylesheet through `custom_css` in its front matter. All colours are tokens in `theme.css`, with light and dark values.
+  stylesheet through `custom_css` in its front matter. All colour values live in `palette.css` (light and dark); `theme.css` derives the rest.
 - **JavaScript:** vanilla, no bundler. `theme-init.js` runs in `<head>`; `utils.js` must load before the others.
   Pages add their own script through `custom_js` in front matter.
 - **Hosting:** Cloudflare Pages. Response headers (including the CSP) live in `_headers`, short links in `_redirects`.
@@ -57,14 +57,22 @@ Supported types: `NOTE`, `TIP`, `IMPORTANT`, `WARNING`, `CAUTION`.
 ### Share images
 
 Each post gets its own Open Graph image from `assets/images/og/<slug>.png` (wired up by `_plugins/og_image.rb`).
-After adding or retitling a post, regenerate them locally (needs Chrome) and commit the PNGs:
+After adding or retitling a post, regenerate them locally (needs Chrome) and commit the PNGs. The same script rebuilds the logo and favicons from the palette:
 
 ```bash
-node scripts/generate-og-images.mjs
+node scripts/generate-brand-assets.mjs
 ```
 
 To feature a post on the home page, add its slug to `featured_posts` in `_config.yml`. For a post that lives elsewhere, add
 `external_url:` and `platform:` (for example `Medium` or `Substack`); the index links straight to it.
+
+## Colour themes
+
+The palette is one file, `assets/css/palette.css`. Alternative palettes live on `theme/*` branches
+(`theme/signal-green`, `theme/amber`, `theme/oxblood`, `theme/mono`) that differ only in that file and the
+images generated from it. To switch, merge the branch you want. To try your own, edit `palette.css`, run
+`node scripts/generate-brand-assets.mjs` to rebuild the logo, favicons and share images, and check contrast:
+text needs 4.5:1 against its background.
 
 ## Content security policy
 

@@ -1,0 +1,88 @@
+/* ================================
+   Palette: Signal green
+   The only file that changes between colour themes. Everything else derives from
+   these tokens (theme.css), and scripts/generate-brand-assets.mjs reads the accent
+   and ink colours from here for the logo, favicons and share images.
+   Contrast ratios are WCAG 2 ratios against the background they sit on.
+   ================================ */
+
+:root {
+    color-scheme: light;
+
+    /* Surfaces */
+    --bg-primary: #fff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --bg-card: #fff;
+
+    /* Text */
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #576579;
+
+    /* Accent (links and text too, so 4.5:1 or better everywhere) */
+    --color-primary: #047857;
+    --color-secondary: #065f46;
+    --on-accent: #fff;
+    --color-danger: #b91c1c;
+
+    /* Borders */
+    --border-color: #cbd5e1;
+    --border-strong: #7c8aa0;
+    --focus-ring: var(--color-primary);
+
+    /* Platform badges */
+    --platform-medium: #047857;
+    --platform-substack: #9a3412;
+
+    /* Code */
+    --code-bg: #f1f5f9;
+    --code-inline: var(--color-primary);
+    --code-comment: #576579;
+    --code-keyword: #6d28d9;
+    --code-string: #047857;
+    --code-number: #b45309;
+    --code-name: #0e7490;
+    --code-builtin: #9d174d;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+[data-theme='dark'] {
+    color-scheme: dark;
+
+    /* Neutral near-black surfaces (no navy tint) */
+    --bg-primary: #0b0d10;
+    --bg-secondary: #12151a;
+    --bg-tertiary: #1a1f26;
+    --bg-card: #111418;
+
+    --text-primary: #e6e9ee;
+    --text-secondary: #c3c9d2;
+    --text-muted: #98a2b0;
+
+    --color-primary: #34d399;
+    --color-secondary: #6ee7b7;
+    --on-accent: #0b0d10;
+    --color-danger: #f87171;
+
+    --border-color: #2a313b;
+    --border-strong: #677385;
+
+    --platform-medium: #34d399;
+    --platform-substack: #fb923c;
+
+    --code-bg: #12151a;
+    --code-comment: #98a2b0;
+    --code-keyword: #c4b5fd;
+    --code-string: #6ee7b7;
+    --code-number: #fcd34d;
+    --code-name: #67e8f9;
+    --code-builtin: #f9a8d4;
+
+    --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 6px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px rgb(0 0 0 / 0.4);
+}

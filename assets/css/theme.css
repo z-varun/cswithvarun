@@ -1,96 +1,14 @@
 /* ================================
-   Theme tokens
-   Every colour on the site comes from here. Contrast ratios in the
-   comments are WCAG 2 ratios against the background they are used on.
+   Theme: derived tokens and the theme toggle.
+   Colour values live in palette.css.
    ================================ */
-
-:root {
-    color-scheme: light;
-
-    /* Surfaces */
-    --bg-primary: #fff;
-    --bg-secondary: #f8fafc;
-    --bg-tertiary: #f1f5f9;
-    --bg-card: #fff;
-
-    /* Text */
-    --text-primary: #0f172a;     /* 16.3+ */
-    --text-secondary: #475569;   /* 6.9+ */
-    --text-muted: #576579;       /* 5.4 on bg-tertiary */
-
-    /* Accent: used for links and text too, so it must pass 4.5:1 */
-    --color-primary: #0e7490;    /* 5.36 on white, 4.89 on bg-tertiary */
-    --color-secondary: #7c3aed;  /* 5.70 on white */
-    --on-accent: #fff;           /* text on accent fills: 5.36 to 6.25 */
-    --color-danger: #b91c1c;     /* 6.47 on white */
-
-    /* Borders */
-    --border-color: #cbd5e1;     /* decorative card edges */
-    --border-strong: #7c8aa0;    /* form controls: 3.35+ */
-    --focus-ring: var(--color-primary);
-
-    /* Platform badges */
-    --platform-medium: #047857;
-    --platform-substack: #9a3412;
-
-    /* Code */
-    --code-bg: #f1f5f9;
-    --code-inline: #0e7490;
-    --code-comment: #576579;
-    --code-keyword: #6d28d9;
-    --code-string: #047857;
-    --code-number: #b45309;
-    --code-name: #0e7490;
-    --code-builtin: #9d174d;
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-}
-
-[data-theme='dark'] {
-    color-scheme: dark;
-
-    --bg-primary: #0a0e27;
-    --bg-secondary: #151b3b;
-    --bg-tertiary: #1f2747;
-    --bg-card: #0f172af2;
-
-    --text-primary: #f1f5f9;
-    --text-secondary: #cbd5e1;
-    --text-muted: #94a3b8;       /* 5.69 on bg-tertiary */
-
-    --color-primary: #00d9ff;    /* 11.19 on bg-primary */
-    --color-secondary: #a78bfa;  /* 6.98 on bg-primary */
-    --on-accent: #0a0e27;        /* dark text on the bright gradient: 6.98 to 11.19 */
-    --color-danger: #f87171;
-
-    --border-color: #334155;
-    --border-strong: #6b7a90;    /* 3.84+ */
-
-    --platform-medium: #34d399;
-    --platform-substack: #fb923c;
-
-    --code-bg: #151b3b;
-    --code-inline: #00d9ff;
-    --code-comment: #94a3b8;
-    --code-keyword: #c4b5fd;
-    --code-string: #6ee7b7;
-    --code-number: #fcd34d;
-    --code-name: #67e8f9;
-    --code-builtin: #f9a8d4;
-
-    --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.3);
-    --shadow-md: 0 4px 6px rgb(0 0 0 / 0.3);
-    --shadow-lg: 0 10px 15px rgb(0 0 0 / 0.3);
-}
 
 /* Derived tokens. Declared after both themes so they pick up the active accent. */
 :root,
 [data-theme='dark'] {
-    --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-    --gradient-primary-90: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    /* Solid accent: the gradient look is gone, but the token names stay so components don't change */
+    --gradient-primary: var(--color-primary);
+    --gradient-primary-90: var(--color-primary);
     --accent-tint: color-mix(in srgb, var(--color-primary) 8%, transparent);
     --accent-tint-strong: color-mix(in srgb, var(--color-primary) 14%, transparent);
     --accent-glow: color-mix(in srgb, var(--color-primary) 30%, transparent);

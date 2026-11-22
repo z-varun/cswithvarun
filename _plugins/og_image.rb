@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Gives each post its own Open Graph / Twitter card image when one has been
-# generated at assets/images/og/<slug>.png (see scripts/generate-og-images.mjs).
+# generated at assets/images/og/<slug>.png (see scripts/generate-brand-assets.mjs).
 # A post's own `image:` front matter still wins; otherwise the site-wide default applies.
 module OgImage
   class Generator < Jekyll::Generator

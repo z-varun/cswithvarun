@@ -5,6 +5,7 @@ layout: null
 ---
 {% include_relative fonts.css %}
 {% include_relative variables.css %}
+{% include_relative palette.css %}
 {% include_relative theme.css %}
 {% include_relative components.css %}
 {% include_relative animations.css %}
