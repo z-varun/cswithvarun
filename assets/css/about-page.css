@@ -340,6 +340,32 @@
     margin-bottom: var(--spacing-md);
 }
 
+.role-steps {
+    list-style: none;
+    margin: 0 0 var(--spacing-md);
+    padding: 0;
+    display: grid;
+    gap: 0.375rem;
+    font-size: var(--font-size-sm);
+}
+
+.role-steps li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.25rem 0.75rem;
+    color: var(--text-secondary);
+}
+
+.role-steps strong {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+.role-steps span {
+    color: var(--text-muted);
+}
+
 .timeline-tags {
     display: flex;
     flex-wrap: wrap;
@@ -357,81 +383,30 @@
 
 .skills-categories {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-2xl);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.skill-category {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg) var(--spacing-xl);
 }
 
 .skill-category h3 {
     color: var(--text-primary);
-    margin-bottom: var(--spacing-xl);
-    font-size: var(--font-size-2xl);
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--border-color);
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-lg);
 }
 
-.skill-bars {
+.skill-tags {
     display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-}
-
-.skill-bar {
-    display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: var(--spacing-sm);
-}
-
-.skill-info {
-    display: flex;
-    justify-content: space-between;
-    color: var(--text-secondary);
-    font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-sm);
-}
-
-.skill-percentage {
-    color: var(--color-primary);
-    font-weight: var(--font-weight-semibold);
-}
-
-.skill-progress {
-    height: 10px;
-    background-color: var(--bg-tertiary);
-    border-radius: var(--border-radius-full);
-    overflow: hidden;
-    position: relative;
-}
-
-.skill-fill {
-    height: 100%;
-    background: var(--accent-fill);
-    border-radius: var(--border-radius-full);
-    width: var(--skill-width, 0);
-    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Widths come from classes (no inline styles under the CSP); the bars
-   start empty and fill when the section scrolls into view. */
-.skill-fill.w-30 { --skill-width: 30%; }
-.skill-fill.w-35 { --skill-width: 35%; }
-.skill-fill.w-40 { --skill-width: 40%; }
-.skill-fill.w-45 { --skill-width: 45%; }
-.skill-fill.w-50 { --skill-width: 50%; }
-.skill-fill.w-55 { --skill-width: 55%; }
-.skill-fill.w-60 { --skill-width: 60%; }
-.skill-fill.w-65 { --skill-width: 65%; }
-.skill-fill.w-70 { --skill-width: 70%; }
-.skill-fill.w-75 { --skill-width: 75%; }
-.skill-fill.w-80 { --skill-width: 80%; }
-.skill-fill.w-85 { --skill-width: 85%; }
-.skill-fill.w-90 { --skill-width: 90%; }
-.skill-fill.w-95 { --skill-width: 95%; }
-.skill-fill.w-100 { --skill-width: 100%; }
-
-@media (prefers-reduced-motion: no-preference) {
-    .js .skills-meters-section:not(.animated) .skill-fill {
-        width: 0;
-    }
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 /* ================================
@@ -486,53 +461,6 @@
     align-items: center;
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--border-color);
-}
-
-/* ================================
-   Beyond Work Section
-   ================================ */
-
-.beyond-work-section {
-    padding: var(--spacing-2xl) 0;
-}
-
-.interests-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-lg);
-}
-
-.interest-card {
-    background-color: var(--bg-card);
-    padding: var(--spacing-xl) var(--spacing-lg);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
-    text-align: center;
-    transition: border-color var(--transition-base);
-}
-
-.interest-icon {
-    font-size: 2rem;
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-md);
-    display: inline-block;
-    transition: transform var(--transition-base);
-}
-
-.interest-card:hover .interest-icon {
-    transform: scale(1.2) rotate(10deg);
-}
-
-.interest-card h3 {
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-sm);
-    font-size: var(--font-size-base);
-}
-
-.interest-card p {
-    color: var(--text-muted);
-    font-size: var(--font-size-sm);
-    margin: 0;
 }
 
 /* ================================
@@ -676,94 +604,4 @@
     .animated-quote p {
         font-size: 1.25rem;
     }
-}
-
-/* ================================
-   Certifications Section
-   ================================ */
-
-.certifications-section {
-  padding: var(--spacing-3xl) 0;
-  background-color: var(--bg-primary);
-}
-
-.certifications-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-xl);
-  margin-top: var(--spacing-2xl);
-}
-
-.cert-card {
-  background-color: var(--bg-card);
-  padding: var(--spacing-2xl);
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
-  text-align: center;
-  transition: border-color var(--transition-base);
-  position: relative;
-  overflow: hidden;
-}
-
-.cert-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, var(--accent-tint-strong), transparent);
-  transition: left 0.6s ease;
-  pointer-events: none;
-}
-
-.cert-card:hover::before {
-  left: 100%;
-}
-
-.cert-card:hover {
-  border-color: var(--color-primary);
-}
-
-.cert-icon {
-  font-size: 2.5rem;
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-lg);
-  display: block;
-  transition: transform var(--transition-base);
-}
-
-.cert-card:hover .cert-icon {
-  transform: scale(1.2) rotate(10deg);
-}
-
-.cert-card h3 {
-  font-size: var(--font-size-xl);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-md);
-}
-
-.cert-card p {
-  color: var(--text-secondary);
-  line-height: var(--line-height-relaxed);
-  font-size: var(--font-size-base);
-  margin: 0;
-}
-
-@media (width <= 968px) {
-  .certifications-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (width <= 480px) {
-  .certifications-section {
-    padding: var(--spacing-xl) 0;
-  }
-  .cert-card {
-    padding: var(--spacing-xl);
-  }
-  .cert-icon {
-    font-size: 2.5rem;
-  }
 }

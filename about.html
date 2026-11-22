@@ -75,9 +75,9 @@ custom_js: about-page
                     <h3>Senior Security Engineer</h3>
                     <p class="company-name">Crypto.com · Singapore</p>
                     {% assign now_y = site.time | date: "%Y" | plus: 0 %}{% assign now_m = site.time | date: "%-m" | plus: 0 %}
-                    {% assign months = now_y | times: 12 | plus: now_m | minus: 24309 | plus: 1 %}{% comment %}24309 = 2025 * 12 + 9 (Sept 2025), counted inclusively like LinkedIn{% endcomment %}
+                    {% assign months = now_y | times: 12 | plus: now_m | minus: 24309 | plus: 1 %}{% comment %}24309 = 2025 * 12 + 9 (Sept 2025), counted inclusively like LinkedIn. The space below is output with {{ ' ' }} because Liquid drops a block containing only whitespace.{% endcomment %}
                     {% assign yrs = months | divided_by: 12 %}{% assign mos = months | modulo: 12 %}
-                    <p class="duration-badge">{% if yrs > 0 %}{{ yrs }} year{% if yrs > 1 %}s{% endif %}{% if mos > 0 %} {% endif %}{% endif %}{% if mos > 0 %}{{ mos }} month{% if mos > 1 %}s{% endif %}{% endif %}</p>
+                    <p class="duration-badge">{% if yrs > 0 %}{{ yrs }} year{% if yrs > 1 %}s{% endif %}{% if mos > 0 %}{{ ' ' }}{% endif %}{% endif %}{% if mos > 0 %}{{ mos }} month{% if mos > 1 %}s{% endif %}{% endif %}</p>
                     <p>Guardian at Scale - Orchestrating defense-in-depth for a high-frequency financial platform, proactively 
                         hunting threats and automating response in a zero-trust environment.
                     </p>
@@ -127,62 +127,28 @@ custom_js: about-page
                 </div>
             </div>
 
-            <!-- CloudCover - Technical Lead -->
+            <!-- CloudCover: three roles, one company -->
             <div class="timeline-item" data-animate="slide-left">
                 <div class="timeline-marker"></div>
                 <div class="timeline-content card-hover-lift">
-                    <div class="timeline-date">April 2021 - November 2022</div>
-                    <h3>DevOps Technical Lead</h3>
+                    <div class="timeline-date">January 2019 - November 2022</div>
+                    <h3>DevOps Engineer → Technical Lead</h3>
                     <p class="company-name">CloudCover · Pune, India</p>
-                    <p class="duration-badge">1 year 8 months</p>
-                    <p>The Migration Architect – Executed high-stakes, zero-downtime migrations for fintech giants. 
-                        Proved that you can move fast without breaking things if your infrastructure code is bulletproof.
-                    </p>
-                    <div class="timeline-tags">
-                        <span class="tag">Terraform</span>
-                        <span class="tag">AWS</span>
-                        <span class="tag">Azure</span>
-                        <span class="tag">Team Leadership</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CloudCover - Senior DevOps -->
-            <div class="timeline-item" data-animate="slide-right">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content card-hover-lift">
-                    <div class="timeline-date">January 2020 - March 2021</div>
-                    <h3>Senior DevOps Engineer</h3>
-                    <p class="company-name">CloudCover · Pune, India</p>
-                    <p class="duration-badge">1 year 3 months</p>
-                    <p>Architected and executed large-scale cloud migrations to GCP for e-commerce and fintech
-                        applications handling 100K-1M requests per second. Built CI/CD pipelines using Jenkins and
-                        established monitoring with Datadog.
+                    <p class="duration-badge">3 years 11 months</p>
+                    <ul class="role-steps">
+                        <li><strong>DevOps Technical Lead</strong> <span>Apr 2021 – Nov 2022</span></li>
+                        <li><strong>Senior DevOps Engineer</strong> <span>Jan 2020 – Mar 2021</span></li>
+                        <li><strong>DevOps Engineer</strong> <span>Jan 2019 – Dec 2019</span></li>
+                    </ul>
+                    <p>The Migration Architect – Led zero-downtime migrations for fintech clients and moved e-commerce
+                        and fintech platforms handling 100K-1M requests per second to GCP. Built Jenkins pipelines
+                        shipping 50-200 deployments a day, secured GKE clusters, and set up monitoring with Datadog.
                     </p>
                     <div class="timeline-tags">
                         <span class="tag">GCP Migration</span>
-                        <span class="tag">Jenkins</span>
-                        <span class="tag">High Availability</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CloudCover - DevOps Engineer -->
-            <div class="timeline-item" data-animate="slide-left">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content card-hover-lift">
-                    <div class="timeline-date">January 2019 - December 2019</div>
-                    <h3>DevOps Engineer</h3>
-                    <p class="company-name">CloudCover · Pune, India</p>
-                    <p class="duration-badge">1 year</p>
-                    <p>Designed cloud infrastructure for ETL applications, implemented GKE security practices, and
-                        automated migration processes using Python and Ansible. Handled deployments ranging from 50-200
-                        per day.
-                    </p>
-                    <div class="timeline-tags">
+                        <span class="tag">Terraform</span>
                         <span class="tag">GKE</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">Ansible</span>
+                        <span class="tag">Team Leadership</span>
                     </div>
                 </div>
             </div>
@@ -236,27 +202,16 @@ custom_js: about-page
         </div>
     </section>
 
-    <!-- Animated Skill Meters -->
+    <!-- Technical Expertise: grouped tags -->
     <section class="skills-meters-section" data-animate="fade-in">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-categories">
             {% for category in site.data.skills %}
             <div class="skill-category">
                 <h3>{{ category.title }}</h3>
-                <div class="skill-bars">
-                    {% for skill in category.skills %}
-                    <div class="skill-bar">
-                        <div class="skill-info">
-                            <span>{{ skill.name }}</span>
-                            <span class="skill-percentage">{{ skill.percentage }}%</span>
-                        </div>
-                        <div class="skill-progress" aria-hidden="true">
-                            {% assign pct = skill.percentage | divided_by: 5 | times: 5 %}
-                            <div class="skill-fill w-{{ pct }}"></div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
+                <ul class="skill-tags">
+                    {% for skill in category.skills %}<li class="tag">{{ skill }}</li>{% endfor %}
+                </ul>
             </div>
             {% endfor %}
         </div>
@@ -280,45 +235,6 @@ custom_js: about-page
             </div>
             {% endfor %}
         </div>
-    </section>
-
-    <!-- Beyond Work Section with Icons -->
-    <section class="beyond-work-section" data-animate="fade-in">
-        <h2 class="section-title">Beyond Work</h2>
-        <div class="interests-grid">
-            {% for interest in site.data.interests %}
-            <div class="interest-card card-hover-lift">
-                <div class="interest-icon" aria-hidden="true">{% include icon.html name=interest.icon %}</div>
-                <h3>{{ interest.title }}</h3>
-                <p>{{ interest.description }}</p>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-
-    <!-- Certifications & Learning -->
-    <section class="certifications-section" data-animate="fade-in">
-        <h2 class="section-title">Verified Expertise</h2>
-        <div class="certifications-grid">
-            <div class="cert-card">
-                <div class="cert-icon" aria-hidden="true">{% include icon.html name="graduation-cap" %}</div>
-                <h3>DevOps Foundations</h3>
-                <p>Comprehensive foundation in DevOps principles and practices</p>
-            </div>
-            <div class="cert-card">
-                <div class="cert-icon" aria-hidden="true">{% include icon.html name="layer-group" %}</div>
-                <h3>Advanced Terraform</h3>
-                <p>Advanced infrastructure-as-code patterns and best practices</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Closing Quote -->
-    <section class="quote-section" data-animate="fade-in">
-        <blockquote class="animated-quote">
-            <p>"The most secure system isn't the one locked in a box—it's the one that can recover 
-                from an attack before the users even notice."</p>
-        </blockquote>
     </section>
 
     <!-- CTA Section -->

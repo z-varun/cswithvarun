@@ -1,149 +1,28 @@
-- id: cloud_infrastructure
-  title: "Cloud & Infrastructure"
-  skills:
-    - name: "AWS"
-      percentage: 95
-    - name: "GCP"
-      percentage: 90
-    - name: "Azure"
-      percentage: 70
+# About page "Technical Expertise": grouped tags, strongest first within each group.
+# (Replaced self-rated percentage bars, 2026-11-22.)
+- title: "Cloud"
+  skills: [AWS, GCP, Azure]
 
-- id: programming
-  title: "Programming & Scripting"
-  skills:
-    - name: "Python3"
-      percentage: 95
-    - name: "Shell Scripting"
-      percentage: 70
-    - name: "JavaScript"
-      percentage: 30
+- title: "Kubernetes & Containers"
+  skills: [EKS, GKE, Kubernetes, Docker, Helm, AKS]
 
-- id: ci_cd
-  title: "CI/CD & DevOps"
-  skills:
-    - name: "Github Actions"
-      percentage: 95
-    - name: "GitlabCI"
-      percentage: 90
-    - name: "Jenkins"
-      percentage: 90
-    - name: "Azure DevOps (ADO)"
-      percentage: 85
+- title: "Infrastructure as Code"
+  skills: [Terraform, Git, Ansible]
 
-- id: containerization
-  title: "Containerization & Orchestration"
-  skills:
-    - name: "EKS"
-      percentage: 90
-    - name: "GKE"
-      percentage: 90
-    - name: "Kubernetes"
-      percentage: 80
-    - name: "Docker"
-      percentage: 80
-    - name: "AKS"
-      percentage: 70
+- title: "CI/CD"
+  skills: [GitHub Actions, GitLab CI, Jenkins, Azure DevOps]
 
-- id: iac
-  title: "Infrastructure as Code"
-  skills:
-    - name: "Terraform"
-      percentage: 95
-    - name: "Git"
-      percentage: 95
-    - name: "Helm"
-      percentage: 85
-    - name: "Ansible"
-      percentage: 85
+- title: "Security & Compliance"
+  skills: [Tines, Prisma Cloud, GCP Security Command Center, Cloud Armor, CrowdStrike, Qualys]
 
-- id: databases
-  title: "Databases & Data"
-  skills:
-    - name: "CloudSQL"
-      percentage: 90
-    - name: "RDS"
-      percentage: 90
-    - name: "MySQL"
-      percentage: 85
-    - name: "PostgreSQL"
-      percentage: 85
-    - name: "BigQuery"
-      percentage: 70
+- title: "Identity & Microsoft 365"
+  skills: [Entra ID, Okta, Intune, Exchange, Teams administration, Defender, Purview]
 
-- id: security_tools
-  title: "Security & Compliance"
-  skills:
-    - name: "Tines"
-      percentage: 95
-    - name: "SRE"
-      percentage: 85
-    - name: "PrismaCloud"
-      percentage: 80
-    - name: "GCP SCC"
-      percentage: 80
-    - name: "CloudArmor"
-      percentage: 80
-    - name: "Crowdstrike"
-      percentage: 75
-    - name: "Qualys"
-      percentage: 75
+- title: "Observability"
+  skills: [Prometheus, Grafana, CloudWatch, Datadog, ELK Stack, Jaeger, Loki]
 
-- id: observability
-  title: "Observability & Monitoring"
-  skills:
-    - name: "CloudWatch"
-      percentage: 90
-    - name: "Grafana"
-      percentage: 90
-    - name: "Prometheus"
-      percentage: 90
-    - name: "Datadog"
-      percentage: 80
-    - name: "ELK Stack"
-      percentage: 75
-    - name: "Jaeger"
-      percentage: 75
-    - name: "Loki"
-      percentage: 75
+- title: "Data & Messaging"
+  skills: [CloudSQL, RDS, MySQL, PostgreSQL, BigQuery, Kafka, RabbitMQ, Redis]
 
-- id: microsoft
-  title: "Microsoft Ecosystem"
-  skills:
-    - name: "Entra"
-      percentage: 85
-    - name: "Intune"
-      percentage: 85
-    - name: "Teams Administration"
-      percentage: 85
-    - name: "Exchange"
-      percentage: 85
-    - name: "Okta"
-      percentage: 85
-    - name: "Defender"
-      percentage: 70
-    - name: "Purview"
-      percentage: 60
-
-- id: others
-  title: "Other Relevant Skills"
-  skills:
-    - name: "Microservices Architecture"
-      percentage: 90
-    - name: "Distributed Systems"
-      percentage: 70
-    - name: "HTML"
-      percentage: 30
-    - name: "CSS"
-      percentage: 30
-    - name: "Bash"
-      percentage: 70
-    - name: "Redis"
-      percentage: 65
-
-- id: messaging
-  title: "Messaging & Queueing"
-  skills:
-    - name: "Kafka"
-      percentage: 75
-    - name: "RabbitMQ"
-      percentage: 75
+- title: "Languages & Practices"
+  skills: [Python, Bash, SRE, Microservices architecture, Distributed systems]

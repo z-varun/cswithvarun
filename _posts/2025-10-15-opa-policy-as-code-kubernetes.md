@@ -60,8 +60,17 @@ While Kyverno offers an easier learning curve for Kubernetes-only use cases, OPA
 
 ### How It Works
 
-
-
+```text
+kubectl apply
+      ↓
+Kubernetes API server
+      ↓
+Gatekeeper validating admission webhook
+      ↓
+Evaluate the request against all active Constraints
+      ↓
+Allowed  —or—  Rejected with a detailed error message
+```
 
 When a user attempts to create a Deployment, the API server forwards the request to Gatekeeper, which evaluates it against all active Constraints. If the resource violates a policy, the request is rejected with a detailed error message.
 
@@ -76,15 +85,15 @@ When a user attempts to create a Deployment, the API server forwards the request
 
 ### Installation
 
+```bash
 kubectl apply -f https://raw.githubusercontent.com/open-policy-agent/gatekeeper/release-3.14/deploy/gatekeeper.yaml
-
-text
+```
 
 Verify installation:
 
+```bash
 kubectl get pods -n gatekeeper-system
-
-text
+```
 
 You should see pods like `gatekeeper-controller-manager` running.
 
@@ -98,57 +107,57 @@ Let's create a policy that ensures all Kubernetes Deployments have **CPU and mem
 
 The `ConstraintTemplate` defines the Rego logic.
 
+```yaml
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-name: k8srequiredresourcelimits
-annotations:
-description: "Requires containers to have CPU and memory limits defined"
+  name: k8srequiredresourcelimits
+  annotations:
+    description: "Requires containers to have CPU and memory limits defined"
 spec:
-crd:
-spec:
-names:
-kind: K8sRequiredResourceLimits
-validation:
-openAPIV3Schema:
-type: object
-properties:
-exemptImages:
-type: array
-items:
-type: string
-targets:
-- target: admission.k8s.gatekeeper.sh
-rego: |
-package k8srequiredresourcelimits
+  crd:
+    spec:
+      names:
+        kind: K8sRequiredResourceLimits
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            exemptImages:
+              type: array
+              items:
+                type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8srequiredresourcelimits
 
-text
-    # Violation occurs if any container lacks resource limits
-    violation[{"msg": msg}] {
-      container := input.review.object.spec.template.spec.containers[_]
-      not container.resources.limits.cpu
-      msg := sprintf("Container '%s' must define CPU limits", [container.name])
-    }
+        # Violation occurs if any container lacks resource limits
+        violation[{"msg": msg}] {
+          container := input.review.object.spec.template.spec.containers[_]
+          not container.resources.limits.cpu
+          msg := sprintf("Container '%s' must define CPU limits", [container.name])
+        }
 
-    violation[{"msg": msg}] {
-      container := input.review.object.spec.template.spec.containers[_]
-      not container.resources.limits.memory
-      msg := sprintf("Container '%s' must define memory limits", [container.name])
-    }
+        violation[{"msg": msg}] {
+          container := input.review.object.spec.template.spec.containers[_]
+          not container.resources.limits.memory
+          msg := sprintf("Container '%s' must define memory limits", [container.name])
+        }
 
-    # Allow exemptions for specific images (e.g., monitoring agents)
-    violation[{"msg": msg}] {
-      container := input.review.object.spec.template.spec.containers[_]
-      not exempt_image(container.image)
-      not container.resources.limits
-      msg := sprintf("Container '%s' must define resource limits", [container.name])
-    }
+        # Allow exemptions for specific images (e.g., monitoring agents)
+        violation[{"msg": msg}] {
+          container := input.review.object.spec.template.spec.containers[_]
+          not exempt_image(container.image)
+          not container.resources.limits
+          msg := sprintf("Container '%s' must define resource limits", [container.name])
+        }
 
-    exempt_image(image) {
-      exempt := input.parameters.exemptImages[_]
-      startswith(image, exempt)
-    }
-text
+        exempt_image(image) {
+          exempt := input.parameters.exemptImages[_]
+          startswith(image, exempt)
+        }
+```
 
 ### Rego Explanation
 
@@ -160,41 +169,41 @@ text
 
 ### Step 2: Apply the ConstraintTemplate
 
+```bash
 kubectl apply -f constraint-template.yaml
-
-text
+```
 
 ### Step 3: Create a Constraint
 
 The `Constraint` instantiates the ConstraintTemplate and defines enforcement scope.
 
+```yaml
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sRequiredResourceLimits
 metadata:
-name: require-deployment-limits
+  name: require-deployment-limits
 spec:
-match:
-kinds:
-- apiGroups: ["apps"]
-kinds: ["Deployment"]
-namespaces:
-- "production"
-- "staging"
-parameters:
-exemptImages:
-- "prometheus/node-exporter"
-- "fluent/fluent-bit"
-
-text
+  match:
+    kinds:
+      - apiGroups: ["apps"]
+        kinds: ["Deployment"]
+    namespaces:
+      - "production"
+      - "staging"
+  parameters:
+    exemptImages:
+      - "prometheus/node-exporter"
+      - "fluent/fluent-bit"
+```
 
 This constraint:
 
 - Applies only to **Deployments** in `production` and `staging` namespaces
 - Exempts monitoring containers from the policy
 
+```bash
 kubectl apply -f constraint.yaml
-
-text
+```
 
 ---
 
@@ -202,67 +211,66 @@ text
 
 ### Deploying a Non-Compliant Resource
 
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: bad-deployment
-namespace: production
+  name: bad-deployment
+  namespace: production
 spec:
-replicas: 2
-selector:
-matchLabels:
-app: myapp
-template:
-metadata:
-labels:
-app: myapp
-spec:
-containers:
-- name: web
-image: nginx:latest
-# Missing resources.limits
-
-text
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: web
+          image: nginx:latest
+          # Missing resources.limits
+```
 
 Attempting to deploy this will result in:
 
-kubectl apply -f bad-deployment.yaml
-
+```console
+$ kubectl apply -f bad-deployment.yaml
 Error from server ([require-deployment-limits] Container 'web' must define CPU limits
 [require-deployment-limits] Container 'web' must define memory limits):
 error when creating "bad-deployment.yaml": admission webhook "validation.gatekeeper.sh" denied the request
-
-text
+```
 
 ### Deploying a Compliant Resource
 
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: good-deployment
-namespace: production
+  name: good-deployment
+  namespace: production
 spec:
-replicas: 2
-selector:
-matchLabels:
-app: myapp
-template:
-metadata:
-labels:
-app: myapp
-spec:
-containers:
-- name: web
-image: nginx:latest
-resources:
-limits:
-cpu: "500m"
-memory: "512Mi"
-requests:
-cpu: "250m"
-memory: "256Mi"
-
-text
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: web
+          image: nginx:latest
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+```
 
 This deployment succeeds because resource limits are defined.
 
@@ -276,22 +284,22 @@ Gatekeeper doesn't just block new deployments—it can also audit existing resou
 
 Audit results are stored in the Constraint's `status` field:
 
+```bash
 kubectl get K8sRequiredResourceLimits require-deployment-limits -o yaml
-
-text
+```
 
 Example output:
 
+```yaml
 status:
-auditTimestamp: "2025-10-15T10:30:00Z"
-violations:
-- enforcementAction: deny
-kind: Deployment
-message: "Container 'web' must define CPU limits"
-name: legacy-app
-namespace: production
-
-text
+  auditTimestamp: "2025-10-15T10:30:00Z"
+  violations:
+    - enforcementAction: deny
+      kind: Deployment
+      message: "Container 'web' must define CPU limits"
+      name: legacy-app
+      namespace: production
+```
 
 This allows security teams to identify non-compliant resources without disrupting operations.
 
@@ -303,42 +311,42 @@ This allows security teams to identify non-compliant resources without disruptin
 
 Prevent deployment of images from untrusted registries:
 
+```rego
 package k8sallowedrepos
 
 violation[{"msg": msg}] {
-container := input.review.object.spec.template.spec.containers[_]
-not startswith(container.image, "gcr.io/my-company/")
-msg := sprintf("Image '%s' is not from an approved registry", [container.image])
+  container := input.review.object.spec.template.spec.containers[_]
+  not startswith(container.image, "gcr.io/my-company/")
+  msg := sprintf("Image '%s' is not from an approved registry", [container.image])
 }
-
-text
+```
 
 ### 2. Requiring Labels for Cost Allocation
 
 Enforce that all Deployments have a `cost-center` label:
 
+```rego
 package k8srequiredlabels
 
 violation[{"msg": msg}] {
-not input.review.object.metadata.labels["cost-center"]
-msg := "All Deployments must have a 'cost-center' label"
+  not input.review.object.metadata.labels["cost-center"]
+  msg := "All Deployments must have a 'cost-center' label"
 }
-
-text
+```
 
 ### 3. Preventing Privileged Containers
 
 Block containers running with `privileged: true`:
 
+```rego
 package k8spsprivileged
 
 violation[{"msg": msg}] {
-container := input.review.object.spec.template.spec.containers[_]
-container.securityContext.privileged == true
-msg := sprintf("Container '%s' cannot run in privileged mode", [container.name])
+  container := input.review.object.spec.template.spec.containers[_]
+  container.securityContext.privileged == true
+  msg := sprintf("Container '%s' cannot run in privileged mode", [container.name])
 }
-
-text
+```
 
 ---
 
