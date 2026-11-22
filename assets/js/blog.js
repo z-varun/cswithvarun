@@ -175,6 +175,13 @@
       setQueryInUrl(q);
       if (!q) { showPosts(); return; }
       applyFilter('all', true); // search always covers every post
+      // The first search downloads the search engine (about a second on a typical connection);
+      // say so if it takes noticeably long, rather than leaving the page unchanged.
+      const slow = setTimeout(() => {
+        if (id !== latest) return;
+        summary.textContent = 'Searching\u2026';
+        results.hidden = false;
+      }, 250);
       try {
         const pf = await loadPagefind();
         const search = await pf.search(q);
@@ -187,6 +194,8 @@
         showPosts();
         summary.textContent = 'Search isn\'t available right now. Browse the posts below instead.';
         results.hidden = false;
+      } finally {
+        clearTimeout(slow);
       }
     }
 
