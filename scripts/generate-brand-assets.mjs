@@ -96,7 +96,7 @@ try {
   icon(logoSvg(0), 180, img('apple-touch-icon.png'));
   icon(logoSvg(14), 512, img('logo-512.png'));
 
-  shoot(card({ kicker: 'Security engineering', title: 'Engineering Security at the Speed of Innovation', footer: 'Senior Security Engineer · DevSecOps · Cloud Security' }),
+  shoot(card({ kicker: 'DevSecOps · Cloud security', title: 'Security engineering that keeps pace with delivery', footer: 'Senior Security Engineer at Crypto.com' }),
     1200, 630, img('og-default.png'));
 
   mkdirSync(img('og'), { recursive: true });
