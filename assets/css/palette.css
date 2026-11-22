@@ -7,6 +7,8 @@
    ================================ */
 
 :root {
+    /* LOCKED: light palette approved by the site owner on 2026-11-22.
+       Do not change these light-mode values without the owner's explicit request. */
     color-scheme: light;
 
     /* Surfaces: pale mint page, mint section bands, white cards on top */
