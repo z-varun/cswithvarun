@@ -1,0 +1,87 @@
+/* ================================
+   Optional palette: Sky (icy blue, after the "Flinex" reference)
+   Applies only when a visitor picks it (data-palette="sky" on <html>).
+   Text is 4.5:1 or better on every surface; large display text 3:1 or better.
+   ================================ */
+
+:root[data-palette='sky'] {
+    color-scheme: light;
+
+    /* Surfaces: frosted pale-blue page, white cards */
+    --bg-primary: #eef4fc;
+    --bg-secondary: #e2ecf9;
+    --bg-tertiary: #d3e2f6;
+    --bg-card: #fff;
+
+    /* Text: deep ink blue */
+    --text-primary: #0f1b2d;
+    --text-secondary: #33445c;
+    --text-muted: #4b5b73;
+
+    /* Accent roles: text, fill, display */
+    --color-primary: #1858c4;
+    --color-secondary: #0f3d8c;
+    --accent-fill: #1f6feb;
+    --on-accent: #fff;
+    --accent-display: #2470e8;
+    --color-danger: #b91c1c;
+
+    --border-color: #d6e3f3;
+    --border-strong: #61759a;
+    --focus-ring: var(--color-primary);
+
+    --platform-medium: #047857;
+    --platform-substack: #9a3412;
+
+    --code-bg: #e8f0fb;
+    --code-inline: var(--color-primary);
+    --code-comment: #4b5b73;
+    --code-keyword: #6d28d9;
+    --code-string: #047857;
+    --code-number: #b45309;
+    --code-name: #0e7490;
+    --code-builtin: #9d174d;
+
+    --shadow-sm: 0 1px 2px rgb(20 50 100 / 0.05), 0 1px 3px rgb(20 50 100 / 0.05);
+    --shadow-md: 0 4px 16px rgb(20 50 100 / 0.08);
+    --shadow-lg: 0 12px 32px rgb(20 50 100 / 0.1);
+}
+
+/* Dark sky: the same neutral greys as the default dark mode, with a light-blue accent */
+:root[data-palette='sky'][data-theme='dark'] {
+    color-scheme: dark;
+
+    --bg-primary: #0f0f10;
+    --bg-secondary: #161618;
+    --bg-tertiary: #1f1f22;
+    --bg-card: #18181b;
+
+    --text-primary: #ededef;
+    --text-secondary: #c8c8cd;
+    --text-muted: #a0a0a8;
+
+    --color-primary: #8ab8ff;
+    --color-secondary: #b3d0ff;
+    --accent-fill: #8ab8ff;
+    --on-accent: #0f0f10;
+    --accent-display: #8ab8ff;
+    --color-danger: #f87171;
+
+    --border-color: #2a2a2e;
+    --border-strong: #707078;
+
+    --platform-medium: #34d399;
+    --platform-substack: #fb923c;
+
+    --code-bg: #161618;
+    --code-comment: #a0a0a8;
+    --code-keyword: #c4b5fd;
+    --code-string: #6ee7b7;
+    --code-number: #fcd34d;
+    --code-name: #67e8f9;
+    --code-builtin: #f9a8d4;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 16px rgb(0 0 0 / 0.35);
+    --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.45);
+}

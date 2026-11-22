@@ -7,6 +7,8 @@ layout: null
 {% include_relative variables.css %}
 {% include_relative palette.css %}
 {% include_relative palette-rose.css %}
+{% include_relative palette-sky.css %}
+{% include_relative palette-slate.css %}
 {% include_relative theme.css %}
 {% include_relative components.css %}
 {% include_relative animations.css %}
@@ -512,6 +514,29 @@ a:hover {
 
 .palette-swatch-rose {
     background: #d6336c;
+}
+
+.palette-swatch-sky {
+    background: #1f6feb;
+}
+
+.palette-swatch-slate {
+    background: linear-gradient(135deg, #3f4f69 50%, #e8b894 50%);
+}
+
+/* Small screens: drop the label and tighten spacing so all four options fit */
+@media (width <= 480px) {
+    .palette-picker {
+        max-width: 100%;
+    }
+
+    .palette-label {
+        display: none;
+    }
+
+    .palette-option {
+        padding: 0.25rem 0.625rem;
+    }
 }
 
 .social-links {

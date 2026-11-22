@@ -4,7 +4,7 @@
 
   const STORAGE_KEY = 'theme-preference';
   const PALETTE_KEY = 'palette-preference';
-  const PALETTES = ['mint', 'rose'];
+  const PALETTES = ['mint', 'rose', 'sky', 'slate'];
   const root = document.documentElement;
   const darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 
@@ -28,7 +28,8 @@
   }
 
   function currentPalette() {
-    return root.getAttribute('data-palette') === 'rose' ? 'rose' : 'mint';
+    const palette = root.getAttribute('data-palette');
+    return PALETTES.includes(palette) ? palette : 'mint';
   }
 
   function renderPalette(palette) {

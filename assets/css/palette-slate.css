@@ -1,0 +1,88 @@
+/* ================================
+   Optional palette: Slate (dusty slate blue with peach, after the "Dog Magazine" reference)
+   Applies only when a visitor picks it (data-palette="slate" on <html>).
+   Unlike the other palettes, its dark mode keeps a slate-blue tint: that is the look.
+   Text is 4.5:1 or better on every surface; large display text 3:1 or better.
+   ================================ */
+
+:root[data-palette='slate'] {
+    color-scheme: light;
+
+    /* Surfaces: misty blue-grey page, white cards */
+    --bg-primary: #eef1f5;
+    --bg-secondary: #e3e8ef;
+    --bg-tertiary: #d6dde8;
+    --bg-card: #fff;
+
+    /* Text: deep slate */
+    --text-primary: #1c2636;
+    --text-secondary: #3a4658;
+    --text-muted: #4f5c6f;
+
+    /* Accent roles: terracotta text, peach fill, warm display */
+    --color-primary: #93461f;
+    --color-secondary: #6e3214;
+    --accent-fill: #e8b894;
+    --on-accent: #1c2636;
+    --accent-display: #b25d2e;
+    --color-danger: #b91c1c;
+
+    --border-color: #dbe1ea;
+    --border-strong: #66738a;
+    --focus-ring: var(--color-primary);
+
+    --platform-medium: #047857;
+    --platform-substack: #9a3412;
+
+    --code-bg: #e7ebf1;
+    --code-inline: var(--color-primary);
+    --code-comment: #4f5c6f;
+    --code-keyword: #6d28d9;
+    --code-string: #047857;
+    --code-number: #b45309;
+    --code-name: #0c6680;
+    --code-builtin: #9d174d;
+
+    --shadow-sm: 0 1px 2px rgb(28 38 54 / 0.05), 0 1px 3px rgb(28 38 54 / 0.05);
+    --shadow-md: 0 4px 16px rgb(28 38 54 / 0.08);
+    --shadow-lg: 0 12px 32px rgb(28 38 54 / 0.1);
+}
+
+/* Dark slate: dusty slate-blue page, charcoal cards, peach accent */
+:root[data-palette='slate'][data-theme='dark'] {
+    color-scheme: dark;
+
+    --bg-primary: #3f4f69;
+    --bg-secondary: #37465d;
+    --bg-tertiary: #2f3c50;
+    --bg-card: #323944;
+
+    --text-primary: #f4f1ec;
+    --text-secondary: #dde2ea;
+    --text-muted: #c3cbd8;
+
+    --color-primary: #f2c7a2;
+    --color-secondary: #f7dcc4;
+    --accent-fill: #f2c7a2;
+    --on-accent: #1f2733;
+    --accent-display: #f2c7a2;
+    --color-danger: #fca5a5;
+
+    --border-color: #4a5870;
+    --border-strong: #95a2b6;
+
+    --platform-medium: #6ee7b7;
+    --platform-substack: #fdba74;
+
+    --code-bg: #2b3544;
+    --code-comment: #c3cbd8;
+    --code-keyword: #d8ccff;
+    --code-string: #a7f3d0;
+    --code-number: #fde68a;
+    --code-name: #a5f3fc;
+    --code-builtin: #fbcfe8;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.25);
+    --shadow-md: 0 4px 16px rgb(0 0 0 / 0.25);
+    --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.3);
+}

@@ -11,7 +11,7 @@
   }
   var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   root.setAttribute('data-theme', stored === 'dark' || stored === 'light' ? stored : (prefersDark ? 'dark' : 'light'));
-  // Mint is the default palette (no attribute); rose is opt-in.
-  if (palette === 'rose') root.setAttribute('data-palette', 'rose');
+  // Mint is the default palette (no attribute); the others are opt-in.
+  if (palette === 'rose' || palette === 'sky' || palette === 'slate') root.setAttribute('data-palette', palette);
   root.classList.add('js');
 })();
