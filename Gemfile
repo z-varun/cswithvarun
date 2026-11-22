@@ -1,13 +1,12 @@
 source "https://rubygems.org"
 
-# Jekyll is the core static site generator
-gem "jekyll"
+# Keep in step with the Jekyll version Cloudflare Pages builds with.
+gem "jekyll", "~> 4.4"
 
-# Explicitly list plugins instead of relying on github-pages
 group :jekyll_plugins do
-  gem "jekyll-feed"
-  gem "jekyll-seo-tag"
-  gem "jekyll-sitemap"
+  gem "jekyll-feed", "~> 0.17"
+  gem "jekyll-seo-tag", "~> 2.8"
+  gem "jekyll-sitemap", "~> 1.4"
 end
-gem "kramdown-parser-gfm"
-gem 'faraday-retry'
+
+gem "kramdown-parser-gfm", "~> 1.1"
