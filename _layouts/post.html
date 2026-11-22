@@ -4,12 +4,12 @@ layout: default
 
 {% include reading-progress-bar.html %}
 
-<article class="post">
+<article class="post" data-pagefind-body>
     <header class="post-header">
         <h1 class="post-title">{{ page.title }}</h1>
 
-        <div class="post-meta">
-            <time datetime="{{ page.date | date_to_xmlschema }}">
+        <div class="post-meta" data-pagefind-ignore>
+            <time datetime="{{ page.date | date_to_xmlschema }}" data-pagefind-meta="date:{{ page.date | date: '%B %-d, %Y' }}">
                 {% include icon.html name="calendar-regular" %}
                 {{ page.date | date: "%B %d, %Y" }}
             </time>
@@ -30,7 +30,7 @@ layout: default
         </div>
 
         {% if page.tags %}
-        <ul class="post-tags" aria-label="Tags">
+        <ul class="post-tags" aria-label="Tags" data-pagefind-ignore>
             {% for tag in page.tags %}
             <li class="tag">{{ tag }}</li>
             {% endfor %}
@@ -66,7 +66,7 @@ layout: default
         {{ post_body }}
     </div>
 
-    <footer class="post-footer">
+    <footer class="post-footer" data-pagefind-ignore="all">
         <div class="share-buttons">
             <h2>Share this post</h2>
             <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&amp;url={{ page.url | absolute_url | url_encode }}"

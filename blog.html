@@ -11,6 +11,16 @@ custom_js: blog
 {% assign sorted_tags = site.tags | sort %}
 
 <div class="blog-page">
+    {% comment %}Search: Pagefind indexes the built site after `jekyll build` (see README). The form stays
+       hidden until blog.js runs, since search needs JavaScript.{% endcomment %}
+    <form class="blog-search" id="blogSearch" role="search" action="{{ '/blog/' | relative_url }}" method="get"
+          data-pagefind="{{ '/pagefind/pagefind.js' | relative_url }}" hidden>
+        <label for="blogSearchInput" class="sr-only">Search posts</label>
+        {% include icon.html name="search" class="blog-search-icon" %}
+        <input type="search" id="blogSearchInput" name="q" placeholder="Search posts" autocomplete="off" enterkeyhint="search">
+        <kbd class="blog-search-key" aria-hidden="true">/</kbd>
+    </form>
+
     <div class="blog-filters" role="group" aria-label="Filter posts by tag">
         <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">
             All Posts <span class="filter-count">({{ site.posts.size }})</span>
@@ -59,6 +69,11 @@ custom_js: blog
     </div>
 
     <p class="sr-only" id="filterStatus" aria-live="polite"></p>
+
+    <div class="search-results" id="searchResults" hidden>
+        <p class="search-summary" id="searchSummary" role="status"></p>
+        <ol class="search-result-list" id="searchResultList"></ol>
+    </div>
 
     <div class="blog-container">
         {% for post in site.posts %}

@@ -17,6 +17,7 @@ Personal site and blog of Varun Bhandari: a static [Jekyll](https://jekyllrb.com
 - **Hosting:** Cloudflare Pages. Response headers (including the CSP) live in `_headers`, short links in `_redirects`.
   The apex-to-www redirect is a Cloudflare Redirect Rule, not part of this repo.
 - **Contact form:** [Web3Forms](https://web3forms.com/), plain HTML POST.
+- **Search:** [Pagefind](https://pagefind.app/) (pinned in `package.json`) indexes the built site; see Search below.
 
 ## Local development
 
@@ -26,6 +27,15 @@ bundle exec jekyll serve --livereload
 ```
 
 The site is then at <http://localhost:4000>. Drafts live in `_drafts/`; preview them with `--drafts`.
+
+`jekyll serve` doesn't build the search index, so blog search says it's unavailable there. To try search
+locally, build the whole thing and serve `_site` with any static server:
+
+```bash
+npm install
+npm run build                      # jekyll build, then Pagefind indexes _site
+python3 -m http.server -d _site 4001
+```
 
 ## Writing posts
 
@@ -86,10 +96,25 @@ button in `_includes/footer.html`, its name in `PALETTES` in `theme-toggle.js` a
 and an `include_relative` line in `main.css`. Favicons and share images stay
 mint.
 
+## Search
+
+Search lives on the Blog page. After `jekyll build`, Pagefind reads `_site` and writes a static index to
+`_site/pagefind/`; the browser downloads only the small parts of it a query needs. There is no server and no
+third-party service.
+
+- Cloudflare Pages build command: `bundle exec jekyll build && node_modules/.bin/pagefind --site _site`
+  (Pages installs `package.json` dependencies first).
+- Only posts are indexed: `_layouts/post.html` marks the article with `data-pagefind-body`, and the meta line,
+  tag list and footer with `data-pagefind-ignore`. Posts hosted elsewhere (`external_url`) aren't on this site,
+  so they aren't searchable.
+- Searches are shareable: `/blog/?q=kubernetes`. Press `/` to jump to the search box.
+- The CSP allows `'wasm-unsafe-eval'` because Pagefind runs a small WebAssembly module. It does not permit
+  `eval()` or inline scripts.
+
 ## security.txt
 
 `/.well-known/security.txt` is served by Cloudflare's Security Center feature on both the apex and `www` (the apex
-redirect rule exempts that path), not from this repo. Renew its `Expires` there before February 2027.
+redirect rule exempts that path), not from this repo. Renew its `Expires` there before 21 November 2027 (keep it under a year ahead).
 
 ## Content security policy
 

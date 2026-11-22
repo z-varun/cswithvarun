@@ -1,10 +1,11 @@
 # Cloudflare Web Analytics (enable it in the Pages dashboard) needs the
-# cloudflareinsights.com entries in script-src and connect-src.
+# cloudflareinsights.com entries in script-src and connect-src. 'wasm-unsafe-eval' lets Pagefind (blog search)
+# run its WebAssembly; it does not allow eval() or inline scripts.
 # HSTS is also set zone-wide in Cloudflare (SSL/TLS > Edge Certificates > HSTS), which covers the apex
 # redirect and takes precedence. Keep the two in step. Not preloaded: that is a separate, hard-to-undo opt-in.
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://static.cloudflareinsights.com; style-src 'self'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin

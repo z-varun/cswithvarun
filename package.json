@@ -1,0 +1,12 @@
+{
+  "name": "cswithvarun",
+  "private": true,
+  "description": "Build tooling only: Pagefind indexes the built Jekyll site for search.",
+  "scripts": {
+    "build": "bundle exec jekyll build && pagefind --site _site",
+    "search-index": "pagefind --site _site"
+  },
+  "devDependencies": {
+    "pagefind": "1.5.2"
+  }
+}

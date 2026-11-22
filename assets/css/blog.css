@@ -12,6 +12,158 @@
    Filters
    ================================ */
 
+/* Search */
+.blog-search {
+  position: relative;
+  max-width: 560px;
+  margin: 0 auto var(--spacing-lg);
+}
+
+.blog-search input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.75rem 3rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--border-radius-full);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: var(--font-size-base);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.blog-search input::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+.blog-search input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--accent-tint-strong);
+}
+
+.blog-search input:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Chrome/Safari clear button, recoloured to match the palette (the mask is an inline SVG "x") */
+.blog-search input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  background-color: var(--text-muted);
+  cursor: pointer;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.blog-search input::-webkit-search-cancel-button:hover {
+  background-color: var(--color-primary);
+}
+
+.blog-search-icon {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.blog-search-key {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.0625rem 0.5rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.blog-search input:focus ~ .blog-search-key,
+.blog-search input:not(:placeholder-shown) ~ .blog-search-key {
+  display: none;
+}
+
+@media (hover: none) {
+  .blog-search-key {
+    display: none;
+  }
+}
+
+.search-results {
+  max-width: 760px;
+  margin: var(--spacing-xl) auto 0;
+}
+
+.search-summary {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.search-result-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.search-result {
+  position: relative;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.search-result:hover,
+.search-result:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-lg);
+}
+
+.search-result-title {
+  margin: 0 0 var(--spacing-xs);
+  font-size: var(--font-size-lg);
+}
+
+.search-result-title a {
+  color: var(--text-primary);
+}
+
+.search-result:hover .search-result-title a {
+  color: var(--color-primary);
+}
+
+.search-result-meta {
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+.search-result-excerpt {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.search-result-excerpt mark {
+  padding: 0 0.125em;
+  border-radius: 3px;
+  background-color: var(--accent-tint-strong);
+  color: var(--text-primary);
+}
+
 .blog-filters {
   display: flex;
   justify-content: center;
