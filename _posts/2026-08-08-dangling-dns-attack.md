@@ -4,17 +4,14 @@ title: "How a Dangling DNS Record Led to a Google Search Console Takeover"
 date: 2026-08-08
 categories: [Security, DNS, DevOps]
 tags: [DNS Takeover, Dangling DNS, GitHub Pages, Cloudflare Pages, Google Search Console]
-excerpt: "How an abandoned GitHub Pages DNS record allowed an attacker to serve content from my domain and verify ownership in Google Search Console."
+description: "How an abandoned GitHub Pages DNS record allowed an attacker to serve content from my domain and verify ownership in Google Search Console."
 ---
-
-
-# How a Dangling DNS Record Led to a Google Search Console Takeover
 
 It started with two automated emails from Google Search Console.
 
 The first was a security alert: an unknown email address, `celanaaming@gmail.com`, had successfully verified themselves as an owner of my domain, `cswithvarun.com`.
 
-The second reported that Googlebot was getting a `404` while trying to access this unusual URL:
+The second reported that Googlebot was receiving a `404` while trying to access:
 
 ```text
 https://cswithvarun.com/google8403cdd115b351b5.html
@@ -22,52 +19,47 @@ https://cswithvarun.com/google8403cdd115b351b5.html
 
 That immediately looked suspicious.
 
-My first thought was a compromised GitHub repository, CI/CD pipeline, or Cloudflare account. I checked the GitHub repository and found no suspicious commits or deployments. Cloudflare audit logs also showed no unauthorized account activity or DNS changes.
+My first thought was a compromised GitHub repository, CI/CD pipeline, or Cloudflare account. I checked the GitHub repository and found no suspicious commits or deployments. Cloudflare audit logs also showed no unauthorized activity.
 
 So how had someone managed to serve a file from my domain?
 
 The answer was a **dangling DNS record**.
 
----
 ## TL;DR
 
 I migrated my Jekyll website from GitHub Pages to Cloudflare Pages but forgot to remove legacy GitHub Pages A records from my apex domain.
 
-An attacker discovered the dangling DNS configuration, claimed `cswithvarun.com` on their own GitHub Pages repository, and gained the ability to serve content from my domain.
+An attacker discovered the dangling DNS configuration, claimed `cswithvarun.com` through their own GitHub Pages repository, and gained the ability to serve content from my domain.
 
-They then uploaded a Google Search Console verification file to their repository and successfully verified themselves as an owner of `https://cswithvarun.com/`.
+They then uploaded a Google Search Console verification file and successfully verified themselves as an owner of `https://cswithvarun.com/`.
 
-I detected the incident through Google Search Console alerts, removed the dangling DNS records, revoked the unauthorized Search Console ownership, and configured the apex domain to redirect safely to my Cloudflare Pages deployment.
+I removed the dangling DNS records, revoked the unauthorized Search Console ownership, and configured the apex domain to redirect safely to my Cloudflare Pages deployment.
 
-**The key lesson:** migrating an application isn't enough. When decommissioning infrastructure, you also need to remove the DNS records and external service relationships associated with the old deployment.
+The attack chain was:
 
 ```text
-Migration mistake
-      ↓
-Old GitHub Pages DNS records
-      ↓
-Dangling DNS configuration
-      ↓
+Dangling DNS
+     ↓
 Attacker claims GitHub Pages domain
-      ↓
+     ↓
 Attacker controls HTTP content
-      ↓
-Google Search Console verification
-      ↓
-Unauthorized domain ownership
+     ↓
+GSC verification file
+     ↓
+Unauthorized Search Console ownership
 ```
 
----
+The key lesson: migrating an application isn't enough. When decommissioning infrastructure, you also need to remove the DNS records and external service relationships associated with the old deployment.
 
-## The Root Cause
+## What Happened
 
-My website is a Jekyll site hosted on **Cloudflare Pages**.
+My website is a Jekyll site hosted on Cloudflare Pages.
 
-Previously, however, it was hosted on GitHub Pages.
+Previously, it was hosted on GitHub Pages.
 
-When I migrated to Cloudflare Pages, I updated the DNS configuration for my active `www` hostname. What I forgot to do was completely remove the old GitHub Pages A records for the apex domain.
+During the migration, I updated the DNS configuration for my active `www` hostname but forgot to remove the old GitHub Pages A records for the apex domain.
 
-My Cloudflare DNS configuration still contained legacy GitHub Pages addresses:
+My Cloudflare DNS still contained:
 
 ```text
 185.199.108.153
@@ -77,39 +69,15 @@ My Cloudflare DNS configuration still contained legacy GitHub Pages addresses:
 
 These are GitHub Pages IP addresses.
 
-The problem wasn't the IP addresses themselves. The problem was that my domain was still pointing to GitHub Pages infrastructure even though I was no longer actively using or claiming the domain there.
+At the time, I didn't think much of those records because the website itself had already been moved to Cloudflare Pages. The problem was that the DNS records were still pointing `cswithvarun.com` toward GitHub Pages infrastructure, even though I was no longer using or claiming the domain there.
 
-This created a dangling DNS configuration:
+That left a dangling DNS configuration.
 
-```text
-cswithvarun.com
-       |
-       v
-GitHub Pages infrastructure
-       |
-       X
-No longer claimed by me
-```
+## How the Attacker Used It
 
-A dangling DNS record can become a security issue when an external service allows another user to claim the resource associated with that hostname.
+I don't know exactly how the attacker found the configuration. Most likely it was automated scanning, since dangling DNS and service takeover conditions are relatively easy to identify.
 
-That's exactly what happened.
-
----
-
-## The Attack
-
-The attack required no access to my GitHub, Cloudflare, or Google accounts.
-
-### 1. Domain Discovery
-
-The attacker — or an automated scanner — identified that `cswithvarun.com` was still pointing to GitHub Pages infrastructure.
-
-The important observation was that the DNS configuration still existed, while the corresponding GitHub Pages domain was no longer actively claimed by me.
-
-### 2. The Attacker Claimed the Domain
-
-The attacker created their own GitHub repository and configured:
+What I do know is that they created their own GitHub repository and configured:
 
 ```text
 cswithvarun.com
@@ -117,145 +85,109 @@ cswithvarun.com
 
 as the repository's custom domain.
 
-Because my DNS records were still pointing the domain toward GitHub Pages, GitHub's Pages routing layer could associate the hostname with the attacker's repository.
+DNS did not directly point my domain to their repository. Instead, the DNS records pointed the domain to GitHub's infrastructure, and GitHub's Pages routing layer associated the hostname with the attacker's Pages site.
 
-This is an important distinction:
-
-**DNS did not directly point to the attacker's repository.**
-
-DNS pointed the domain to GitHub's infrastructure. GitHub then handled the hostname-to-Pages-site association.
-
-The attacker had effectively inserted their own GitHub Pages site into an abandoned trust relationship.
-
-### 3. The Attacker Controlled the Website
-
-Once the custom domain was associated with the attacker's Pages site, they could serve content from:
+That gave the attacker the ability to serve content from:
 
 ```text
 https://cswithvarun.com/
 ```
 
-That gave them control over the HTTP response for my domain without compromising my actual accounts.
+without having access to my GitHub or Cloudflare accounts.
 
-### 4. Google Search Console Verification
+### The Google Search Console Part
 
-The attacker then created the following file in their repository:
+The attacker then uploaded a Google Search Console verification file to their repository:
 
 ```text
 google8403cdd115b351b5.html
 ```
 
-They used it as a Google Search Console ownership verification file.
-
-The resulting flow looked like this:
-
-```text
-Google
-   |
-   | GET /google8403cdd115b351b5.html
-   v
-cswithvarun.com
-   |
-   v
-GitHub Pages
-   |
-   v
-Attacker's repository
-   |
-   v
-Verification file
-```
-
-Google's crawler could access the expected verification file through my domain.
-
-That was sufficient for the attacker to verify ownership of the URL-prefix property:
+They used that file to verify ownership of:
 
 ```text
 https://cswithvarun.com/
 ```
 
-At this point, the attacker had Google Search Console ownership of my domain.
+The verification request effectively looked like:
 
-They still hadn't compromised my Google account or Cloudflare account.
+```text
+Google
+   ↓
+cswithvarun.com
+   ↓
+GitHub Pages
+   ↓
+Attacker's repository
+   ↓
+Google verification file
+```
 
-They had abused the dangling DNS configuration to temporarily control the content served from my domain.
+Google could retrieve the verification file through my domain, so the attacker was able to establish ownership of the URL-prefix property in Search Console.
 
----
+This was the part that initially made me think that one of my actual accounts had been compromised. In reality, none of them had.
 
-## The Second Alert
+### The Second Alert
 
-After establishing Search Console ownership, the attacker removed the custom domain from their GitHub repository.
+The two Search Console emails turned out to be related.
 
-That caused the verification file to disappear.
+After the ownership verification, the custom domain was removed from the attacker's repository. The verification file disappeared with it.
 
-Googlebot later attempted to access:
+Googlebot then tried to access:
 
 ```text
 https://cswithvarun.com/google8403cdd115b351b5.html
 ```
 
-and received:
+and received a `404`.
+
+That generated the second Search Console alert.
+
+So the sequence was:
 
 ```text
-404 Not Found
-```
-
-That generated the second Search Console notification.
-
-So the two emails were actually connected:
-
-```text
-Attacker claims domain
-        ↓
-Uploads GSC verification file
-        ↓
-Verifies domain ownership
-        ↓
-Removes custom domain
-        ↓
+Domain claimed
+      ↓
+GSC verification file uploaded
+      ↓
+Search Console ownership obtained
+      ↓
+Custom domain removed
+      ↓
 Verification file disappears
-        ↓
+      ↓
 Googlebot receives 404
 ```
 
----
+I can't say with certainty what the attacker's final objective was. One possibility is black-hat SEO, where an established domain is abused for spam pages, malicious content, or search-engine manipulation.
 
-## What Was the Attacker Trying to Do?
+## How I Found the Root Cause
 
-I can't say with certainty what the attacker's final objective was.
+Once I confirmed that my GitHub repository and Cloudflare account hadn't been compromised, I started looking at the DNS configuration.
 
-A plausible motivation is **black-hat SEO**.
+That's when I noticed the old GitHub Pages records.
 
-Search Console ownership could potentially be useful for abusing an established domain's search reputation, submitting spam URLs or sitemaps, or manipulating how search engines interact with the site.
+A quick lookup confirmed them:
 
-The important point is that the attacker didn't need to compromise the application itself.
-
-They found a way to control the **domain's HTTP content**.
-
----
-
-# How I Fixed It
-
-Once I identified the root cause, the remediation was straightforward.
-
-## 1. Removed the Dangling DNS Records
-
-I immediately removed the legacy GitHub Pages A records from Cloudflare DNS.
-
-This broke the connection between:
-
-```text
-cswithvarun.com
-        |
-        X
-GitHub Pages
+```bash
+dig cswithvarun.com A
 ```
 
-The attacker could no longer use GitHub Pages to serve content for the domain.
+The records were still pointing to GitHub Pages.
 
----
+At that point the rest of the incident made sense.
 
-## 2. Removed the Unauthorized Search Console Owner
+I had migrated the site, but I hadn't completely removed the old infrastructure relationship.
+
+## How I Fixed It
+
+### 1. Removed the Old DNS Records
+
+I deleted the legacy GitHub Pages A records from Cloudflare DNS.
+
+This broke the connection between my domain and GitHub Pages.
+
+### 2. Removed the Unauthorized Search Console Owner
 
 I added the affected URL-prefix property to my own Search Console account:
 
@@ -263,41 +195,33 @@ I added the affected URL-prefix property to my own Search Console account:
 https://cswithvarun.com/
 ```
 
-I then went to:
+I then went to **Settings → Users and permissions** and removed the unauthorized owner.
 
-**Settings → Users and permissions**
+I also verified that the attacker's HTML verification file was no longer accessible through the domain.
 
-and removed the unauthorized owner.
+### 3. Redirected the Apex Domain
 
-I also verified that the attacker's HTML verification file was no longer accessible through the domain, preventing the same verification method from being reused.
-
----
-
-## 3. Configured the Apex Redirect
-
-My actual website is hosted on Cloudflare Pages at:
+My actual site is hosted at:
 
 ```text
 https://www.cswithvarun.com/
 ```
 
-I wanted the apex domain to safely redirect there:
+I wanted the apex domain to redirect there:
 
 ```text
 https://cswithvarun.com/
-        |
-        | 301
-        v
+          ↓
+        301
+          ↓
 https://www.cswithvarun.com/
 ```
 
-I configured a Cloudflare Redirect Rule to perform the redirect at the edge.
+I configured a Cloudflare Redirect Rule to handle this at the edge.
 
-For the apex hostname, I used a proxied DNS record pointing to `192.0.2.1`, an address from the TEST-NET-1 documentation range.
+For the apex hostname, I used a proxied DNS record pointing to `192.0.2.1`, which is from the TEST-NET-1 documentation range. The address isn't being used as a real origin; it allows Cloudflare to receive the request and apply the redirect.
 
-The purpose of the record isn't to provide a real origin. It allows Cloudflare to receive the request and process the redirect at the edge.
-
-I verified the result with:
+Finally, I verified the result:
 
 ```bash
 curl -I https://cswithvarun.com
@@ -310,104 +234,22 @@ HTTP/2 301
 location: https://www.cswithvarun.com/
 ```
 
-The attack path was now broken.
+## What I Learned
 
----
+The interesting part of this incident is that there was no sophisticated exploit.
 
-# What I Got Wrong
+I didn't have a compromised GitHub account.
 
-The biggest lesson for me wasn't about GitHub Pages or Cloudflare.
+Cloudflare wasn't compromised.
 
-It was about **decommissioning**.
+There were no suspicious CI/CD deployments.
 
-I successfully migrated the website from GitHub Pages to Cloudflare Pages.
+The attacker found an old DNS record that I had forgotten to remove.
 
-I moved the application.
+I had successfully migrated the application from GitHub Pages to Cloudflare Pages, but I hadn't completely decommissioned the old infrastructure.
 
-I moved the deployment.
+That is the part I got wrong.
 
-I updated the active DNS configuration.
+When migrating or decommissioning infrastructure, DNS cleanup needs to be part of the process. An unused DNS record pointing to an external service isn't just technical debt.
 
-But I didn't completely remove the old trust relationship.
-
-In other words:
-
-> **I moved the application, but I didn't fully decommission the old infrastructure.**
-
-The migration wasn't complete.
-
----
-
-# Key Takeaways
-
-### 1. DNS is part of your security perimeter
-
-A DNS record pointing to an external service creates a relationship between your domain and that service.
-
-When you stop using that service, the DNS record should be removed as part of the decommissioning process.
-
-### 2. Don't forget the old infrastructure
-
-When migrating between:
-
-* GitHub Pages
-* Cloudflare Pages
-* Netlify
-* Vercel
-* S3
-* Azure Storage
-* CDN providers
-* Load balancers
-* SaaS platforms
-
-don't just move the application.
-
-Review and remove the old DNS records and external integrations as well.
-
-### 3. Verify ownership with services you use
-
-If you actively use GitHub Pages, GitHub provides domain verification mechanisms that help prevent another GitHub user from claiming your domain.
-
-### 4. Treat unexpected Search Console alerts as security signals
-
-The first Google Search Console email was effectively an intrusion-detection signal.
-
-Without it, I might not have noticed the dangling DNS configuration for much longer.
-
----
-
-# Final Thoughts
-
-This wasn't a sophisticated exploit.
-
-The attacker didn't steal my credentials.
-
-They didn't compromise my GitHub account.
-
-They didn't compromise Cloudflare.
-
-They didn't break into my CI/CD pipeline.
-
-They found an old DNS record.
-
-That was enough.
-
-The attack chain was:
-
-```text
-Dangling DNS
-     ↓
-Attacker claims GitHub Pages domain
-     ↓
-Attacker controls HTTP content
-     ↓
-Google verification file
-     ↓
-Google Search Console ownership
-```
-
-The vulnerability wasn't in my application.
-
-It was in the **gap between infrastructure I had stopped using and infrastructure I had forgotten to remove**.
-
-And that's why dangling DNS records should be treated as a security issue — not just an infrastructure cleanup task.
+**It can become an attack surface.**
