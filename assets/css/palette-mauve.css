@@ -1,0 +1,86 @@
+/* ================================
+   Optional palette: Mauve
+   Dusty rose-grey with a rose-gold accent (a companion to Slate).
+   Applies only when a visitor picks it (data-palette="mauve" on <html>).
+   Dark mode keeps a dusty mauve tint: that is the look.
+   Text is 4.5:1 or better on every surface; large display text 3:1 or better.
+   ================================ */
+
+:root[data-palette='mauve'] {
+    color-scheme: light;
+
+    --bg-primary: #f6f0f2;
+    --bg-secondary: #eee4e8;
+    --bg-tertiary: #e3d6dc;
+    --bg-card: #fff;
+
+    --text-primary: #3a2530;
+    --text-secondary: #57414c;
+    --text-muted: #6c5561;
+
+    /* Accent roles: text, fill, display */
+    --color-primary: #8a3a58;
+    --color-secondary: #6a2b43;
+    --accent-fill: #e2aaa4;
+    --on-accent: #3a2530;
+    --accent-display: #b05a6a;
+    --color-danger: #b91c1c;
+
+    --border-color: #ebdfe4;
+    --border-strong: #85707b;
+    --focus-ring: var(--color-primary);
+
+    --platform-medium: #047857;
+    --platform-substack: #9a3412;
+
+    --code-bg: #f0e7eb;
+    --code-inline: var(--color-primary);
+    --code-comment: #6c5561;
+    --code-keyword: #6d28d9;
+    --code-string: #047857;
+    --code-number: #b45309;
+    --code-name: #0c6680;
+    --code-builtin: #9d174d;
+
+    --shadow-sm: 0 1px 2px rgb(58 37 48 / 0.05), 0 1px 3px rgb(58 37 48 / 0.05);
+    --shadow-md: 0 4px 16px rgb(58 37 48 / 0.08);
+    --shadow-lg: 0 12px 32px rgb(58 37 48 / 0.1);
+}
+
+:root[data-palette='mauve'][data-theme='dark'] {
+    color-scheme: dark;
+
+    --bg-primary: #463d4f;
+    --bg-secondary: #3e3546;
+    --bg-tertiary: #352d3c;
+    --bg-card: #312a37;
+
+    --text-primary: #f5eef2;
+    --text-secondary: #e2d8de;
+    --text-muted: #cbbfc6;
+
+    --color-primary: #efbdb3;
+    --color-secondary: #f6d6cf;
+    --accent-fill: #efbdb3;
+    --on-accent: #2b2230;
+    --accent-display: #efbdb3;
+    --color-danger: #fca5a5;
+
+    --border-color: #55495e;
+    --border-strong: #a395a5;
+
+    --platform-medium: #6ee7b7;
+    --platform-substack: #fdba74;
+
+    --code-bg: #2e2734;
+    --code-comment: #cbbfc6;
+    --code-keyword: #d8ccff;
+    --code-string: #a7f3d0;
+    --code-number: #fde68a;
+    --code-name: #a5f3fc;
+    --code-builtin: #fbcfe8;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.35);
+    --shadow-md: 0 4px 16px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.4);
+}

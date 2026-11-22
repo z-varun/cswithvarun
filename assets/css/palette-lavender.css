@@ -1,0 +1,86 @@
+/* ================================
+   Optional palette: Lavender
+   Pale lilac with a violet accent (between Rose and Sky).
+   Applies only when a visitor picks it (data-palette="lavender" on <html>).
+   Dark mode uses the same neutral greys as the default palette.
+   Text is 4.5:1 or better on every surface; large display text 3:1 or better.
+   ================================ */
+
+:root[data-palette='lavender'] {
+    color-scheme: light;
+
+    --bg-primary: #f6f3fd;
+    --bg-secondary: #ece6fb;
+    --bg-tertiary: #e0d7f7;
+    --bg-card: #fff;
+
+    --text-primary: #2a1f4d;
+    --text-secondary: #463b6b;
+    --text-muted: #5d5180;
+
+    /* Accent roles: text, fill, display */
+    --color-primary: #5536c0;
+    --color-secondary: #3b2491;
+    --accent-fill: #6d4ae0;
+    --on-accent: #fff;
+    --accent-display: #7254e3;
+    --color-danger: #b91c1c;
+
+    --border-color: #e3dcf6;
+    --border-strong: #7f74a6;
+    --focus-ring: var(--color-primary);
+
+    --platform-medium: #047857;
+    --platform-substack: #9a3412;
+
+    --code-bg: #efeafb;
+    --code-inline: var(--color-primary);
+    --code-comment: #5d5180;
+    --code-keyword: #6d28d9;
+    --code-string: #047857;
+    --code-number: #b45309;
+    --code-name: #0c6680;
+    --code-builtin: #9d174d;
+
+    --shadow-sm: 0 1px 2px rgb(60 40 140 / 0.05), 0 1px 3px rgb(60 40 140 / 0.05);
+    --shadow-md: 0 4px 16px rgb(60 40 140 / 0.08);
+    --shadow-lg: 0 12px 32px rgb(60 40 140 / 0.1);
+}
+
+:root[data-palette='lavender'][data-theme='dark'] {
+    color-scheme: dark;
+
+    --bg-primary: #0f0f10;
+    --bg-secondary: #161618;
+    --bg-tertiary: #1f1f22;
+    --bg-card: #18181b;
+
+    --text-primary: #ededef;
+    --text-secondary: #c8c8cd;
+    --text-muted: #a0a0a8;
+
+    --color-primary: #b8a4ff;
+    --color-secondary: #d2c6ff;
+    --accent-fill: #b8a4ff;
+    --on-accent: #0f0f10;
+    --accent-display: #b8a4ff;
+    --color-danger: #fca5a5;
+
+    --border-color: #2a2a2e;
+    --border-strong: #707078;
+
+    --platform-medium: #6ee7b7;
+    --platform-substack: #fdba74;
+
+    --code-bg: #161618;
+    --code-comment: #a0a0a8;
+    --code-keyword: #d8ccff;
+    --code-string: #a7f3d0;
+    --code-number: #fde68a;
+    --code-name: #a5f3fc;
+    --code-builtin: #fbcfe8;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.35);
+    --shadow-md: 0 4px 16px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.4);
+}

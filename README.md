@@ -78,8 +78,8 @@ text needs 4.5:1 against its background.
 
 ### Visitor colour palettes
 
-Mint (`palette.css`) is the default. Visitors can switch to Rose, Sky or Slate (`palette-rose.css`, `palette-sky.css`,
-`palette-slate.css`) with the picker in the footer;
+Mint (`palette.css`) is the default. Visitors can switch to Rose, Sky, Slate, Lavender, Graphite or Mauve (one
+`palette-<name>.css` each) with the picker in the footer;
 the choice is stored in `localStorage` and applied before first paint by `theme-init.js`. A new palette is another
 `:root[data-palette='name']` block (plus a `:root[data-palette='name'][data-theme='dark']` block) using the same tokens, a
 button in `_includes/footer.html`, its name in `PALETTES` in `theme-toggle.js` and in the check in `theme-init.js`,

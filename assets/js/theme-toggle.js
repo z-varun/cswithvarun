@@ -4,7 +4,7 @@
 
   const STORAGE_KEY = 'theme-preference';
   const PALETTE_KEY = 'palette-preference';
-  const PALETTES = ['mint', 'rose', 'sky', 'slate'];
+  const PALETTES = ['mint', 'rose', 'sky', 'slate', 'lavender', 'graphite', 'mauve'];
   const root = document.documentElement;
   const darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 

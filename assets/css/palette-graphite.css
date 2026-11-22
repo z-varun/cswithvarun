@@ -1,0 +1,86 @@
+/* ================================
+   Optional palette: Graphite
+   Light grey and white with near-black pill buttons (after the dashboard references).
+   Applies only when a visitor picks it (data-palette="graphite" on <html>).
+   Dark mode uses the same neutral greys as the default palette.
+   Text is 4.5:1 or better on every surface; large display text 3:1 or better.
+   ================================ */
+
+:root[data-palette='graphite'] {
+    color-scheme: light;
+
+    --bg-primary: #f2f2f3;
+    --bg-secondary: #e9e9eb;
+    --bg-tertiary: #dedee1;
+    --bg-card: #fff;
+
+    --text-primary: #111113;
+    --text-secondary: #3a3a40;
+    --text-muted: #56565e;
+
+    /* Accent roles: text, fill, display */
+    --color-primary: #18181b;
+    --color-secondary: #3a3a40;
+    --accent-fill: #18181b;
+    --on-accent: #fff;
+    --accent-display: #6b6b74;
+    --color-danger: #b91c1c;
+
+    --border-color: #e4e4e7;
+    --border-strong: #7c7c85;
+    --focus-ring: var(--color-primary);
+
+    --platform-medium: #047857;
+    --platform-substack: #9a3412;
+
+    --code-bg: #ececee;
+    --code-inline: var(--color-primary);
+    --code-comment: #56565e;
+    --code-keyword: #6d28d9;
+    --code-string: #047857;
+    --code-number: #b45309;
+    --code-name: #0c6680;
+    --code-builtin: #9d174d;
+
+    --shadow-sm: 0 1px 2px rgb(17 17 19 / 0.05), 0 1px 3px rgb(17 17 19 / 0.05);
+    --shadow-md: 0 4px 16px rgb(17 17 19 / 0.08);
+    --shadow-lg: 0 12px 32px rgb(17 17 19 / 0.1);
+}
+
+:root[data-palette='graphite'][data-theme='dark'] {
+    color-scheme: dark;
+
+    --bg-primary: #0f0f10;
+    --bg-secondary: #161618;
+    --bg-tertiary: #1f1f22;
+    --bg-card: #18181b;
+
+    --text-primary: #ededef;
+    --text-secondary: #c8c8cd;
+    --text-muted: #a0a0a8;
+
+    --color-primary: #ededef;
+    --color-secondary: #ffffff;
+    --accent-fill: #ededef;
+    --on-accent: #0f0f10;
+    --accent-display: #a0a0a8;
+    --color-danger: #fca5a5;
+
+    --border-color: #2a2a2e;
+    --border-strong: #707078;
+
+    --platform-medium: #6ee7b7;
+    --platform-substack: #fdba74;
+
+    --code-bg: #161618;
+    --code-comment: #a0a0a8;
+    --code-keyword: #d8ccff;
+    --code-string: #a7f3d0;
+    --code-number: #fde68a;
+    --code-name: #a5f3fc;
+    --code-builtin: #fbcfe8;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.35);
+    --shadow-md: 0 4px 16px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.4);
+}

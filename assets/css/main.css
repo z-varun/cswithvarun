@@ -9,6 +9,9 @@ layout: null
 {% include_relative palette-rose.css %}
 {% include_relative palette-sky.css %}
 {% include_relative palette-slate.css %}
+{% include_relative palette-lavender.css %}
+{% include_relative palette-graphite.css %}
+{% include_relative palette-mauve.css %}
 {% include_relative theme.css %}
 {% include_relative components.css %}
 {% include_relative animations.css %}
@@ -455,12 +458,13 @@ a:hover {
 /* Colour palette picker (needs JS, so hidden without it) */
 .palette-picker {
     display: none;
+    flex-wrap: wrap;
     align-items: center;
     gap: var(--spacing-xs);
     padding: 4px;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-full);
+    border-radius: 24px;
 }
 
 .js .palette-picker {
@@ -522,6 +526,18 @@ a:hover {
 
 .palette-swatch-slate {
     background: linear-gradient(135deg, #3f4f69 50%, #e8b894 50%);
+}
+
+.palette-swatch-lavender {
+    background: #6d4ae0;
+}
+
+.palette-swatch-graphite {
+    background: #18181b;
+}
+
+.palette-swatch-mauve {
+    background: linear-gradient(135deg, #463d4f 50%, #e2aaa4 50%);
 }
 
 /* Small screens: drop the label and tighten spacing so all four options fit */
