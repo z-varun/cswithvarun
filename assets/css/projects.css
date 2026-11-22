@@ -301,7 +301,7 @@
   border-color: var(--color-primary);
 }
 
-.skill-category-box h3 i {
+.skill-category-box h3 .icon {
   color: var(--color-primary);
 }
 
@@ -420,11 +420,7 @@
     padding: var(--spacing-lg);
   }
 
-  .skill-category-box h3 i {
-  color: var(--color-primary);
-}
-
-.skill-category-box h3 {
+  .skill-category-box h3 {
     font-size: var(--font-size-base);
   }
 

@@ -136,11 +136,11 @@
     transform: translateY(0);
 }
 
-.submit-btn i {
+.submit-btn .icon {
     transition: transform var(--transition-base);
 }
 
-.submit-btn:hover i {
+.submit-btn:hover .icon {
     transform: translateX(4px);
 }
 

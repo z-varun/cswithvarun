@@ -24,7 +24,7 @@ custom_js: about-page
                     <span class="stat-number gradient-text" data-target="{{ stat.number }}">{{ stat_display }}</span>{% if stat.suffix != "" %}<span class="stat-suffix">{{ stat.suffix }}</span>{% endif %}
                 </p>
                 <p class="stat-label">{{ stat.label }}</p>
-                <div class="stat-icon" aria-hidden="true"><i class="{{ stat.icon }}"></i></div>
+                <div class="stat-icon" aria-hidden="true">{% include icon.html name=stat.icon %}</div>
             </div>
             {% endfor %}
         </div>
@@ -46,7 +46,7 @@ custom_js: about-page
         <div class="philosophy-grid">
             {% for item in site.data.philosophy %}
             <div class="philosophy-card card-hover-lift">
-                <div class="card-icon" aria-hidden="true"><i class="{{ item.icon }}"></i></div>
+                <div class="card-icon" aria-hidden="true">{% include icon.html name=item.icon %}</div>
                 <h3>{{ item.title }}</h3>
                 <p>{{ item.description }}</p>
             </div>
@@ -61,7 +61,7 @@ custom_js: about-page
         <!-- START INDICATOR -->
         <div class="timeline-start">
             <div class="timeline-marker start-marker">
-                <span class="timeline-icon" aria-hidden="true"><i class="fas fa-star"></i></span>
+                <span class="timeline-icon" aria-hidden="true">{% include icon.html name="star" %}</span>
             </div>
             <div class="timeline-label">Ongoing Journey</div>
         </div>
@@ -230,7 +230,7 @@ custom_js: about-page
         <!-- END INDICATOR -->
         <div class="timeline-end">
             <div class="timeline-marker end-marker">
-                <span class="timeline-icon" aria-hidden="true"><i class="fas fa-seedling"></i></span>
+                <span class="timeline-icon" aria-hidden="true">{% include icon.html name="seedling" %}</span>
             </div>
             <div class="timeline-label">Career Begin · 2016</div>
         </div>
@@ -269,7 +269,7 @@ custom_js: about-page
             {% for achievement in site.data.achievements %}
             <div class="achievement-card card-hover-lift">
                 <div class="achievement-icon" aria-hidden="true">
-                    <i class="{{ achievement.icon }}"></i>
+                    {% include icon.html name=achievement.icon %}
                 </div>
                 <h3>{{ achievement.title }}</h3>
                 <p>{{ achievement.description }}</p>
@@ -288,7 +288,7 @@ custom_js: about-page
         <div class="interests-grid">
             {% for interest in site.data.interests %}
             <div class="interest-card card-hover-lift">
-                <div class="interest-icon" aria-hidden="true"><i class="{{ interest.icon }}"></i></div>
+                <div class="interest-icon" aria-hidden="true">{% include icon.html name=interest.icon %}</div>
                 <h3>{{ interest.title }}</h3>
                 <p>{{ interest.description }}</p>
             </div>
@@ -301,12 +301,12 @@ custom_js: about-page
         <h2 class="section-title">Verified Expertise</h2>
         <div class="certifications-grid">
             <div class="cert-card">
-                <div class="cert-icon" aria-hidden="true"><i class="fas fa-graduation-cap"></i></div>
+                <div class="cert-icon" aria-hidden="true">{% include icon.html name="graduation-cap" %}</div>
                 <h3>DevOps Foundations</h3>
                 <p>Comprehensive foundation in DevOps principles and practices</p>
             </div>
             <div class="cert-card">
-                <div class="cert-icon" aria-hidden="true"><i class="fas fa-layer-group"></i></div>
+                <div class="cert-icon" aria-hidden="true">{% include icon.html name="layer-group" %}</div>
                 <h3>Advanced Terraform</h3>
                 <p>Advanced infrastructure-as-code patterns and best practices</p>
             </div>
@@ -327,7 +327,7 @@ custom_js: about-page
         <p>Security debt collects compound interest. Let's pay it down. Whether you need to harden a Kubernetes cluster or 
             build a DevSecOps culture from scratch, let's engineer a solution that scales.</p>
         <a href="{{ '/contact/' | relative_url }}" class="btn btn-primary btn-large">
-            <i aria-hidden="true" class="fas fa-envelope"></i> Let's Build Securely
+            {% include icon.html name="envelope" %} Let's Build Securely
         </a>
     </section>
 </div>

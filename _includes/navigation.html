@@ -1,7 +1,7 @@
 <nav class="navbar" aria-label="Main">
     <div class="nav-container">
         <a href="{{ '/' | relative_url }}" class="nav-logo" aria-label="{{ site.author.name }}, home">
-            <img class="logo-icon" src="{{ '/assets/images/icons8-cyber-security-100.png' | relative_url }}" alt="" width="28" height="28">
+            {% include logo.html %}
             <span class="logo-text" aria-hidden="true">{{ site.author.name }}</span>
         </a>
 
@@ -24,15 +24,15 @@
             {% endfor %}
             <li class="nav-item nav-resume dropdown">
                 <button class="nav-link btn-resume dropdown-toggle" id="resumeToggle" aria-expanded="false" aria-controls="resumeDropdown">
-                    <i aria-hidden="true" class="fas fa-file-pdf"></i> Resume
-                    <i aria-hidden="true" class="fas fa-chevron-down dropdown-arrow"></i>
+                    {% include icon.html name="file-pdf" %} Resume
+                    {% include icon.html name="chevron-down" class="dropdown-arrow" %}
                 </button>
                 <div class="dropdown-menu" id="resumeDropdown">
                     <a href="{{ site.resume_url | relative_url }}" class="dropdown-item" target="_blank" rel="noopener">
-                        <i aria-hidden="true" class="fas fa-eye"></i> View Resume
+                        {% include icon.html name="eye" %} View Resume
                     </a>
                     <a href="{{ site.resume_url | relative_url }}" class="dropdown-item" download>
-                        <i aria-hidden="true" class="fas fa-download"></i> Download Resume
+                        {% include icon.html name="download" %} Download Resume
                     </a>
                 </div>
             </li>
@@ -59,12 +59,12 @@
             {% endfor %}
             <li>
                 <a href="{{ site.resume_url | relative_url }}" target="_blank" rel="noopener" class="mobile-nav-link">
-                    <i aria-hidden="true" class="far fa-eye"></i> View Resume
+                    {% include icon.html name="eye-regular" %} View Resume
                 </a>
             </li>
             <li>
                 <a href="{{ site.resume_url | relative_url }}" download class="mobile-nav-link">
-                    <i aria-hidden="true" class="fas fa-download"></i> Download Resume
+                    {% include icon.html name="download" %} Download Resume
                 </a>
             </li>
         </ul>

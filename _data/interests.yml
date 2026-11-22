@@ -1,23 +1,23 @@
-- icon: "fas fa-code-branch"
+- icon: "code-branch"
   title: "Open Source"
   description: "Contributing to security projects"
 
-- icon: "fas fa-flag"
+- icon: "flag"
   title: "CTF Competitions"
   description: "Participating in security challenges"
 
-- icon: "fas fa-pen-nib"
+- icon: "pen-nib"
   title: "Technical Writing"
   description: "Sharing knowledge through blogs"
 
-- icon: "fas fa-chalkboard-user"
+- icon: "chalkboard-user"
   title: "Mentoring"
   description: "Guiding aspiring security engineers"
 
-- icon: "fas fa-puzzle-piece"
+- icon: "puzzle-piece"
   title: "Algorithm Challenges"
   description: "Competitive programming"
 
-- icon: "fas fa-microscope"
+- icon: "microscope"
   title: "Security Research"
   description: "Exploring new vulnerabilities"

@@ -8,7 +8,7 @@
 /assets/files/VarunBhandari-9Yrs-DevSecOps.pdf  /assets/files/VarunBhandari-Resume.pdf  301
 
 # Some clients request /favicon.ico regardless of <link rel="icon">
-/favicon.ico  /assets/images/icons8-cyber-security-100.png  301
+/favicon.ico  /assets/images/favicon-32.png  301
 
 # Host canonicalisation (apex -> www, http -> https) is handled by a
 # Cloudflare Redirect Rule at the zone level, not here: Pages ignores

@@ -32,7 +32,7 @@
   margin-bottom: var(--spacing-md);
 }
 
-.post-meta i {
+.post-meta .icon {
   margin-right: 0.25rem;
 }
 
@@ -330,18 +330,18 @@
   text-align: right;
 }
 
-.post-navigation a i {
+.post-navigation a .icon {
   font-size: 1.25rem;
   color: var(--color-primary);
   flex-shrink: 0;
   transition: transform var(--transition-base);
 }
 
-.nav-previous:hover i {
+.nav-previous:hover .icon {
   transform: translateX(-5px);
 }
 
-.nav-next:hover i {
+.nav-next:hover .icon {
   transform: translateX(5px);
 }
 
@@ -455,4 +455,141 @@
   inset: 0;
   background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.3), transparent);
   animation: shimmer 2s infinite;
+}
+
+/* ==========================================
+   Heading links, table of contents, copy buttons (assets/js/post.js)
+   ========================================== */
+
+.post-content h2,
+.post-content h3 {
+  position: relative;
+}
+
+.heading-anchor {
+  margin-left: 0.4em;
+  color: var(--text-muted);
+  font-weight: var(--font-weight-normal);
+  text-decoration: none !important;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.post-content h2:hover .heading-anchor,
+.post-content h3:hover .heading-anchor,
+.heading-anchor:focus-visible {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .heading-anchor {
+    display: none;
+  }
+}
+
+.post-toc {
+  margin: 0 0 var(--spacing-2xl);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-sm);
+}
+
+.post-toc summary {
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  padding: var(--spacing-xs) 0;
+}
+
+.post-toc ol {
+  margin: var(--spacing-sm) 0 0;
+  padding-left: 1.25rem;
+}
+
+.post-toc ol ol {
+  margin-top: var(--spacing-xs);
+}
+
+.post-toc li {
+  margin: var(--spacing-xs) 0;
+  color: var(--text-muted);
+}
+
+.post-toc a {
+  color: var(--text-secondary);
+}
+
+.post-toc a:hover {
+  color: var(--color-primary);
+}
+
+.code-block {
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.code-block pre {
+  margin: 0;
+}
+
+.copy-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  min-height: 32px;
+  padding: 0.25rem 0.75rem;
+  font: inherit;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.code-block:hover .copy-button,
+.copy-button:focus-visible {
+  opacity: 1;
+}
+
+.copy-button:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.copy-button.copied {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* ==========================================
+   Callouts: > [!NOTE] / [!TIP] / [!IMPORTANT] / [!WARNING] / [!CAUTION]
+   ========================================== */
+
+.post-content blockquote.callout {
+  --callout-color: var(--color-primary);
+  font-style: normal;
+  color: var(--text-primary);
+  border-left-color: var(--callout-color);
+  background: color-mix(in srgb, var(--callout-color) 7%, var(--bg-primary));
+}
+
+.post-content blockquote.callout-tip { --callout-color: var(--platform-medium); }
+.post-content blockquote.callout-warning { --callout-color: var(--code-number); }
+.post-content blockquote.callout-caution { --callout-color: var(--color-danger); }
+
+.post-content .callout .callout-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  color: var(--callout-color);
 }

@@ -35,7 +35,7 @@ custom_js: blog
         {% if has_more_tags %}
         <div class="filter-dropdown">
             <button type="button" class="filter-btn filter-more" id="moreFiltersBtn" aria-expanded="false" aria-controls="moreFilters">
-                More Filters <i aria-hidden="true" class="fas fa-chevron-down"></i>
+                More Filters {% include icon.html name="chevron-down" %}
             </button>
             <div class="filter-dropdown-content" id="moreFilters">
                 {% for tag in sorted_tags %}
@@ -54,7 +54,7 @@ custom_js: blog
         <span class="active-filter-label">Filtered by:</span>
         <span class="active-filter-tag" id="activeFilterTag"></span>
         <button type="button" class="clear-filter-btn" id="clearFilterBtn">
-            <i aria-hidden="true" class="fas fa-times"></i> Clear
+            {% include icon.html name="times" %} Clear
         </button>
     </div>
 
@@ -68,7 +68,7 @@ custom_js: blog
                 <h2 class="post-title">
                     <a href="{{ post_href }}" class="card-link"{% if post.external_url %} target="_blank" rel="noopener noreferrer"{% endif %}>
                         {{ post.title }}
-                        {% if post.external_url %}<i class="fas fa-external-link-alt external-icon" aria-hidden="true"></i><span class="sr-only">(opens {{ post.platform }} in a new tab)</span>{% endif %}
+                        {% if post.external_url %}{% include icon.html name="external-link-alt" class="external-icon" %}<span class="sr-only">(opens {{ post.platform }} in a new tab)</span>{% endif %}
                     </a>
                 </h2>
 
@@ -89,7 +89,7 @@ custom_js: blog
                     {% endfor %}
                     {% if post.platform %}
                     <li class="platform-badge platform-{{ post.platform | downcase }}">
-                        <i aria-hidden="true" class="fas fa-arrow-up-right-from-square"></i> {{ post.platform }}
+                        {% include icon.html name="arrow-up-right-from-square" %} {{ post.platform }}
                     </li>
                     {% endif %}
                 </ul>
@@ -98,7 +98,7 @@ custom_js: blog
                 <div class="post-meta-footer">
                     <span class="read-more-link" aria-hidden="true">
                         {% if post.external_url %}Read on {{ post.platform }}{% else %}Continue Reading{% endif %}
-                        <i class="fas fa-arrow-right"></i>
+                        {% include icon.html name="arrow-right" %}
                     </span>
                 </div>
             </div>

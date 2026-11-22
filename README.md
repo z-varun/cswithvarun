@@ -5,6 +5,9 @@ Personal site and blog of Varun Bhandari: a static [Jekyll](https://jekyllrb.com
 ## Stack
 
 - **Jekyll 4.4** on Ruby 3.2 (`.ruby-version`), with `jekyll-feed`, `jekyll-seo-tag` and `jekyll-sitemap`.
+- **Fonts and icons:** self-hosted. IBM Plex Sans (headings) and JetBrains Mono (code) live in `assets/fonts/`
+  (SIL OFL, licences alongside). Icons are inline SVGs from Font Awesome Free 6.4.0 (CC BY 4.0) stored in
+  `_data/icons.yml` and rendered with `{% include icon.html name="rocket" %}`. No third-party CSS, fonts or scripts.
 - **CSS:** hand-written, no preprocessor. `assets/css/main.css` concatenates the shared partials
   (`variables.css`, `theme.css`, `components.css`, `animations.css`) at build time; each page adds its own
   stylesheet through `custom_css` in its front matter. All colours are tokens in `theme.css`, with light and dark values.
@@ -36,10 +39,40 @@ excerpt: "One or two sentences for the blog index, feed and search results."
 ---
 ```
 
-The layout adds the title, so don't start the body with a `#` heading. For a post that lives elsewhere, add
+The layout adds the title, so don't start the body with a `#` heading.
+
+Posts with three or more `##` sections get a table of contents automatically, headings get shareable `#` links,
+and code blocks get a Copy button (`assets/js/post.js`). Use fenced code with a language for highlighting:
+` ```bash `, ` ```yaml `, ` ```rego `.
+
+Callouts use GitHub's syntax:
+
+```markdown
+> [!WARNING]
+> Rotate the credentials before you delete the old record.
+```
+
+Supported types: `NOTE`, `TIP`, `IMPORTANT`, `WARNING`, `CAUTION`.
+
+### Share images
+
+Each post gets its own Open Graph image from `assets/images/og/<slug>.png` (wired up by `_plugins/og_image.rb`).
+After adding or retitling a post, regenerate them locally (needs Chrome) and commit the PNGs:
+
+```bash
+node scripts/generate-og-images.mjs
+```
+
+To feature a post on the home page, add its slug to `featured_posts` in `_config.yml`. For a post that lives elsewhere, add
 `external_url:` and `platform:` (for example `Medium` or `Substack`); the index links straight to it.
 
 ## Content security policy
 
-`_headers` allows no inline scripts, inline styles or `style=""` attributes. Put styles in a stylesheet and
-behaviour in a `.js` file under `assets/js/`; setting `element.style` from JavaScript is fine.
+`_headers` allows no inline scripts, inline styles or `style=""` attributes, and no third-party scripts except
+Cloudflare Web Analytics. Put styles in a stylesheet and behaviour in a `.js` file under `assets/js/`; setting
+`element.style` from JavaScript is fine.
+
+## Analytics
+
+Cookie-free Cloudflare Web Analytics is allowed by the CSP but switched on in the dashboard, not in code:
+Cloudflare dashboard → Workers & Pages → this project → Metrics → Web Analytics → Enable. No token goes in the repo.

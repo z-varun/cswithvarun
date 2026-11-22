@@ -30,12 +30,12 @@
   background-color: var(--bg-tertiary);
 }
 
-.filter-more i {
+.filter-more .icon {
   font-size: 0.75rem;
   transition: transform var(--transition-base);
 }
 
-.filter-more[aria-expanded="true"] i {
+.filter-more[aria-expanded="true"] .icon {
   transform: rotate(180deg);
 }
 
@@ -265,11 +265,11 @@
   margin-left: auto;
 }
 
-.read-more-link i {
+.read-more-link .icon {
   transition: transform var(--transition-base);
 }
 
-.blog-post-item:hover .read-more-link i {
+.blog-post-item:hover .read-more-link .icon {
   transform: translateX(4px);
 }
 

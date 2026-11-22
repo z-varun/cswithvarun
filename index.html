@@ -15,17 +15,17 @@ custom_css: home
             <p class="hero-description">{{ page.description }}</p>
             <div class="hero-cta">
                 <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">
-                    <i aria-hidden="true" class="fas fa-newspaper"></i> Read My Technical Insights
+                    {% include icon.html name="newspaper" %} Read My Technical Insights
                 </a>
                 <a href="{{ '/contact/' | relative_url }}" class="btn btn-secondary">
-                    <i aria-hidden="true" class="fas fa-envelope"></i> Get in Touch
+                    {% include icon.html name="envelope" %} Get in Touch
                 </a>
             </div>
         </div>
     </div>
     <div class="hero-scroll-down">
         <a href="#skills" aria-label="Scroll down">
-            <i aria-hidden="true" class="fas fa-chevron-down"></i>
+            {% include icon.html name="chevron-down" %}
         </a>
     </div>
 </section>
@@ -45,7 +45,7 @@ custom_css: home
                 {% include reading-time.html content=post.content %}
             </p>
             <p class="featured-excerpt">{{ post.description | default: post.excerpt | strip_html | truncatewords: 60 }}</p>
-            <span class="read-more" aria-hidden="true">Read the story <i class="fas fa-arrow-right"></i></span>
+            <span class="read-more" aria-hidden="true">Read the story {% include icon.html name="arrow-right" %}</span>
         </article>
     </div>
 </section>
@@ -59,7 +59,7 @@ custom_css: home
         <div class="skills-grid">
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i aria-hidden="true" class="fas fa-shield-alt"></i>
+                    {% include icon.html name="shield-alt" %}
                 </div>
                 <h3>Orchestrating Zero-Trust Clusters</h3>
                 <p>Hardening Kubernetes environments from the kernel up with rigorous RBAC, admission controllers, and runtime defense.</p>
@@ -67,7 +67,7 @@ custom_css: home
 
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i aria-hidden="true" class="fas fa-code-branch"></i>
+                    {% include icon.html name="code-branch" %}
                 </div>
                 <h3>CI/CD Pipeline Security</h3>
                 <p>Embedding invisible security gates that catch vulnerabilities before they commit, not after they deploy.</p>
@@ -75,7 +75,7 @@ custom_css: home
 
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i aria-hidden="true" class="fas fa-file-code"></i>
+                    {% include icon.html name="file-code" %}
                 </div>
                 <h3>Immutable Infrastructure</h3>
                 <p>Codifying security guardrails to eliminate drift and enforce compliance by design, not by manual review.</p>
@@ -83,21 +83,21 @@ custom_css: home
 
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i aria-hidden="true" class="fas fa-search"></i>
+                    {% include icon.html name="search" %}
                 </div>
                 <h3>Threat Modeling</h3>
                 <p>STRIDE methodology, attack surface analysis, risk assessment, and security architecture reviews.</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i aria-hidden="true" class="fas fa-anchor"></i>
+                    {% include icon.html name="anchor" %}
                 </div>
                 <h3>Proactive Risk Architecture</h3>
                 <p>Identifying and mitigating architectural flaws before a single line of code is written.</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i aria-hidden="true" class="fas fa-cloud"></i>
+                    {% include icon.html name="cloud" %}
                 </div>
                 <h3>Cloud Forensics</h3>
                 <p>AWS/Azure/GCP incident response, log analysis, threat hunting, and security monitoring.</p>
@@ -105,7 +105,7 @@ custom_css: home
 
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i aria-hidden="true" class="fas fa-chart-line"></i>
+                    {% include icon.html name="chart-line" %}
                 </div>
                 <h3>Observability</h3>
                 <p>Security metrics, SIEM integration, anomaly detection, and compliance monitoring.</p>
@@ -113,7 +113,7 @@ custom_css: home
 
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i aria-hidden="true" class="fas fa-exclamation-triangle"></i>
+                    {% include icon.html name="exclamation-triangle" %}
                 </div>
                 <h3>Vulnerability Management</h3>
                 <p>CVE assessment, patch management, vulnerability scanning, and remediation tracking.</p>
@@ -145,7 +145,7 @@ custom_css: home
                     <div class="post-meta-footer">
                         <span class="read-more" aria-hidden="true">
                             {% if post.external_url %}Read on {{ post.platform }}{% else %}Read More{% endif %}
-                            <i class="fas fa-arrow-right"></i>
+                            {% include icon.html name="arrow-right" %}
                         </span>
                     </div>
                 </div>

@@ -30,30 +30,15 @@
      {% endif %}
 
      <!-- Favicon -->
-     <link rel="icon" type="image/png" href="{{ '/assets/images/icons8-cyber-security-100.png' | relative_url }}">
-     <link rel="apple-touch-icon" href="{{ '/assets/images/icons8-cyber-security-100.png' | relative_url }}">
+     <link rel="icon" href="{{ '/assets/images/logo.svg' | relative_url }}" type="image/svg+xml">
+     <link rel="icon" href="{{ '/assets/images/favicon-32.png' | relative_url }}" type="image/png" sizes="32x32">
+     <link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
 
-     <!-- Preconnect for faster resource loading -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+     <!-- Heading font, self-hosted (see assets/css/fonts.css) -->
+     <link rel="preload" href="{{ '/assets/fonts/ibm-plex-sans-latin-700-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 
      <!-- Main CSS (variables, components, animations and theme are concatenated into it at build time) -->
      <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ v }}">
-
-     <!-- Monospace font for code -->
-     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet" crossorigin="anonymous">
-
-     <!-- Font Awesome: loaded as print and switched to all by main.js so it never blocks rendering -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-          crossorigin="anonymous" media="print" id="fontawesome-css">
-     <noscript>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-               integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-               crossorigin="anonymous">
-     </noscript>
 
      <!-- Page-specific CSS -->
      {% if page.custom_css %}
@@ -83,6 +68,7 @@
      {% endif %}
      {% if page.layout == 'post' %}
      <script src="{{ '/assets/js/reading-progress.js' | relative_url }}?v={{ v }}"></script>
+     <script src="{{ '/assets/js/post.js' | relative_url }}?v={{ v }}"></script>
      {% endif %}
 </body>
 

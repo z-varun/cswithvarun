@@ -7,7 +7,7 @@ timezone: Asia/Kolkata
 lang: en_US
 
 # Logo for jekyll-seo-tag; the default share image is set under defaults below
-logo: /assets/images/icons8-cyber-security-100.png
+logo: /assets/images/logo-512.png
 
 # Build settings
 markdown: kramdown
@@ -125,6 +125,7 @@ include:
 # Exclude from processing
 exclude:
   - README.md
+  - scripts
   - LICENSE
   - Gemfile
   - Gemfile.lock

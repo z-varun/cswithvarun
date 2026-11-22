@@ -10,21 +10,21 @@ layout: default
 
         <div class="post-meta">
             <time datetime="{{ page.date | date_to_xmlschema }}">
-                <i aria-hidden="true" class="far fa-calendar"></i>
+                {% include icon.html name="calendar-regular" %}
                 {{ page.date | date: "%B %d, %Y" }}
             </time>
 
             <span class="meta-separator" aria-hidden="true">•</span>
 
             <span class="post-author">
-                <i aria-hidden="true" class="far fa-user"></i>
+                {% include icon.html name="user-regular" %}
                 {{ site.author.name }}
             </span>
 
             <span class="meta-separator" aria-hidden="true">•</span>
 
             <span class="read-time">
-                <i aria-hidden="true" class="far fa-clock"></i>
+                {% include icon.html name="clock-regular" %}
                 {% include reading-time.html content=page.content %}
             </span>
         </div>
@@ -38,8 +38,32 @@ layout: default
         {% endif %}
     </header>
 
+{%- comment -%}
+  GitHub-style callouts: a blockquote starting with [!NOTE], [!TIP], [!IMPORTANT],
+  [!WARNING] or [!CAUTION] is rendered as a styled callout (see README).
+{%- endcomment -%}
+{%- assign post_body = content -%}
+{%- assign callout_types = "NOTE:Note:circle-info,TIP:Tip:lightbulb-regular,IMPORTANT:Important:circle-info,WARNING:Warning:exclamation-triangle,CAUTION:Caution:exclamation-triangle" | split: "," -%}
+{%- for callout in callout_types -%}
+{%- assign parts = callout | split: ":" -%}
+{%- assign callout_class = parts[0] | downcase -%}
+{%- assign callout_icon = parts[2] -%}
+{%- capture callout_open %}<blockquote class="callout callout-{{ callout_class }}">
+  <p class="callout-title">{% include icon.html name=callout_icon %} {{ parts[1] }}</p>{% endcapture -%}
+{%- capture marker_with_text %}<blockquote>
+  <p>[!{{ parts[0] }}]<br />
+{% endcapture -%}
+{%- capture marker_soft_break %}<blockquote>
+  <p>[!{{ parts[0] }}]
+{% endcapture -%}
+{%- capture marker_alone %}<blockquote>
+  <p>[!{{ parts[0] }}]</p>{% endcapture -%}
+{%- capture replacement_with_text %}{{ callout_open }}
+  <p>{% endcapture -%}
+{%- assign post_body = post_body | replace: marker_with_text, replacement_with_text | replace: marker_soft_break, replacement_with_text | replace: marker_alone, callout_open -%}
+{%- endfor %}
     <div class="post-content">
-        {{ content }}
+        {{ post_body }}
     </div>
 
     <footer class="post-footer">
@@ -47,11 +71,11 @@ layout: default
             <h2>Share this post</h2>
             <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&amp;url={{ page.url | absolute_url | url_encode }}"
                 target="_blank" rel="noopener noreferrer" class="share-btn twitter">
-                <i aria-hidden="true" class="fab fa-twitter"></i> X
+                {% include icon.html name="twitter" %} X
             </a>
             <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" target="_blank"
                 rel="noopener noreferrer" class="share-btn linkedin">
-                <i aria-hidden="true" class="fab fa-linkedin"></i> LinkedIn
+                {% include icon.html name="linkedin" %} LinkedIn
             </a>
         </div>
 
@@ -59,7 +83,7 @@ layout: default
         <nav class="post-navigation" aria-label="More posts">
             {% if page.previous.url %}
             <a href="{{ page.previous.url | relative_url }}" class="nav-previous">
-                <i aria-hidden="true" class="fas fa-arrow-left"></i>
+                {% include icon.html name="arrow-left" %}
                 <div>
                     <span class="nav-label">Previous Post</span>
                     <span class="nav-title">{{ page.previous.title }}</span>
@@ -73,7 +97,7 @@ layout: default
                     <span class="nav-label">Next Post</span>
                     <span class="nav-title">{{ page.next.title }}</span>
                 </div>
-                <i aria-hidden="true" class="fas fa-arrow-right"></i>
+                {% include icon.html name="arrow-right" %}
             </a>
             {% endif %}
         </nav>

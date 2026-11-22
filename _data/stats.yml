@@ -1,19 +1,19 @@
 - number: 9
   label: "Years of Experience"
-  icon: "fas fa-briefcase"
+  icon: "briefcase"
   suffix: "+"
 
 - number: 4
   label: "Companies Worked With"
-  icon: "fas fa-building"
+  icon: "building"
   suffix: "+"
 
 - number: 20
   label: "Projects Delivered"
-  icon: "fas fa-rocket"
+  icon: "rocket"
   suffix: "+"
 
 - number: 100000
   label: "Peak Requests/Second Handled"
-  icon: "fas fa-bolt"
+  icon: "bolt"
   suffix: ""

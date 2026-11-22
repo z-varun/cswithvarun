@@ -5,13 +5,6 @@
 (function () {
   'use strict';
 
-  // Font Awesome is loaded with media="print" so it doesn't block rendering;
-  // switch it on here (an inline onload handler would be blocked by the CSP).
-  function loadFontAwesome() {
-    const faCSS = document.getElementById('fontawesome-css');
-    if (faCSS && faCSS.media === 'print') faCSS.media = 'all';
-  }
-
   // A button that shows and hides a panel, closing on outside click and Escape.
   function disclosure(button, panel, { openClass = 'show', onToggle } = {}) {
     if (!button || !panel) return null;
@@ -57,7 +50,6 @@
   }
 
   onDomReady(() => {
-    loadFontAwesome();
     initNavigation();
     initAnimateOnView();
   });

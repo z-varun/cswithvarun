@@ -1,15 +1,15 @@
-- icon: "fas fa-gauge-high"
+- icon: "gauge-high"
   title: "I Engineer Velocity."
   description: "I design security frameworks that are the path of least resistance, proving that the secure way is also the fastest way to ship."
 
-- icon: "fas fa-robot"
+- icon: "robot"
   title: "If It's Manual, It's Vulnerable."
   description: "I ruthlessly automate compliance and security gates. Humans make mistakes; my code policies do not."
 
-- icon: "fas fa-users"
+- icon: "users"
   title: "Democratizing Defense."
   description: "I don't gatekeep security. I empower engineers with the tools and training to be the first line of defense."
 
-- icon: "fas fa-scale-balanced"
+- icon: "scale-balanced"
   title: "Measured Risk"
   description: "Balancing security rigor with business pragmatism through quantitative risk assessment."

@@ -133,7 +133,7 @@
   max-width: 65ch;
 }
 
-.featured-post:hover .read-more i {
+.featured-post:hover .read-more .icon {
   transform: translateX(4px);
 }
 
@@ -255,11 +255,11 @@
   font-size: var(--font-size-sm);
 }
 
-.read-more i {
+.read-more .icon {
   transition: transform var(--transition-base);
 }
 
-.post-card:hover .read-more i {
+.post-card:hover .read-more .icon {
   transform: translateX(4px);
 }
 

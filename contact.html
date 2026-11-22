@@ -9,7 +9,7 @@ custom_css: contact
 <div class="contact-page">
     <ul class="contact-routes">
         <li class="contact-route">
-            <i aria-hidden="true" class="fas fa-user-tie route-icon"></i>
+            {% include icon.html name="user-tie" class="route-icon" %}
             <h2>Hiring</h2>
             <p>Recruiters and hiring managers: my resume and work history are the quickest start.</p>
             <p class="route-links">
@@ -19,7 +19,7 @@ custom_css: contact
             </p>
         </li>
         <li class="contact-route">
-            <i aria-hidden="true" class="fas fa-calendar-check route-icon"></i>
+            {% include icon.html name="calendar-check" class="route-icon" %}
             <h2>Mentoring &amp; career advice</h2>
             <p>One-to-one calls on DevSecOps, cloud security and career moves.</p>
             <p class="route-links">
@@ -27,7 +27,7 @@ custom_css: contact
             </p>
         </li>
         <li class="contact-route">
-            <i aria-hidden="true" class="fas fa-microphone route-icon"></i>
+            {% include icon.html name="microphone" class="route-icon" %}
             <h2>Speaking, writing &amp; anything else</h2>
             <p>Talks, guest posts, collaborations or questions about a post.</p>
             <p class="route-links">
@@ -72,7 +72,7 @@ custom_css: contact
 
                 <button type="submit" class="submit-btn">
                     <span>Send Message</span>
-                    <i aria-hidden="true" class="fas fa-paper-plane"></i>
+                    {% include icon.html name="paper-plane" %}
                 </button>
             </form>
         </div>
