@@ -6,6 +6,7 @@ layout: null
 {% include_relative fonts.css %}
 {% include_relative variables.css %}
 {% include_relative palette.css %}
+{% include_relative palette-rose.css %}
 {% include_relative theme.css %}
 {% include_relative components.css %}
 {% include_relative animations.css %}
@@ -439,6 +440,78 @@ a:hover {
     color: var(--text-muted);
     font-size: var(--font-size-sm);
     margin: 0;
+}
+
+.footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+}
+
+/* Colour palette picker (needs JS, so hidden without it) */
+.palette-picker {
+    display: none;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 4px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-full);
+}
+
+.js .palette-picker {
+    display: inline-flex;
+}
+
+.palette-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    padding: 0 var(--spacing-sm);
+}
+
+.palette-option {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    min-height: 36px;
+    padding: 0.25rem 0.875rem;
+    font: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    border-radius: var(--border-radius-full);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.palette-option:hover {
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+}
+
+.palette-option[aria-pressed="true"] {
+    color: var(--on-accent);
+    background: var(--accent-fill);
+}
+
+.palette-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.15);
+}
+
+/* Fixed colours: a swatch previews its palette whichever one is active */
+.palette-swatch-mint {
+    background: #8ad897;
+}
+
+.palette-swatch-rose {
+    background: #d6336c;
 }
 
 .social-links {

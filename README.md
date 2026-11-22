@@ -76,6 +76,14 @@ images generated from it. To switch, merge the branch you want. To try your own,
 `node scripts/generate-brand-assets.mjs` to rebuild the logo, favicons and share images, and check contrast:
 text needs 4.5:1 against its background.
 
+### Visitor colour palettes
+
+Mint (`palette.css`) is the default. Visitors can switch to Rose (`palette-rose.css`) with the picker in the footer;
+the choice is stored in `localStorage` and applied before first paint by `theme-init.js`. A new palette is another
+`:root[data-palette='name']` block (plus a `:root[data-palette='name'][data-theme='dark']` block) using the same tokens, a
+button in `_includes/footer.html`, and its name in `PALETTES` in `theme-toggle.js`. Favicons and share images stay
+mint.
+
 ## Content security policy
 
 `_headers` allows no inline scripts, inline styles or `style=""` attributes, and no third-party scripts except

@@ -1,0 +1,89 @@
+/* ================================
+   Optional palette: Rose
+   Applies only when a visitor picks it (data-palette="rose" on <html>, set by
+   theme-init.js from their saved choice). The default mint palette in
+   palette.css is untouched. Text colours are 4.5:1 or better on every surface;
+   large display text is 3:1 or better.
+   ================================ */
+
+:root[data-palette='rose'] {
+    color-scheme: light;
+
+    /* Surfaces: soft blush page, pink section bands, white cards */
+    --bg-primary: #fdf3f6;
+    --bg-secondary: #fbe7ee;
+    --bg-tertiary: #f6d9e3;
+    --bg-card: #fff;
+
+    /* Text: deep plum-magenta instead of black */
+    --text-primary: #4a0f2a;
+    --text-secondary: #6b2a45;
+    --text-muted: #874a63;
+
+    /* Accent roles (see palette.css): text, fill, display */
+    --color-primary: #b0175a;
+    --color-secondary: #7d0f40;
+    --accent-fill: #d6336c;
+    --on-accent: #fff;
+    --accent-display: #db2777;
+    --color-danger: #b91c1c;
+
+    --border-color: #f3d6e0;
+    --border-strong: #a86e86;
+    --focus-ring: var(--color-primary);
+
+    --platform-medium: #047857;
+    --platform-substack: #9a3412;
+
+    --code-bg: #fbeaf0;
+    --code-inline: var(--color-primary);
+    --code-comment: #874a63;
+    --code-keyword: #6d28d9;
+    --code-string: #047857;
+    --code-number: #b45309;
+    --code-name: #0e7490;
+    --code-builtin: #9d174d;
+
+    --shadow-sm: 0 1px 2px rgb(120 20 60 / 0.05), 0 1px 3px rgb(120 20 60 / 0.05);
+    --shadow-md: 0 4px 16px rgb(120 20 60 / 0.08);
+    --shadow-lg: 0 12px 32px rgb(120 20 60 / 0.1);
+}
+
+/* Dark rose: the same neutral greys as the default dark mode, with a pink accent */
+:root[data-palette='rose'][data-theme='dark'] {
+    color-scheme: dark;
+
+    --bg-primary: #0f0f10;
+    --bg-secondary: #161618;
+    --bg-tertiary: #1f1f22;
+    --bg-card: #18181b;
+
+    --text-primary: #ededef;
+    --text-secondary: #c8c8cd;
+    --text-muted: #a0a0a8;
+
+    --color-primary: #f48fb1;
+    --color-secondary: #f9a8c4;
+    --accent-fill: #f48fb1;
+    --on-accent: #0f0f10;
+    --accent-display: #f48fb1;
+    --color-danger: #f87171;
+
+    --border-color: #2a2a2e;
+    --border-strong: #707078;
+
+    --platform-medium: #34d399;
+    --platform-substack: #fb923c;
+
+    --code-bg: #161618;
+    --code-comment: #a0a0a8;
+    --code-keyword: #c4b5fd;
+    --code-string: #6ee7b7;
+    --code-number: #fcd34d;
+    --code-name: #67e8f9;
+    --code-builtin: #f9a8d4;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 16px rgb(0 0 0 / 0.35);
+    --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.45);
+}

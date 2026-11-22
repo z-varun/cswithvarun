@@ -47,6 +47,15 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+            <div class="palette-picker" role="group" aria-label="Colour theme">
+                <span class="palette-label">Colour</span>
+                <button type="button" class="palette-option" data-palette="mint" aria-pressed="true">
+                    <span class="palette-swatch palette-swatch-mint" aria-hidden="true"></span>Mint
+                </button>
+                <button type="button" class="palette-option" data-palette="rose" aria-pressed="false">
+                    <span class="palette-swatch palette-swatch-rose" aria-hidden="true"></span>Rose
+                </button>
+            </div>
         </div>
     </div>
 </footer>

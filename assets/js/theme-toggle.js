@@ -1,8 +1,10 @@
-// Theme toggle: follows the OS until the visitor picks a theme, then remembers it.
+// Theme toggle (follows the OS until the visitor picks light or dark) and colour palette picker.
 (function () {
   'use strict';
 
   const STORAGE_KEY = 'theme-preference';
+  const PALETTE_KEY = 'palette-preference';
+  const PALETTES = ['mint', 'rose'];
   const root = document.documentElement;
   const darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 
@@ -23,6 +25,18 @@
     } catch (e) {
       // Not persisted; the choice still applies to this page view.
     }
+  }
+
+  function currentPalette() {
+    return root.getAttribute('data-palette') === 'rose' ? 'rose' : 'mint';
+  }
+
+  function renderPalette(palette) {
+    if (palette === 'mint') root.removeAttribute('data-palette');
+    else root.setAttribute('data-palette', palette);
+    document.querySelectorAll('.palette-option').forEach((btn) => {
+      btn.setAttribute('aria-pressed', String(btn.dataset.palette === palette));
+    });
   }
 
   function currentTheme() {
@@ -49,6 +63,20 @@
         render(next);
       });
     }
+
+    renderPalette(currentPalette());
+    document.querySelectorAll('.palette-option').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const palette = btn.dataset.palette;
+        if (!PALETTES.includes(palette)) return;
+        try {
+          localStorage.setItem(PALETTE_KEY, palette);
+        } catch (e) {
+          // Not persisted; applies to this page view only.
+        }
+        renderPalette(palette);
+      });
+    });
 
     // Follow OS changes only while the visitor has not chosen a theme.
     if (darkQuery && darkQuery.addEventListener) {
