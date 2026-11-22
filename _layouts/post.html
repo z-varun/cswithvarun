@@ -8,34 +8,33 @@ layout: default
     <header class="post-header">
         <h1 class="post-title">{{ page.title }}</h1>
 
-        <!-- Single post-meta div with all metadata -->
         <div class="post-meta">
             <time datetime="{{ page.date | date_to_xmlschema }}">
-                <i class="far fa-calendar"></i>
+                <i aria-hidden="true" class="far fa-calendar"></i>
                 {{ page.date | date: "%B %d, %Y" }}
             </time>
 
-            <span class="meta-separator">•</span>
+            <span class="meta-separator" aria-hidden="true">•</span>
 
             <span class="post-author">
-                <i class="far fa-user"></i>
+                <i aria-hidden="true" class="far fa-user"></i>
                 {{ site.author.name }}
             </span>
 
-            <span class="meta-separator">•</span>
+            <span class="meta-separator" aria-hidden="true">•</span>
 
             <span class="read-time">
-                <i class="far fa-clock"></i>
+                <i aria-hidden="true" class="far fa-clock"></i>
                 {% include reading-time.html content=page.content %}
             </span>
         </div>
 
         {% if page.tags %}
-        <div class="post-tags">
+        <ul class="post-tags" aria-label="Tags">
             {% for tag in page.tags %}
-            <span class="tag">{{ tag }}</span>
+            <li class="tag">{{ tag }}</li>
             {% endfor %}
-        </div>
+        </ul>
         {% endif %}
     </header>
 
@@ -46,21 +45,21 @@ layout: default
     <footer class="post-footer">
         <div class="share-buttons">
             <h2>Share this post</h2>
-            <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url }}"
-                target="_blank" rel="noopener" class="share-btn twitter">
-                <i class="fab fa-twitter"></i> Twitter
+            <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&amp;url={{ page.url | absolute_url | url_encode }}"
+                target="_blank" rel="noopener noreferrer" class="share-btn twitter">
+                <i aria-hidden="true" class="fab fa-twitter"></i> Twitter
             </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url }}" target="_blank"
-                rel="noopener" class="share-btn linkedin">
-                <i class="fab fa-linkedin"></i> LinkedIn
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" target="_blank"
+                rel="noopener noreferrer" class="share-btn linkedin">
+                <i aria-hidden="true" class="fab fa-linkedin"></i> LinkedIn
             </a>
         </div>
 
-        <!-- Post Navigation (Previous/Next) -->
-        <div class="post-navigation">
+        {% if page.previous.url or page.next.url %}
+        <nav class="post-navigation" aria-label="More posts">
             {% if page.previous.url %}
-            <a href="{{ page.previous.url }}" class="nav-previous">
-                <i class="fas fa-arrow-left"></i>
+            <a href="{{ page.previous.url | relative_url }}" class="nav-previous">
+                <i aria-hidden="true" class="fas fa-arrow-left"></i>
                 <div>
                     <span class="nav-label">Previous Post</span>
                     <span class="nav-title">{{ page.previous.title }}</span>
@@ -69,15 +68,16 @@ layout: default
             {% endif %}
 
             {% if page.next.url %}
-            <a href="{{ page.next.url }}" class="nav-next">
+            <a href="{{ page.next.url | relative_url }}" class="nav-next">
                 <div>
                     <span class="nav-label">Next Post</span>
                     <span class="nav-title">{{ page.next.title }}</span>
                 </div>
-                <i class="fas fa-arrow-right"></i>
+                <i aria-hidden="true" class="fas fa-arrow-right"></i>
             </a>
             {% endif %}
-        </div>
+        </nav>
+        {% endif %}
 
         <div class="author-bio">
             <h2>About the Author</h2>

@@ -1,48 +1,46 @@
-<nav class="navbar">
+<nav class="navbar" aria-label="Main">
     <div class="nav-container">
-        <a href="{{ '/' | relative_url }}" class="nav-logo">
-            <span class="logo-icon">🛡️</span>
-            <span class="logo-text logo-full">{{ site.author.name }}</span>
-            <span class="logo-text logo-short">VB</span>
+        <a href="{{ '/' | relative_url }}" class="nav-logo" aria-label="{{ site.author.name }}, home">
+            <span class="logo-icon" aria-hidden="true">🛡️</span>
+            <span class="logo-text logo-full" aria-hidden="true">{{ site.author.name }}</span>
+            <span class="logo-text logo-short" aria-hidden="true">VB</span>
         </a>
 
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileNav">
-            <span class="hamburger">
+        <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
+            <span class="hamburger" aria-hidden="true">
                 <span></span>
                 <span></span>
                 <span></span>
             </span>
         </button>
 
-
-
         <ul class="nav-menu" id="navMenu">
             {% for item in site.navigation %}
+            {% include nav-active.html url=item.url %}
             <li class="nav-item">
-                <a href="{{ item.url | relative_url }}" class="nav-link {% if page.url == item.url %}active{% endif %}">
+                <a href="{{ item.url | relative_url }}" class="nav-link{% if nav_active %} active{% endif %}"{% if page.url == item.url %} aria-current="page"{% endif %}>
                     {{ item.title }}
                 </a>
             </li>
             {% endfor %}
             <li class="nav-item nav-resume dropdown">
-                <button class="nav-link btn-resume dropdown-toggle" id="resumeToggle" aria-expanded="false" aria-haspopup="true" aria-controls="resumeDropdown">
-                    <i class="fas fa-file-pdf"></i> Resume
-                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                <button class="nav-link btn-resume dropdown-toggle" id="resumeToggle" aria-expanded="false" aria-controls="resumeDropdown">
+                    <i aria-hidden="true" class="fas fa-file-pdf"></i> Resume
+                    <i aria-hidden="true" class="fas fa-chevron-down dropdown-arrow"></i>
                 </button>
                 <div class="dropdown-menu" id="resumeDropdown">
-                    <a href="{{ site.resume_url | relative_url }}" class="dropdown-item" target="_blank">
-                        <i class="fas fa-eye"></i> View Resume
+                    <a href="{{ site.resume_url | relative_url }}" class="dropdown-item" target="_blank" rel="noopener">
+                        <i aria-hidden="true" class="fas fa-eye"></i> View Resume
                     </a>
                     <a href="{{ site.resume_url | relative_url }}" class="dropdown-item" download>
-                        <i class="fas fa-download"></i> Download Resume
+                        <i aria-hidden="true" class="fas fa-download"></i> Download Resume
                     </a>
                 </div>
             </li>
         </ul>
 
-        <!-- Theme Toggle Button - MOVED HERE -->
-        <button id="theme-toggle" class="theme-toggle-nav" aria-label="Toggle theme">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <button id="theme-toggle" class="theme-toggle-nav" aria-label="Switch theme">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
             </svg>
         </button>
@@ -52,23 +50,22 @@
     <div class="mobile-nav" id="mobileNav">
         <ul class="mobile-nav-links">
             {% for item in site.navigation %}
+            {% include nav-active.html url=item.url %}
             <li>
                 <a href="{{ item.url | relative_url }}"
-                    class="mobile-nav-link {% if page.url == item.url %}active{% endif %}">
+                    class="mobile-nav-link{% if nav_active %} active{% endif %}"{% if page.url == item.url %} aria-current="page"{% endif %}>
                     {{ item.title }}
                 </a>
             </li>
             {% endfor %}
             <li>
-                <a href="{{ site.resume_url | relative_url }}" target="_blank"
-                    class="mobile-nav-link">
-                    <i class="far fa-eye"></i> View Resume
+                <a href="{{ site.resume_url | relative_url }}" target="_blank" rel="noopener" class="mobile-nav-link">
+                    <i aria-hidden="true" class="far fa-eye"></i> View Resume
                 </a>
             </li>
             <li>
-                <a href="{{ site.resume_url | relative_url }}" download
-                    class="mobile-nav-link">
-                    <i class="fas fa-download"></i> Download Resume
+                <a href="{{ site.resume_url | relative_url }}" download class="mobile-nav-link">
+                    <i aria-hidden="true" class="fas fa-download"></i> Download Resume
                 </a>
             </li>
         </ul>

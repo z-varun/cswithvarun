@@ -4,93 +4,86 @@
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     {% assign v = site.time | date: '%s' %}
 
-     <!-- Security headers -->
-     <meta name="referrer" content="strict-origin-when-cross-origin">
+     <!-- Theme detection runs first so the page never flashes the wrong theme -->
+     <script src="{{ '/assets/js/theme-init.js' | relative_url }}?v={{ v }}"></script>
 
-     <!-- SEO tags -->
+     <!-- SEO tags (title, description, canonical, Open Graph, JSON-LD) -->
      {% seo %}
-
-     <title>{{ page.title | default: site.title }}</title>
+     {% feed_meta %}
+     {% if page.robots %}
+     <meta name="robots" content="{{ page.robots }}">
+     {% endif %}
+     {% if page.url == '/about/' %}
+     <script type="application/ld+json">
+     {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": {{ site.author.name | jsonify }},
+          "jobTitle": {{ site.author.title | jsonify }},
+          "url": {{ site.url | append: site.baseurl | append: '/' | jsonify }},
+          "sameAs": {{ site.social.links | jsonify }},
+          "knowsAbout": {{ site.knowsAbout | jsonify }}
+     }
+     </script>
+     {% endif %}
 
      <!-- Favicon -->
      <link rel="icon" type="image/png" href="{{ '/assets/images/icons8-cyber-security-100.png' | relative_url }}">
-     <link rel="apple-touch-icon" type="image/png"
-          href="{{ '/assets/images/icons8-apple-inc-100.png' | relative_url }}">
+     <link rel="apple-touch-icon" href="{{ '/assets/images/icons8-cyber-security-100.png' | relative_url }}">
 
      <!-- Preconnect for faster resource loading -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
-     <!-- Main CSS -->
-     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+     <!-- Main CSS (variables, components, animations and theme are concatenated into it at build time) -->
+     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ v }}">
 
-     <!-- Google Fonts with display=swap for better performance -->
-     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+     <!-- Monospace font for code -->
+     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
           rel="stylesheet" crossorigin="anonymous">
 
-     <!-- Optimized Font Awesome Loading -->
+     <!-- Font Awesome: loaded as print and switched to all by main.js so it never blocks rendering -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-          crossorigin="anonymous" media="print" onload="this.media='all'" id="fontawesome-css">
-
+          crossorigin="anonymous" media="print" id="fontawesome-css">
      <noscript>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
                integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
                crossorigin="anonymous">
      </noscript>
 
-     <!-- Theme Detection Script (Prevents Flash of Unstyled Theme) -->
-     <script src="{{ '/assets/js/theme-init.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
-
      <!-- Page-specific CSS -->
      {% if page.custom_css %}
-     <link rel="stylesheet" href="{{ '/assets/css/' | append: page.custom_css | append: '.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+     <link rel="stylesheet" href="{{ '/assets/css/' | append: page.custom_css | append: '.css' | relative_url }}?v={{ v }}">
      {% endif %}
-
-     <!-- Load post-specific styles -->
      {% if page.layout == 'post' %}
-     <link rel="stylesheet" href="{{ '/assets/css/post.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+     <link rel="stylesheet" href="{{ '/assets/css/post.css' | relative_url }}?v={{ v }}">
      {% endif %}
-
 </head>
 
 <body>
      <a href="#main-content" class="skip-link">Skip to main content</a>
      {% include navigation.html %}
 
-     <main id="main-content" class="main-content">
+     <main id="main-content" class="main-content" tabindex="-1">
           {{ content }}
      </main>
 
      {% include footer.html %}
 
-     <!-- External JavaScript Files (loaded at the end for performance) -->
-     <script src="{{ '/assets/js/utils.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
-     <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
-
-     {% if page.url == '/blog' or page.url == '/blog/' or page.url == '/blog/index.html' %}
-     <script src="{{ '/assets/js/blog.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+     <!-- Scripts (end of body; utils.js must load before anything that uses it) -->
+     <script src="{{ '/assets/js/utils.js' | relative_url }}?v={{ v }}"></script>
+     <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ v }}"></script>
+     <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}?v={{ v }}"></script>
+     {% if page.custom_js %}
+     <script src="{{ '/assets/js/' | append: page.custom_js | append: '.js' | relative_url }}?v={{ v }}"></script>
      {% endif %}
-
-     {% if page.url == '/about' or page.url == '/about/' or page.url == '/about.html' %}
-     <script src="{{ '/assets/js/about-page.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
-     {% endif %}
-
-     {% if page.url == '/thank-you' or page.url == '/thank-you/' %}
-     <script src="{{ '/assets/js/thank-you.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
-     {% endif %}
-
-     <!-- Load reading progress script for blog posts -->
      {% if page.layout == 'post' %}
-     <script src="{{ '/assets/js/reading-progress.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+     <script src="{{ '/assets/js/reading-progress.js' | relative_url }}?v={{ v }}"></script>
      {% endif %}
-
-     <!-- Theme Toggle Script -->
-     <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
-
 </body>
 
 </html>
