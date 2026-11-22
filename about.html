@@ -12,13 +12,19 @@ custom_js: about-page
     <section class="about-hero">
         <div class="stats-grid">
             {% for stat in site.data.stats %}
-            <div class="stat-card card-hover-lift" data-animate="fade-up" {% if stat.delay> 0 %}data-delay="{{
-                stat.delay }}"{% endif
-                %}>
-                <div class="stat-number gradient-text" data-target="{{ stat.number }}">0</div>
-                {% if stat.suffix != "" %}<div class="stat-suffix">{{ stat.suffix }}</div>{% endif %}
-                <div class="stat-label">{{ stat.label }}</div>
-                <div class="stat-icon">{{ stat.icon }}</div>
+            {% if stat.number >= 1000 %}
+            {% assign thousands = stat.number | divided_by: 1000 %}
+            {% assign rest = stat.number | modulo: 1000 | prepend: "00" | slice: -3, 3 %}
+            {% capture stat_display %}{{ thousands }},{{ rest }}{% endcapture %}
+            {% else %}
+            {% assign stat_display = stat.number %}
+            {% endif %}
+            <div class="stat-card card-hover-lift" data-animate="fade-up">
+                <p class="stat-value">
+                    <span class="stat-number gradient-text" data-target="{{ stat.number }}">{{ stat_display }}</span>{% if stat.suffix != "" %}<span class="stat-suffix">{{ stat.suffix }}</span>{% endif %}
+                </p>
+                <p class="stat-label">{{ stat.label }}</p>
+                <div class="stat-icon" aria-hidden="true">{{ stat.emoji }}</div>
             </div>
             {% endfor %}
         </div>
@@ -40,7 +46,7 @@ custom_js: about-page
         <div class="philosophy-grid">
             {% for item in site.data.philosophy %}
             <div class="philosophy-card card-hover-lift">
-                <div class="card-icon">{{ item.icon }}</div>
+                <div class="card-icon" aria-hidden="true">{{ item.emoji }}</div>
                 <h3>{{ item.title }}</h3>
                 <p>{{ item.description }}</p>
             </div>
@@ -55,7 +61,7 @@ custom_js: about-page
         <!-- START INDICATOR -->
         <div class="timeline-start">
             <div class="timeline-marker start-marker">
-                <span class="timeline-icon">🌟</span>
+                <span class="timeline-icon" aria-hidden="true">🌟</span>
             </div>
             <div class="timeline-label">Ongoing Journey</div>
         </div>
@@ -67,8 +73,11 @@ custom_js: about-page
                 <div class="timeline-content card-hover-lift">
                     <div class="timeline-date">September 2025 - Present</div>
                     <h3>Senior Security Engineer</h3>
-                    <h4 class="company-name">Crypto.com · Singapore</h4>
-                    <p class="duration-badge">2 months</p>
+                    <p class="company-name">Crypto.com · Singapore</p>
+                    {% assign now_y = site.time | date: "%Y" | plus: 0 %}{% assign now_m = site.time | date: "%-m" | plus: 0 %}
+                    {% assign months = now_y | times: 12 | plus: now_m | minus: 24309 | plus: 1 %}{% comment %}24309 = 2025 * 12 + 9 (Sept 2025), counted inclusively like LinkedIn{% endcomment %}
+                    {% assign yrs = months | divided_by: 12 %}{% assign mos = months | modulo: 12 %}
+                    <p class="duration-badge">{% if yrs > 0 %}{{ yrs }} year{% if yrs > 1 %}s{% endif %}{% if mos > 0 %} {% endif %}{% endif %}{% if mos > 0 %}{{ mos }} month{% if mos > 1 %}s{% endif %}{% endif %}</p>
                     <p>Guardian at Scale - Orchestrating defense-in-depth for a high-frequency financial platform, proactively 
                         hunting threats and automating response in a zero-trust environment.
                     </p>
@@ -86,7 +95,7 @@ custom_js: about-page
                 <div class="timeline-content card-hover-lift">
                     <div class="timeline-date">March 2025 - September 2025</div>
                     <h3>Head of DevSecOps</h3>
-                    <h4 class="company-name">letsbloom · India</h4>
+                    <p class="company-name">letsbloom · India</p>
                     <p class="duration-badge">7 months</p>
                     <p>Build the Shield – Architected the organization's entire security posture from ground zero.
                         Transformed security from a department into a culture, establishing the Security Champions program.
@@ -105,7 +114,7 @@ custom_js: about-page
                 <div class="timeline-content card-hover-lift">
                     <div class="timeline-date">November 2022 - March 2025</div>
                     <h3>DevSecOps Lead</h3>
-                    <h4 class="company-name">letsbloom · Pune, India</h4>
+                    <p class="company-name">letsbloom · Pune, India</p>
                     <p class="duration-badge">2 years 5 months</p>
                     <p>Spearheaded DevSecOps initiatives, implemented security-first CI/CD pipelines, and established
                          comprehensive security automation frameworks across multi-cloud environments.
@@ -124,7 +133,7 @@ custom_js: about-page
                 <div class="timeline-content card-hover-lift">
                     <div class="timeline-date">April 2021 - November 2022</div>
                     <h3>DevOps Technical Lead</h3>
-                    <h4 class="company-name">CloudCover · Pune, India</h4>
+                    <p class="company-name">CloudCover · Pune, India</p>
                     <p class="duration-badge">1 year 8 months</p>
                     <p>The Migration Architect – Executed high-stakes, zero-downtime migrations for fintech giants. 
                         Proved that you can move fast without breaking things if your infrastructure code is bulletproof.
@@ -144,7 +153,7 @@ custom_js: about-page
                 <div class="timeline-content card-hover-lift">
                     <div class="timeline-date">January 2020 - March 2021</div>
                     <h3>Senior DevOps Engineer</h3>
-                    <h4 class="company-name">CloudCover · Pune, India</h4>
+                    <p class="company-name">CloudCover · Pune, India</p>
                     <p class="duration-badge">1 year 3 months</p>
                     <p>Architected and executed large-scale cloud migrations to GCP for e-commerce and fintech
                         applications handling 100K-1M requests per second. Built CI/CD pipelines using Jenkins and
@@ -164,7 +173,7 @@ custom_js: about-page
                 <div class="timeline-content card-hover-lift">
                     <div class="timeline-date">January 2019 - December 2019</div>
                     <h3>DevOps Engineer</h3>
-                    <h4 class="company-name">CloudCover · Pune, India</h4>
+                    <p class="company-name">CloudCover · Pune, India</p>
                     <p class="duration-badge">1 year</p>
                     <p>Designed cloud infrastructure for ETL applications, implemented GKE security practices, and
                         automated migration processes using Python and Ansible. Handled deployments ranging from 50-200
@@ -184,7 +193,7 @@ custom_js: about-page
                 <div class="timeline-content card-hover-lift">
                     <div class="timeline-date">June 2017 - December 2018</div>
                     <h3>DevOps Engineer</h3>
-                    <h4 class="company-name">Reflex Software Solutions · Gurgaon, India</h4>
+                    <p class="company-name">Reflex Software Solutions · Gurgaon, India</p>
                     <p class="duration-badge">1 year 7 months</p>
                     <p>Implemented infrastructure-as-code using Terraform and Ansible, built CI/CD pipelines with
                         Jenkins for AWS Beanstalk deployments, and established logging/monitoring using CloudWatch and
@@ -204,7 +213,7 @@ custom_js: about-page
                 <div class="timeline-content card-hover-lift">
                     <div class="timeline-date">December 2016 - May 2017</div>
                     <h3>DevOps Engineer (Trainee)</h3>
-                    <h4 class="company-name">Reflex Software Solutions · Gurugram, India</h4>
+                    <p class="company-name">Reflex Software Solutions · Gurugram, India</p>
                     <p class="duration-badge">6 months</p>
                     <p>Started my career learning foundational DevOps tools and technologies including AWS, Jenkins,
                         Bash scripting, and Python automation.
@@ -221,9 +230,9 @@ custom_js: about-page
         <!-- END INDICATOR -->
         <div class="timeline-end">
             <div class="timeline-marker end-marker">
-                <span class="timeline-icon">🚀</span>
+                <span class="timeline-icon" aria-hidden="true">🚀</span>
             </div>
-            <div class="timeline-label">Career Begin · 2017</div>
+            <div class="timeline-label">Career Begin · 2016</div>
         </div>
     </section>
 
@@ -233,16 +242,17 @@ custom_js: about-page
         <div class="skills-categories">
             {% for category in site.data.skills %}
             <div class="skill-category">
-                <h3>{{ category[1].title }}</h3>
+                <h3>{{ category.title }}</h3>
                 <div class="skill-bars">
-                    {% for skill in category[1].skills %}
+                    {% for skill in category.skills %}
                     <div class="skill-bar">
                         <div class="skill-info">
                             <span>{{ skill.name }}</span>
                             <span class="skill-percentage">{{ skill.percentage }}%</span>
                         </div>
-                        <div class="skill-progress">
-                            <div class="skill-fill" data-width="{{ skill.percentage }}"></div>
+                        <div class="skill-progress" aria-hidden="true">
+                            {% assign pct = skill.percentage | divided_by: 5 | times: 5 %}
+                            <div class="skill-fill w-{{ pct }}"></div>
                         </div>
                     </div>
                     {% endfor %}
@@ -258,8 +268,8 @@ custom_js: about-page
         <div class="achievements-grid">
             {% for achievement in site.data.achievements %}
             <div class="achievement-card card-hover-lift">
-                <div class="achievement-icon">
-                    <i class="{{ achievement.icon }}"></i>
+                <div class="achievement-icon" aria-hidden="true">
+                    <i class="{{ achievement.icon_class }}"></i>
                 </div>
                 <h3>{{ achievement.title }}</h3>
                 <p>{{ achievement.description }}</p>
@@ -278,8 +288,8 @@ custom_js: about-page
         <div class="interests-grid">
             {% for interest in site.data.interests %}
             <div class="interest-card card-hover-lift">
-                <div class="interest-emoji">{{ interest.emoji }}</div>
-                <h4>{{ interest.title }}</h4>
+                <div class="interest-emoji" aria-hidden="true">{{ interest.emoji }}</div>
+                <h3>{{ interest.title }}</h3>
                 <p>{{ interest.description }}</p>
             </div>
             {% endfor %}
@@ -291,12 +301,12 @@ custom_js: about-page
         <h2 class="section-title">Verified Expertise</h2>
         <div class="certifications-grid">
             <div class="cert-card">
-                <div class="cert-icon">🎓</div>
+                <div class="cert-icon" aria-hidden="true">🎓</div>
                 <h3>DevOps Foundations</h3>
                 <p>Comprehensive foundation in DevOps principles and practices</p>
             </div>
             <div class="cert-card">
-                <div class="cert-icon">🏗️</div>
+                <div class="cert-icon" aria-hidden="true">🏗️</div>
                 <h3>Advanced Terraform</h3>
                 <p>Advanced infrastructure-as-code patterns and best practices</p>
             </div>
@@ -317,7 +327,7 @@ custom_js: about-page
         <p>Security debt collects compound interest. Let's pay it down. Whether you need to harden a Kubernetes cluster or 
             build a DevSecOps culture from scratch, let's engineer a solution that scales.</p>
         <a href="{{ '/contact/' | relative_url }}" class="btn btn-primary btn-large">
-            <i class="fas fa-envelope"></i> Let's Build Securely
+            <i aria-hidden="true" class="fas fa-envelope"></i> Let's Build Securely
         </a>
     </section>
 </div>

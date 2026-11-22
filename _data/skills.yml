@@ -1,4 +1,4 @@
-cloud_infrastructure:
+- id: cloud_infrastructure
   title: "Cloud & Infrastructure"
   skills:
     - name: "AWS"
@@ -8,7 +8,7 @@ cloud_infrastructure:
     - name: "Azure"
       percentage: 70
 
-programming:
+- id: programming
   title: "Programming & Scripting"
   skills:
     - name: "Python3"
@@ -18,7 +18,7 @@ programming:
     - name: "JavaScript"
       percentage: 30
 
-ci_cd:
+- id: ci_cd
   title: "CI/CD & DevOps"
   skills:
     - name: "Github Actions"
@@ -30,7 +30,7 @@ ci_cd:
     - name: "Azure DevOps (ADO)"
       percentage: 85
 
-containerization:
+- id: containerization
   title: "Containerization & Orchestration"
   skills:
     - name: "EKS"
@@ -44,7 +44,7 @@ containerization:
     - name: "AKS"
       percentage: 70
 
-iac:
+- id: iac
   title: "Infrastructure as Code"
   skills:
     - name: "Terraform"
@@ -56,7 +56,7 @@ iac:
     - name: "Ansible"
       percentage: 85
 
-databases:
+- id: databases
   title: "Databases & Data"
   skills:
     - name: "CloudSQL"
@@ -70,7 +70,7 @@ databases:
     - name: "BigQuery"
       percentage: 70
 
-security_tools:
+- id: security_tools
   title: "Security & Compliance"
   skills:
     - name: "Tines"
@@ -88,8 +88,7 @@ security_tools:
     - name: "Qualys"
       percentage: 75
 
-
-observability:
+- id: observability
   title: "Observability & Monitoring"
   skills:
     - name: "CloudWatch"
@@ -107,7 +106,7 @@ observability:
     - name: "Loki"
       percentage: 75
 
-microsoft:
+- id: microsoft
   title: "Microsoft Ecosystem"
   skills:
     - name: "Entra"
@@ -125,7 +124,7 @@ microsoft:
     - name: "Purview"
       percentage: 60
 
-others:
+- id: others
   title: "Other Relevant Skills"
   skills:
     - name: "Microservices Architecture"
@@ -141,7 +140,7 @@ others:
     - name: "Redis"
       percentage: 65
 
-messaging:
+- id: messaging
   title: "Messaging & Queueing"
   skills:
     - name: "Kafka"

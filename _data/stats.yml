@@ -1,23 +1,19 @@
 - number: 9
   label: "Years of Experience"
-  icon: "💼"
+  emoji: "💼"
   suffix: "+"
-  delay: 0
 
 - number: 4
   label: "Companies Worked With"
-  icon: "🏢"
+  emoji: "🏢"
   suffix: "+"
-  delay: 100
 
 - number: 20
   label: "Projects Delivered"
-  icon: "🚀"
+  emoji: "🚀"
   suffix: "+"
-  delay: 200
 
 - number: 100000
   label: "Peak Requests/Second Handled"
-  icon: "⚡"
+  emoji: "⚡"
   suffix: ""
-  delay: 30

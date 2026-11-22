@@ -15,17 +15,17 @@ custom_css: home
             <p class="hero-description">{{ page.description }}</p>
             <div class="hero-cta">
                 <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">
-                    <i class="fas fa-newspaper"></i> Read My Technical Insights
+                    <i aria-hidden="true" class="fas fa-newspaper"></i> Read My Technical Insights
                 </a>
                 <a href="{{ '/contact/' | relative_url }}" class="btn btn-secondary">
-                    <i class="fas fa-envelope"></i> Let's Secure Your Stack
+                    <i aria-hidden="true" class="fas fa-envelope"></i> Let's Secure Your Stack
                 </a>
             </div>
         </div>
     </div>
     <div class="hero-scroll-down">
         <a href="#skills" aria-label="Scroll down">
-            <i class="fas fa-chevron-down"></i>
+            <i aria-hidden="true" class="fas fa-chevron-down"></i>
         </a>
     </div>
 </section>
@@ -36,7 +36,7 @@ custom_css: home
         <div class="skills-grid">
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i class="fas fa-shield-alt"></i>
+                    <i aria-hidden="true" class="fas fa-shield-alt"></i>
                 </div>
                 <h3>Orchestrating Zero-Trust Clusters</h3>
                 <p>Hardening Kubernetes environments from the kernel up with rigorous RBAC, admission controllers, and runtime defense.</p>
@@ -44,7 +44,7 @@ custom_css: home
 
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i class="fas fa-code-branch"></i>
+                    <i aria-hidden="true" class="fas fa-code-branch"></i>
                 </div>
                 <h3>CI/CD Pipeline Security</h3>
                 <p>Embedding invisible security gates that catch vulnerabilities before they commit, not after they deploy.</p>
@@ -52,7 +52,7 @@ custom_css: home
 
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i class="fas fa-file-code"></i>
+                    <i aria-hidden="true" class="fas fa-file-code"></i>
                 </div>
                 <h3>Immutable Infrastructure</h3>
                 <p>Codifying security guardrails to eliminate drift and enforce compliance by design, not by manual review.</p>
@@ -60,21 +60,21 @@ custom_css: home
 
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i class="fas fa-search"></i>
+                    <i aria-hidden="true" class="fas fa-search"></i>
                 </div>
                 <h3>Threat Modeling</h3>
                 <p>STRIDE methodology, attack surface analysis, risk assessment, and security architecture reviews.</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i class="fas fa-anchor"></i>
+                    <i aria-hidden="true" class="fas fa-anchor"></i>
                 </div>
                 <h3>Proactive Risk Architecture</h3>
                 <p>Identifying and mitigating architectural flaws before a single line of code is written.</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i class="fas fa-cloud"></i>
+                    <i aria-hidden="true" class="fas fa-cloud"></i>
                 </div>
                 <h3>Cloud Forensics</h3>
                 <p>AWS/Azure/GCP incident response, log analysis, threat hunting, and security monitoring.</p>
@@ -82,7 +82,7 @@ custom_css: home
 
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i class="fas fa-chart-line"></i>
+                    <i aria-hidden="true" class="fas fa-chart-line"></i>
                 </div>
                 <h3>Observability</h3>
                 <p>Security metrics, SIEM integration, anomaly detection, and compliance monitoring.</p>
@@ -90,7 +90,7 @@ custom_css: home
 
             <div class="skill-card">
                 <div class="skill-icon">
-                    <i class="fas fa-exclamation-triangle"></i>
+                    <i aria-hidden="true" class="fas fa-exclamation-triangle"></i>
                 </div>
                 <h3>Vulnerability Management</h3>
                 <p>CVE assessment, patch management, vulnerability scanning, and remediation tracking.</p>
@@ -104,22 +104,22 @@ custom_css: home
         <h2 class="section-title">Latest from the Blog</h2>
         <div class="posts-grid">
             {% for post in site.posts limit:3 %}
+            {% if post.external_url %}{% assign post_href = post.external_url %}{% else %}{% assign post_href = post.url | relative_url %}{% endif %}
             <article class="post-card">
                 <div class="post-card-content">
                     <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
 
                     <h3 class="post-card-title">
-                        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                        <a href="{{ post_href }}" class="card-link"{% if post.external_url %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ post.title }}</a>
                     </h3>
 
                     <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
 
-                    <!-- Post Meta Footer with Reading Time -->
                     <div class="post-meta-footer">
-                        <a href="{{ post.url | relative_url }}" class="read-more">
-                            Read More <span class="sr-only">about {{ post.title }}</span>
+                        <span class="read-more" aria-hidden="true">
+                            {% if post.external_url %}Read on {{ post.platform }}{% else %}Read More{% endif %}
                             <i class="fas fa-arrow-right"></i>
-                        </a>
+                        </span>
                     </div>
                 </div>
             </article>
