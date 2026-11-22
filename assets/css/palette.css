@@ -1,34 +1,34 @@
 /* ================================
-   Palette: Signal green
+   Palette: Soft (sage surfaces, forest-green accent)
    The only file that changes between colour themes. Everything else derives from
    these tokens (theme.css), and scripts/generate-brand-assets.mjs reads the accent
-   and ink colours from here for the logo, favicons and share images.
-   Contrast ratios are WCAG 2 ratios against the background they sit on.
+   and surface colours from here for the logo, favicons and share images.
+   Text colours are all 4.5:1 or better against every surface they sit on.
    ================================ */
 
 :root {
     color-scheme: light;
 
-    /* Surfaces */
-    --bg-primary: #fff;
-    --bg-secondary: #f8fafc;
-    --bg-tertiary: #f1f5f9;
+    /* Surfaces: white cards floating on a soft sage page */
+    --bg-primary: #f3f5f1;
+    --bg-secondary: #eaeee7;
+    --bg-tertiary: #e3e8df;
     --bg-card: #fff;
 
     /* Text */
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-muted: #576579;
+    --text-primary: #121512;
+    --text-secondary: #3d443e;
+    --text-muted: #5a625b;
 
-    /* Accent (links and text too, so 4.5:1 or better everywhere) */
-    --color-primary: #047857;
-    --color-secondary: #065f46;
+    /* Accent: deep forest green */
+    --color-primary: #1f6b38;
+    --color-secondary: #165029;
     --on-accent: #fff;
     --color-danger: #b91c1c;
 
-    /* Borders */
-    --border-color: #cbd5e1;
-    --border-strong: #7c8aa0;
+    /* Borders: barely-there card edges; stronger edge for form controls (3:1) */
+    --border-color: #e2e7de;
+    --border-strong: #7d877e;
     --focus-ring: var(--color-primary);
 
     /* Platform badges */
@@ -36,53 +36,53 @@
     --platform-substack: #9a3412;
 
     /* Code */
-    --code-bg: #f1f5f9;
+    --code-bg: #eef1ec;
     --code-inline: var(--color-primary);
-    --code-comment: #576579;
+    --code-comment: #5a625b;
     --code-keyword: #6d28d9;
     --code-string: #047857;
     --code-number: #b45309;
     --code-name: #0e7490;
     --code-builtin: #9d174d;
 
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    /* Soft, diffuse shadows instead of hard borders */
+    --shadow-sm: 0 1px 2px rgb(18 28 18 / 0.04), 0 1px 3px rgb(18 28 18 / 0.04);
+    --shadow-md: 0 4px 16px rgb(18 28 18 / 0.06);
+    --shadow-lg: 0 12px 32px rgb(18 28 18 / 0.08);
 }
 
 [data-theme='dark'] {
     color-scheme: dark;
 
-    /* Neutral near-black surfaces (no navy tint) */
-    --bg-primary: #0b0d10;
-    --bg-secondary: #12151a;
-    --bg-tertiary: #1a1f26;
-    --bg-card: #111418;
+    --bg-primary: #0e100e;
+    --bg-secondary: #151815;
+    --bg-tertiary: #1c201c;
+    --bg-card: #171a17;
 
-    --text-primary: #e6e9ee;
-    --text-secondary: #c3c9d2;
-    --text-muted: #98a2b0;
+    --text-primary: #eceeea;
+    --text-secondary: #c6ccc5;
+    --text-muted: #9ba49b;
 
-    --color-primary: #34d399;
-    --color-secondary: #6ee7b7;
-    --on-accent: #0b0d10;
+    --color-primary: #86d494;
+    --color-secondary: #ade6b6;
+    --on-accent: #0e100e;
     --color-danger: #f87171;
 
-    --border-color: #2a313b;
-    --border-strong: #677385;
+    --border-color: #262b26;
+    --border-strong: #6b756b;
 
     --platform-medium: #34d399;
     --platform-substack: #fb923c;
 
-    --code-bg: #12151a;
-    --code-comment: #98a2b0;
+    --code-bg: #151815;
+    --code-comment: #9ba49b;
     --code-keyword: #c4b5fd;
     --code-string: #6ee7b7;
     --code-number: #fcd34d;
     --code-name: #67e8f9;
     --code-builtin: #f9a8d4;
 
-    --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.4);
-    --shadow-md: 0 4px 6px rgb(0 0 0 / 0.4);
-    --shadow-lg: 0 10px 15px rgb(0 0 0 / 0.4);
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 16px rgb(0 0 0 / 0.35);
+    --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.45);
 }

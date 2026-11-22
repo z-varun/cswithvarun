@@ -65,9 +65,14 @@ h4,
 h5,
 h6 {
     font-family: var(--font-heading);
-    font-weight: var(--font-weight-bold);
-    line-height: var(--line-height-tight);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     color: var(--text-primary);
+}
+
+h1 {
+    letter-spacing: -0.035em;
 }
 
 h1 {
@@ -130,7 +135,7 @@ a:hover {
    ================================ */
 
 .navbar {
-    background-color: var(--bg-card);
+    background-color: color-mix(in srgb, var(--bg-primary) 85%, transparent);
     color: var(--text-primary);
     padding: var(--spacing-lg) 0;
     position: sticky;
@@ -138,8 +143,7 @@ a:hover {
     z-index: 999;
     border-bottom: 1px solid var(--border-color);
     transition: background-color 0.3s ease, border-color 0.3s ease;
-    box-shadow: var(--shadow-sm);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
 }
 
 .nav-container {
@@ -200,33 +204,23 @@ a:hover {
 .nav-link {
     color: var(--text-secondary);
     padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius);
-    transition: color 0.3s ease;
+    border-radius: var(--border-radius-full);
+    transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     font-weight: var(--font-weight-medium);
     position: relative;
     display: inline-block;
     white-space: nowrap;
 }
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--color-primary);
-    transition: width 0.3s ease;
+.nav-link:hover {
+    color: var(--text-primary);
+    background-color: color-mix(in srgb, var(--bg-card) 70%, transparent);
 }
 
-.nav-link:hover,
 .nav-link.active {
-    color: var(--color-primary);
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 100%;
+    color: var(--text-primary);
+    background-color: var(--bg-card);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Resume button */
@@ -235,7 +229,7 @@ a:hover {
     color: var(--color-primary);
     border: 1px solid var(--color-primary);
     padding: var(--spacing-sm) var(--spacing-lg);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-full);
     cursor: pointer;
     font: inherit;
     font-weight: var(--font-weight-semibold);
@@ -251,9 +245,6 @@ a:hover {
     background: var(--accent-tint);
 }
 
-.btn-resume::after {
-    display: none;
-}
 
 /* Dropdown menu */
 .dropdown {
@@ -400,7 +391,7 @@ a:hover {
    ================================ */
 
 .site-footer {
-    background-color: var(--bg-card);
+    background-color: var(--bg-secondary);
     padding: var(--spacing-3xl) 0 var(--spacing-xl);
     margin-top: var(--spacing-3xl);
     border-top: 1px solid var(--border-color);
@@ -500,6 +491,7 @@ a:hover {
     font-size: var(--font-size-4xl);
     margin-bottom: var(--spacing-md);
     color: var(--text-primary);
+    letter-spacing: -0.035em;
 }
 
 .page-subtitle {

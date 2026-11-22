@@ -1,7 +1,12 @@
 {%- comment -%}
   Inline SVG icon from _data/icons.yml. Usage: {% include icon.html name="rocket" class="extra-class" %}
+  Outline icons have a `body` (24x24, stroked); brand logos have a filled `viewBox` + `path`.
   Icons are decorative (aria-hidden); give the surrounding link or button its own text or aria-label.
 {%- endcomment -%}
 {%- assign icon_data = site.data.icons[include.name] -%}
-<svg class="icon{% if include.class %} {{ include.class }}{% endif %}" viewBox="{{ icon_data.viewBox }}" aria-hidden="true" focusable="false" data-icon="{{ include.name }}"><path d="{{ icon_data.path }}"/></svg>
+{%- if icon_data.body -%}
+<svg class="icon icon-outline{% if include.class %} {{ include.class }}{% endif %}" viewBox="0 0 24 24" aria-hidden="true" focusable="false" data-icon="{{ include.name }}">{{ icon_data.body }}</svg>
+{%- else -%}
+<svg class="icon icon-filled{% if include.class %} {{ include.class }}{% endif %}" viewBox="{{ icon_data.viewBox }}" aria-hidden="true" focusable="false" data-icon="{{ include.name }}"><path d="{{ icon_data.path }}"/></svg>
+{%- endif -%}
 {%- if icon_data == nil %}<!-- MISSING ICON: {{ include.name }} -->{% endif -%}

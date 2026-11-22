@@ -33,12 +33,13 @@ const token = (css, name) => {
 };
 const light = block(':root {');
 const dark = block("[data-theme='dark'] {");
+// Share cards use the light palette: sage page, dark text, accent highlights.
 const C = {
   accentLight: token(light, '--color-primary'),
-  accentDark: token(dark, '--color-primary'),
-  ink: token(dark, '--bg-primary'),
-  paper: token(dark, '--text-primary'),
-  muted: token(dark, '--text-secondary'),
+  accentDark: token(light, '--color-primary'),
+  ink: token(light, '--bg-primary'),
+  paper: token(light, '--text-primary'),
+  muted: token(light, '--text-secondary'),
 };
 const glyph = (readFileSync(join(ROOT, '_includes/logo.html'), 'utf8').match(/<g class="logo-mark-glyph"[^>]*>([\s\S]*?)<\/g>/) || [])[1];
 if (!glyph) throw new Error('Monogram paths not found in _includes/logo.html');
@@ -63,21 +64,21 @@ function icon(svg, size, out) {
 }
 
 const escape = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const plex = join(ROOT, 'assets/fonts/ibm-plex-sans-latin-700-normal.woff2');
+const plex = join(ROOT, 'assets/fonts/geist-latin-wght-normal.woff2');
 function card({ kicker, title, footer }) {
   const size = title.length > 70 ? 58 : title.length > 45 ? 66 : 76;
   return `<!doctype html><html><head><meta charset="utf-8"><style>
-@font-face{font-family:Plex;font-weight:700;src:url('file://${plex}') format('woff2')}
+@font-face{font-family:Geist;font-weight:100 900;src:url('file://${plex}') format('woff2')}
 *{margin:0;box-sizing:border-box}
 body{width:1200px;height:630px;background:${C.ink};color:${C.paper};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;position:relative;overflow:hidden}
 .wrap{position:absolute;inset:0;padding:72px 88px;display:flex;flex-direction:column;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:18px;font:700 32px Plex,sans-serif}
+.brand{display:flex;align-items:center;gap:18px;font:600 32px Geist,sans-serif;letter-spacing:-0.02em}
 .brand svg{width:56px;height:56px}
-.kicker{color:${C.accentDark};font-size:24px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px}
-h1{font:700 ${size}px/1.1 Plex,sans-serif;letter-spacing:-1px;max-width:1020px}
+.kicker{display:inline-block;color:${C.accentDark};background:color-mix(in srgb,${C.accentDark} 12%,#fff);font-size:24px;font-weight:600;padding:6px 18px;border-radius:999px;margin-bottom:24px}
+h1{font:600 ${size}px/1.05 Geist,sans-serif;letter-spacing:-0.04em;max-width:1020px}
 .foot{display:flex;justify-content:space-between;font-size:28px;color:${C.muted}}
 .url{color:${C.accentDark};font-weight:600}
-.bar{position:absolute;left:0;right:0;bottom:0;height:10px;background:${C.accentDark}}
+.bar{display:none}
 </style></head><body><div class="wrap">
 <div class="brand">${logoSvg(14).replace(/<title>.*?<\/title>/, '')}Varun Bhandari</div>
 <div><p class="kicker">${escape(kicker)}</p><h1>${escape(title)}</h1></div>

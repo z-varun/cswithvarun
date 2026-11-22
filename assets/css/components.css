@@ -8,9 +8,45 @@
     width: auto;
     height: 1em;
     vertical-align: -0.125em;
-    fill: currentColor;
     flex-shrink: 0;
     overflow: visible;
+}
+
+/* Lucide outline icons: thin strokes */
+.icon-outline {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Brand logos */
+.icon-filled {
+    fill: currentColor;
+}
+
+/* Cards float on the page with a soft shadow instead of a hard border */
+.skill-card,
+.post-card,
+.blog-post-item,
+.featured-post,
+.stat-card,
+.philosophy-card,
+.timeline-content,
+.achievement-card,
+.interest-card,
+.cert-card,
+.project-card,
+.skill-category-box,
+.contact-route,
+.contact-form-section,
+.featured-project,
+.skills-showcase-section,
+.impact-summary,
+.cta-section,
+.animated-quote {
+    box-shadow: var(--shadow-md);
 }
 
 /* Non-clickable cards only get a border highlight on hover; lifting is
@@ -38,14 +74,8 @@
     position: relative;
 }
 
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background: var(--color-primary);
-    margin: var(--spacing-md) auto 0;
-    border-radius: var(--border-radius-sm);
+.section-title {
+    letter-spacing: -0.03em;
 }
 
 /* Tags: informational, not interactive */
@@ -58,7 +88,7 @@
     border-radius: var(--border-radius-full);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
-    border: 1px solid var(--border-color);
+    border: 1px solid transparent;
 }
 
 .tech-tag {
@@ -82,7 +112,7 @@
     background-color: var(--bg-card);
     color: var(--text-primary);
     border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-full);
     font: inherit;
     font-weight: var(--font-weight-medium);
     cursor: pointer;
@@ -185,7 +215,7 @@
     background-color: var(--bg-card);
     color: var(--text-secondary);
     border: 1px solid var(--border-strong);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-full);
     font: inherit;
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-sm);
@@ -227,7 +257,7 @@
     padding: var(--spacing-md);
     background-color: var(--bg-card);
     border: 1px solid var(--border-strong);
-    border-radius: var(--border-radius);
+    border-radius: 14px;
     color: var(--text-primary);
     font-family: var(--font-primary);
     font-size: var(--font-size-base);

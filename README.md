@@ -5,9 +5,10 @@ Personal site and blog of Varun Bhandari: a static [Jekyll](https://jekyllrb.com
 ## Stack
 
 - **Jekyll 4.4** on Ruby 3.2 (`.ruby-version`), with `jekyll-feed`, `jekyll-seo-tag` and `jekyll-sitemap`.
-- **Fonts and icons:** self-hosted. IBM Plex Sans (headings) and JetBrains Mono (code) live in `assets/fonts/`
-  (SIL OFL, licences alongside). Icons are inline SVGs from Font Awesome Free 6.4.0 (CC BY 4.0) stored in
-  `_data/icons.yml` and rendered with `{% include icon.html name="rocket" %}`. No third-party CSS, fonts or scripts.
+- **Fonts and icons:** self-hosted. Geist (all text) and JetBrains Mono (code) live in `assets/fonts/`
+  (SIL OFL, licences alongside). Icons are inline SVGs in `_data/icons.yml`: Lucide outline icons (ISC) plus
+  Font Awesome Free brand logos (CC BY 4.0), rendered with `{% include icon.html name="rocket" %}`.
+  No third-party CSS, fonts or scripts.
 - **CSS:** hand-written, no preprocessor. `assets/css/main.css` concatenates the shared partials
   (`variables.css`, `theme.css`, `components.css`, `animations.css`) at build time; each page adds its own
   stylesheet through `custom_css` in its front matter. All colour values live in `palette.css` (light and dark); `theme.css` derives the rest.
@@ -69,7 +70,8 @@ To feature a post on the home page, add its slug to `featured_posts` in `_config
 ## Colour themes
 
 The palette is one file, `assets/css/palette.css`. Alternative palettes live on `theme/*` branches
-(`theme/signal-green`, `theme/amber`, `theme/oxblood`, `theme/mono`) that differ only in that file and the
+(`theme/soft`, `theme/signal-green`, `theme/amber`, `theme/oxblood`, `theme/mono`; `theme/soft` also changes
+the font, icon set and shapes) that differ only in that file and the
 images generated from it. To switch, merge the branch you want. To try your own, edit `palette.css`, run
 `node scripts/generate-brand-assets.mjs` to rebuild the logo, favicons and share images, and check contrast:
 text needs 4.5:1 against its background.
