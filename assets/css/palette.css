@@ -59,32 +59,35 @@
 }
 
 [data-theme='dark'] {
+    /* LOCKED: dark palette approved by the site owner on 2026-11-22.
+       Do not change these dark-mode values without the owner's explicit request. */
     color-scheme: dark;
 
-    --bg-primary: #0e100e;
-    --bg-secondary: #151815;
-    --bg-tertiary: #1c201c;
-    --bg-card: #171a17;
+    /* Neutral greys (no green tint) so the mint accent reads cleanly */
+    --bg-primary: #0f0f10;
+    --bg-secondary: #161618;
+    --bg-tertiary: #1f1f22;
+    --bg-card: #18181b;
 
-    --text-primary: #eceeea;
-    --text-secondary: #c6ccc5;
-    --text-muted: #9ba49b;
+    --text-primary: #ededef;
+    --text-secondary: #c8c8cd;
+    --text-muted: #a0a0a8;
 
     --color-primary: #86d494;
     --color-secondary: #ade6b6;
     --accent-fill: #86d494;
-    --on-accent: #0e100e;
+    --on-accent: #0f0f10;
     --accent-display: #86d494;
     --color-danger: #f87171;
 
-    --border-color: #262b26;
-    --border-strong: #6b756b;
+    --border-color: #2a2a2e;
+    --border-strong: #707078;
 
     --platform-medium: #34d399;
     --platform-substack: #fb923c;
 
-    --code-bg: #151815;
-    --code-comment: #9ba49b;
+    --code-bg: #161618;
+    --code-comment: #a0a0a8;
     --code-keyword: #c4b5fd;
     --code-string: #6ee7b7;
     --code-number: #fcd34d;
