@@ -14,7 +14,8 @@
 
 /* Card icon */
 .card-icon {
-    font-size: 3rem;
+    font-size: 2rem;
+    color: var(--color-primary);
     margin-bottom: var(--spacing-lg);
 }
 
@@ -31,7 +32,7 @@
     display: block;
     width: 60px;
     height: 4px;
-    background: var(--gradient-primary-90);
+    background: var(--color-primary);
     margin: var(--spacing-md) auto 0;
     border-radius: var(--border-radius-sm);
 }
@@ -136,12 +137,10 @@
     cursor: pointer;
 }
 
-/* Gradient text */
+/* Accent text (kept as a class name for the markup; no longer a gradient:
+   the gradient is reserved for the one primary button per page) */
 .gradient-text {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--color-primary);
     display: inline-block;
 }
 
@@ -158,10 +157,7 @@
     display: block;
     font-size: var(--font-size-3xl);
     font-weight: var(--font-weight-bold);
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--color-primary);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -197,10 +193,9 @@
 
 .filter-btn.active,
 .filter-btn.active:hover {
-    background: var(--gradient-primary);
+    background: var(--color-primary);
     color: var(--on-accent);
-    border-color: transparent;
-    box-shadow: var(--shadow-primary);
+    border-color: var(--color-primary);
 }
 
 /* Form elements */

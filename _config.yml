@@ -34,6 +34,10 @@ author:
 
 resume_url: /assets/files/VarunBhandari-Resume.pdf
 
+# Posts highlighted on the home page, by slug (the filename without the date)
+featured_posts:
+  - dangling-dns-attack
+
 knowsAbout:
   - "DevSecOps"
   - "SRE"

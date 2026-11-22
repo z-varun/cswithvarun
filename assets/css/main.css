@@ -165,15 +165,13 @@ a:hover {
 }
 
 .logo-icon {
-    font-size: 1.5rem;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
 }
 
 .logo-text {
     color: inherit;
-}
-
-.logo-short {
-    display: none;
 }
 
 .nav-menu {
@@ -205,7 +203,7 @@ a:hover {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--gradient-primary-90);
+    background: var(--color-primary);
     transition: width 0.3s ease;
 }
 
@@ -221,9 +219,9 @@ a:hover {
 
 /* Resume button */
 .btn-resume {
-    background: var(--gradient-primary);
-    color: var(--on-accent);
-    border: none;
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
     padding: var(--spacing-sm) var(--spacing-lg);
     border-radius: var(--border-radius);
     cursor: pointer;
@@ -237,9 +235,8 @@ a:hover {
 
 .btn-resume:hover,
 .btn-resume.active {
-    color: var(--on-accent);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-primary);
+    color: var(--color-primary);
+    background: var(--accent-tint);
 }
 
 .btn-resume::after {
@@ -490,10 +487,7 @@ a:hover {
 .page-title {
     font-size: var(--font-size-4xl);
     margin-bottom: var(--spacing-md);
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text-primary);
 }
 
 .page-subtitle {
@@ -560,19 +554,7 @@ a:hover {
     }
 }
 
-@media (width <= 768px) {
-    .container {
-        padding: 0 var(--spacing-md);
-    }
-
-    .logo-full {
-        display: none;
-    }
-
-    .logo-short {
-        display: block;
-    }
-
+@media (width <= 900px) {
     .nav-logo {
         font-size: var(--font-size-lg);
     }
@@ -592,6 +574,18 @@ a:hover {
     }
 
     .nav-container {
+        padding: 0 var(--spacing-md);
+    }
+
+    .theme-toggle-nav {
+        width: 44px;
+        height: 44px;
+        margin-left: 0.25rem;
+    }
+}
+
+@media (width <= 768px) {
+    .container {
         padding: 0 var(--spacing-md);
     }
 
@@ -640,10 +634,6 @@ a:hover {
         color: #000;
     }
 
-    .page-title {
-        -webkit-text-fill-color: currentColor;
-        background: none;
-    }
 
     [data-animate] {
         opacity: 1 !important;

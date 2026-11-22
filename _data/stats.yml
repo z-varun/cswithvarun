@@ -1,19 +1,19 @@
 - number: 9
   label: "Years of Experience"
-  emoji: "💼"
+  icon: "fas fa-briefcase"
   suffix: "+"
 
 - number: 4
   label: "Companies Worked With"
-  emoji: "🏢"
+  icon: "fas fa-building"
   suffix: "+"
 
 - number: 20
   label: "Projects Delivered"
-  emoji: "🚀"
+  icon: "fas fa-rocket"
   suffix: "+"
 
 - number: 100000
   label: "Peak Requests/Second Handled"
-  emoji: "⚡"
+  icon: "fas fa-bolt"
   suffix: ""

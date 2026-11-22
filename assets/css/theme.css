@@ -113,18 +113,18 @@ body {
     height: 40px;
     flex-shrink: 0;
     border-radius: 50%;
-    background: var(--gradient-primary);
-    border: none;
+    background: transparent;
+    border: 1px solid var(--border-color);
     cursor: pointer;
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     margin-left: 1rem;
-    color: var(--on-accent);
+    color: var(--text-secondary);
 }
 
 .theme-toggle-nav:hover {
-    transform: scale(1.08);
-    box-shadow: var(--shadow-md);
+    background: var(--bg-tertiary);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
 }
 
 .theme-toggle-nav svg {
@@ -137,12 +137,4 @@ body {
 
 .theme-toggle-nav:active svg {
     transform: rotate(360deg);
-}
-
-@media (width <= 768px) {
-    .theme-toggle-nav {
-        width: 44px;
-        height: 44px;
-        margin-left: 0.25rem;
-    }
 }

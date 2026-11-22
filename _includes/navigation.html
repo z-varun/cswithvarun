@@ -1,9 +1,8 @@
 <nav class="navbar" aria-label="Main">
     <div class="nav-container">
         <a href="{{ '/' | relative_url }}" class="nav-logo" aria-label="{{ site.author.name }}, home">
-            <span class="logo-icon" aria-hidden="true">🛡️</span>
-            <span class="logo-text logo-full" aria-hidden="true">{{ site.author.name }}</span>
-            <span class="logo-text logo-short" aria-hidden="true">VB</span>
+            <img class="logo-icon" src="{{ '/assets/images/icons8-cyber-security-100.png' | relative_url }}" alt="" width="28" height="28">
+            <span class="logo-text" aria-hidden="true">{{ site.author.name }}</span>
         </a>
 
         <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">

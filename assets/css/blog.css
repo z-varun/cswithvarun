@@ -164,33 +164,6 @@
   border-color: var(--color-primary);
 }
 
-/* Date badge */
-.post-date-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-md) var(--spacing-lg);
-  background: var(--accent-tint);
-  color: var(--color-primary);
-  font-weight: var(--font-weight-bold);
-}
-
-.post-date-badge .month {
-  text-transform: uppercase;
-  font-size: var(--font-size-sm);
-  letter-spacing: 1px;
-}
-
-.post-date-badge .day {
-  font-size: var(--font-size-2xl);
-  line-height: 1;
-}
-
-.post-date-badge .year {
-  font-size: var(--font-size-sm);
-}
-
 /* Preview */
 .post-content-preview {
   padding: var(--spacing-xl);
@@ -200,8 +173,17 @@
 }
 
 .post-title {
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
   font-size: var(--font-size-xl);
+}
+
+.post-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-md);
 }
 
 .post-title a {
@@ -253,8 +235,8 @@
 }
 
 .post-excerpt {
-  margin-bottom: var(--spacing-lg);
-  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-base);
   flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -271,14 +253,6 @@
   padding-top: var(--spacing-md);
   border-top: 1px solid var(--border-color);
   margin-top: auto;
-}
-
-.read-time {
-  color: var(--text-muted);
-  font-size: var(--font-size-sm);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
 }
 
 .read-more-link {
@@ -325,9 +299,6 @@
     padding: var(--spacing-lg);
   }
 
-  .post-date-badge {
-    padding: var(--spacing-sm) var(--spacing-md);
-  }
 }
 
 @media (width <= 480px) {

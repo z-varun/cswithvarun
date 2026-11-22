@@ -19,10 +19,7 @@
     font-weight: 900;
     line-height: 1;
     margin: 0 0 var(--spacing-md);
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--color-primary);
 }
 
 .error-message {

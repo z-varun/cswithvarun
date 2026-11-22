@@ -3,7 +3,6 @@ layout: page
 title: Thank You
 permalink: /thank-you/
 custom_css: thank-you
-custom_js: thank-you
 sitemap: false
 robots: noindex
 ---
@@ -17,14 +16,8 @@ robots: noindex
         <h2>Message Sent Successfully!</h2>
         <p>Thank you for reaching out. I'll get back to you within 24-48 hours.</p>
 
-        <div class="redirect-message">
-            <p>Redirecting to the homepage in <span id="countdown">10</span> seconds…
-                <button type="button" class="link-button" id="cancelRedirect">Stay on this page</button>
-            </p>
-        </div>
-
         <div class="action-buttons">
-            <a href="{{ '/' | relative_url }}" class="btn btn-primary">Go Home Now</a>
+            <a href="{{ '/' | relative_url }}" class="btn btn-primary">Go Home</a>
             <a href="{{ '/blog/' | relative_url }}" class="btn btn-secondary">Read Blog</a>
             <a href="{{ '/projects/' | relative_url }}" class="btn btn-secondary">View Projects</a>
         </div>

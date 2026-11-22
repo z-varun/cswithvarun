@@ -1,17 +1,44 @@
 ---
 layout: page
 title: Get In Touch
+subtitle: Pick the route that fits. I usually reply within 24–48 hours.
 permalink: /contact/
 custom_css: contact
 ---
 
 <div class="contact-page">
-    <section class="contact-intro">
-        <p>Have a question or want to work together? I'd love to hear from you.</p>
-    </section>
+    <ul class="contact-routes">
+        <li class="contact-route">
+            <i aria-hidden="true" class="fas fa-user-tie route-icon"></i>
+            <h2>Hiring</h2>
+            <p>Recruiters and hiring managers: my resume and work history are the quickest start.</p>
+            <p class="route-links">
+                <a href="{{ site.resume_url | relative_url }}" target="_blank" rel="noopener">View resume</a>
+                <span aria-hidden="true">·</span>
+                <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </p>
+        </li>
+        <li class="contact-route">
+            <i aria-hidden="true" class="fas fa-calendar-check route-icon"></i>
+            <h2>Mentoring &amp; career advice</h2>
+            <p>One-to-one calls on DevSecOps, cloud security and career moves.</p>
+            <p class="route-links">
+                <a href="https://topmate.io/varun_bhandari5" target="_blank" rel="noopener noreferrer">Book on Topmate</a>
+            </p>
+        </li>
+        <li class="contact-route">
+            <i aria-hidden="true" class="fas fa-microphone route-icon"></i>
+            <h2>Speaking, writing &amp; anything else</h2>
+            <p>Talks, guest posts, collaborations or questions about a post.</p>
+            <p class="route-links">
+                <a href="#contact-form">Use the form below</a>
+            </p>
+        </li>
+    </ul>
 
-    <div class="contact-container">
+    <div class="contact-container" id="contact-form">
         <div class="contact-form-section">
+            <h2 class="form-heading">Send a message</h2>
             <!-- Web3Forms: plain HTML POST, redirects to /thank-you/ on success -->
             <form method="POST" action="https://api.web3forms.com/submit" class="contact-form">
                 <input type="hidden" name="access_key" value="8dbc121e-aa45-4726-88d0-a3fca1c45295">

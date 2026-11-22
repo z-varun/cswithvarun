@@ -8,16 +8,51 @@
     padding: 0 var(--spacing-xl);
 }
 
-.contact-intro {
-    text-align: center;
-    margin-bottom: var(--spacing-2xl);
+/* Routes: who should contact how */
+.contact-routes {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: var(--spacing-lg);
+    max-width: 1000px;
+    margin: 0 auto var(--spacing-2xl);
 }
 
-.contact-intro p {
+.contact-route {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xl);
+}
+
+.route-icon {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.contact-route h2 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
+}
+
+.contact-route p {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.contact-route .route-links {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+}
+
+.form-heading {
     font-size: var(--font-size-xl);
-    color: var(--text-muted);
-    max-width: 600px;
-    margin: 0 auto;
+    margin-bottom: var(--spacing-lg);
 }
 
 .contact-container {
@@ -118,7 +153,4 @@
         padding: var(--spacing-xl) var(--spacing-lg);
     }
 
-    .contact-intro p {
-        font-size: var(--font-size-base);
-    }
 }

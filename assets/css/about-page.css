@@ -77,9 +77,9 @@
 }
 
 .stat-icon {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-top: var(--spacing-md);
-    opacity: 0.7;
+    color: var(--color-primary);
 }
 
 /* ================================
@@ -111,7 +111,7 @@
     inset: 0;
     border-radius: var(--border-radius);
     padding: 2px;
-    background: var(--gradient-primary);
+    background: var(--color-primary);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: xor;
     mask-composite: exclude;
@@ -182,14 +182,18 @@
 }
 
 .end-marker {
-    background: var(--gradient-primary);
+    background: var(--color-primary);
     box-shadow: 0 5px 20px var(--accent-glow);
     animation: pulseAccent 2s ease-in-out infinite;
 }
 
 .timeline-icon {
-    font-size: 1.75rem;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    font-size: 1.25rem;
+    color: #0a0e27;
+}
+
+.end-marker .timeline-icon {
+    color: var(--on-accent);
 }
 
 .timeline-label {
@@ -257,7 +261,7 @@
 .timeline-item .timeline-marker {
     width: 20px;
     height: 20px;
-    background: var(--gradient-primary);
+    background: var(--color-primary);
     border-radius: 50%;
     position: absolute;
     left: 50%;
@@ -400,7 +404,7 @@
 
 .skill-fill {
     height: 100%;
-    background: var(--gradient-primary-90);
+    background: var(--color-primary);
     border-radius: var(--border-radius-full);
     width: var(--skill-width, 0);
     transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -507,14 +511,15 @@
     transition: border-color var(--transition-base);
 }
 
-.interest-emoji {
-    font-size: 2.5rem;
+.interest-icon {
+    font-size: 2rem;
+    color: var(--color-primary);
     margin-bottom: var(--spacing-md);
     display: inline-block;
     transition: transform var(--transition-base);
 }
 
-.interest-card:hover .interest-emoji {
+.interest-card:hover .interest-icon {
     transform: scale(1.2) rotate(10deg);
 }
 
@@ -721,7 +726,8 @@
 }
 
 .cert-icon {
-  font-size: 3rem;
+  font-size: 2.5rem;
+  color: var(--color-primary);
   margin-bottom: var(--spacing-lg);
   display: block;
   transition: transform var(--transition-base);

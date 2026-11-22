@@ -223,6 +223,11 @@
   margin: 3rem 0;
 }
 
+/* A rule directly before a section heading doubles the heading's own underline */
+.post-content hr:has(+ h2) {
+  display: none;
+}
+
 /* ==========================================
    Post footer
    ========================================== */
@@ -310,7 +315,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--gradient-primary-90);
+  background: var(--color-primary);
   opacity: 0;
   transition: opacity var(--transition-base);
 }
@@ -377,6 +382,14 @@
 
 .author-bio p {
   margin: 0;
+}
+
+.author-bio .author-links {
+  margin-top: var(--spacing-md);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  font-weight: var(--font-weight-medium);
 }
 
 /* ==========================================

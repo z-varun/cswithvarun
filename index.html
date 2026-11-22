@@ -18,7 +18,7 @@ custom_css: home
                     <i aria-hidden="true" class="fas fa-newspaper"></i> Read My Technical Insights
                 </a>
                 <a href="{{ '/contact/' | relative_url }}" class="btn btn-secondary">
-                    <i aria-hidden="true" class="fas fa-envelope"></i> Let's Secure Your Stack
+                    <i aria-hidden="true" class="fas fa-envelope"></i> Get in Touch
                 </a>
             </div>
         </div>
@@ -29,6 +29,29 @@ custom_css: home
         </a>
     </div>
 </section>
+
+{% for post in site.posts %}
+{% if site.featured_posts contains post.slug %}
+<section class="featured-post-section" aria-labelledby="featured-heading">
+    <div class="container">
+        <article class="featured-post">
+            <p class="featured-label" id="featured-heading">Featured write-up</p>
+            <h2 class="featured-title">
+                <a href="{{ post.url | relative_url }}" class="card-link">{{ post.title }}</a>
+            </h2>
+            <p class="featured-meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+                <span aria-hidden="true">·</span>
+                {% include reading-time.html content=post.content %}
+            </p>
+            <p class="featured-excerpt">{{ post.description | default: post.excerpt | strip_html | truncatewords: 60 }}</p>
+            <span class="read-more" aria-hidden="true">Read the story <i class="fas fa-arrow-right"></i></span>
+        </article>
+    </div>
+</section>
+{% break %}
+{% endif %}
+{% endfor %}
 
 <section id="skills" class="skills-section">
     <div class="container">
@@ -103,7 +126,11 @@ custom_css: home
     <div class="container">
         <h2 class="section-title">Latest from the Blog</h2>
         <div class="posts-grid">
-            {% for post in site.posts limit:3 %}
+            {% assign shown = 0 %}
+            {% for post in site.posts %}
+            {% if site.featured_posts contains post.slug %}{% continue %}{% endif %}
+            {% if shown >= 3 %}{% break %}{% endif %}
+            {% assign shown = shown | plus: 1 %}
             {% if post.external_url %}{% assign post_href = post.external_url %}{% else %}{% assign post_href = post.url | relative_url %}{% endif %}
             <article class="post-card">
                 <div class="post-card-content">
@@ -113,7 +140,7 @@ custom_css: home
                         <a href="{{ post_href }}" class="card-link"{% if post.external_url %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ post.title }}</a>
                     </h3>
 
-                    <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
+                    <p class="post-excerpt">{{ post.description | default: post.excerpt | strip_html | truncatewords: 40 }}</p>
 
                     <div class="post-meta-footer">
                         <span class="read-more" aria-hidden="true">
