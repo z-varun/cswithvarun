@@ -1,105 +1,7 @@
 // ============================================
-// Utility Functions - Shared Across All Pages
+// Shared helpers (loaded before every other script except theme-init.js)
 // ============================================
 
-const Utils = {
-  /**
-   * Debounce function to limit how often a function runs
-   */
-  debounce(func, wait = 300) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
-  },
-
-  /**
-   * Throttle function to ensure function runs at most once per interval
-   */
-  throttle(func, limit = 100) {
-    let inThrottle;
-    return function (...args) {
-      if (!inThrottle) {
-        func.apply(this, args);
-        inThrottle = true;
-        setTimeout(() => inThrottle = false, limit);
-      }
-    };
-  },
-
-  /**
-   * Animate counter from 0 to target value
-   */
-  animateCounter(element, target, duration = 2000) {
-    const step = target / (duration / 16);
-    let current = 0;
-
-    const counter = setInterval(() => {
-      current += step;
-      if (current >= target) {
-        element.textContent = target.toLocaleString();
-        clearInterval(counter);
-      } else {
-        element.textContent = Math.floor(current).toLocaleString();
-      }
-    }, 16);
-  },
-
-  /**
-   * Create Intersection Observer with common options
-   */
-  createObserver(callback, options = {}) {
-    const defaultOptions = {
-      threshold: 0.2,
-      rootMargin: '0px 0px -100px 0px',
-      ...options
-    };
-
-    return new IntersectionObserver(callback, defaultOptions);
-  },
-
-  /**
-   * Smooth scroll to element
-   */
-  smoothScrollTo(target, offset = 0) {
-    const element = typeof target === 'string' ? document.querySelector(target) : target;
-    if (!element) return;
-
-    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - offset;
-
-    window.scrollTo({
-      top: targetPosition,
-      behavior: 'smooth'
-    });
-  },
-
-  /**
-   * Close dropdown when clicking outside
-   */
-  closeOnClickOutside(trigger, dropdown, activeClass = 'show') {
-    document.addEventListener('click', (e) => {
-      if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
-        dropdown.classList.remove(activeClass);
-        trigger.classList.remove('active');
-      }
-    });
-  },
-
-  /**
-   * Toggle element visibility
-   */
-  toggle(element, className = 'show') {
-    element.classList.toggle(className);
-  }
-
-};
-
-// Global DOM-ready helper
 window.onDomReady = function (fn) {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', fn, { once: true });
@@ -108,26 +10,63 @@ window.onDomReady = function (fn) {
   }
 };
 
+const Utils = {
+  prefersReducedMotion() {
+    return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  },
 
-// Observe [data-animate] once and add .animated when visible
-window.initAnimateOnView = function(options = {}) {
-  if (!('IntersectionObserver' in window)) return;
-  const observed = new WeakSet();
-  const observer = Utils.createObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('animated');
-      observer.unobserve(entry.target);
-    });
-  }, options);
-  document.querySelectorAll('[data-animate]').forEach(el => {
-    if (!observed.has(el)) {
-      observed.add(el);
-      observer.observe(el);
+  /** Count an element's number up from 0 to target (skipped under reduced motion). */
+  animateCounter(element, target, duration = 1500) {
+    if (this.prefersReducedMotion() || !Number.isFinite(target)) {
+      element.textContent = Number.isFinite(target) ? target.toLocaleString('en-US') : element.textContent;
+      return;
     }
-  });
+    const start = performance.now();
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      element.textContent = Math.floor(target * progress).toLocaleString('en-US');
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  },
+
+  createObserver(callback, options = {}) {
+    return new IntersectionObserver(callback, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -60px 0px',
+      ...options
+    });
+  },
+
+  smoothScrollTo(target, offset = 0) {
+    const element = typeof target === 'string' ? document.querySelector(target) : target;
+    if (!element) return;
+    window.scrollTo({
+      top: element.getBoundingClientRect().top + window.scrollY - offset,
+      behavior: this.prefersReducedMotion() ? 'auto' : 'smooth'
+    });
+  }
 };
 
-
-// Make Utils available globally
 window.Utils = Utils;
+
+/**
+ * Adds .animated to [data-animate] elements once they scroll into view.
+ * Call once per page (main.js does). Without IntersectionObserver, everything is shown.
+ */
+window.initAnimateOnView = function () {
+  const elements = document.querySelectorAll('[data-animate]');
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach((el) => el.classList.add('animated'));
+    return;
+  }
+  const observer = Utils.createObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('animated');
+      entry.target.dispatchEvent(new CustomEvent('animated'));
+      observer.unobserve(entry.target);
+    });
+  });
+  elements.forEach((el) => observer.observe(el));
+};

@@ -1,41 +1,31 @@
-// Reading Progress Bar
+// Reading progress bar for blog posts.
 (function () {
-    'use strict';
+  'use strict';
 
-    function initReadingProgressBar() {
-        const progressBar = document.getElementById('reading-progress-bar');
+  onDomReady(() => {
+    const bar = document.getElementById('reading-progress-bar');
+    const article = document.querySelector('.post-content');
+    if (!bar || !article) return;
 
-        if (!progressBar) return;
+    let queued = false;
 
-        const article = document.querySelector('article.post-content') ||
-            document.querySelector('main.main-content') ||
-            document.querySelector('article');
-
-        if (!article) return;
-
-        function updateProgressBar() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const articleTop = article.offsetTop;
-            const articleHeight = article.offsetHeight;
-            const windowHeight = window.innerHeight;
-            const articleEnd = articleTop + articleHeight - windowHeight;
-            const readingProgress = (scrollTop - articleTop) / (articleEnd - articleTop);
-            const progress = Math.max(0, Math.min(1, readingProgress));
-
-            progressBar.style.width = `${progress * 100  }%`;
-        }
-
-        // Use shared throttle utility instead of custom ticking guard
-        const throttledUpdate = Utils.throttle(updateProgressBar, 16);
-
-        updateProgressBar();
-        window.addEventListener('scroll', throttledUpdate, { passive: true });
-        window.addEventListener('resize', updateProgressBar, { passive: true });
+    function update() {
+      queued = false;
+      const rect = article.getBoundingClientRect();
+      const scrollable = rect.height - window.innerHeight;
+      const progress = scrollable > 0 ? -rect.top / scrollable : 1;
+      bar.style.transform = `scaleX(${Math.max(0, Math.min(1, progress))})`;
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initReadingProgressBar);
-    } else {
-        initReadingProgressBar();
+    function requestUpdate() {
+      if (!queued) {
+        queued = true;
+        requestAnimationFrame(update);
+      }
     }
+
+    update();
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate, { passive: true });
+  });
 })();
