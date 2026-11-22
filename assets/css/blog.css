@@ -85,7 +85,7 @@
 }
 
 .filter-btn-dropdown.active {
-  background-color: var(--color-primary);
+  background-color: var(--accent-fill);
   color: var(--on-accent);
 }
 

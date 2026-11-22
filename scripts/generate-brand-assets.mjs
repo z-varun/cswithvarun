@@ -40,11 +40,13 @@ const C = {
   ink: token(light, '--bg-primary'),
   paper: token(light, '--text-primary'),
   muted: token(light, '--text-secondary'),
+  fill: (light.match(/--accent-fill:\s*(#[0-9a-fA-F]{3,8})/) || [])[1] || token(light, '--color-primary'),
+  onFill: token(light, '--on-accent'),
 };
 const glyph = (readFileSync(join(ROOT, '_includes/logo.html'), 'utf8').match(/<g class="logo-mark-glyph"[^>]*>([\s\S]*?)<\/g>/) || [])[1];
 if (!glyph) throw new Error('Monogram paths not found in _includes/logo.html');
 
-const logoSvg = (radius) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>Varun Bhandari</title><rect width="64" height="64" rx="${radius}" fill="${C.accentLight}"/><g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">${glyph}</g></svg>`;
+const logoSvg = (radius) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>Varun Bhandari</title><rect width="64" height="64" rx="${radius}" fill="${C.fill}"/><g fill="none" stroke="${C.onFill}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">${glyph}</g></svg>`;
 
 // --- Rendering ------------------------------------------------------------
 const work = mkdtempSync(join(tmpdir(), 'brand-'));
@@ -74,7 +76,7 @@ body{width:1200px;height:630px;background:${C.ink};color:${C.paper};font-family:
 .wrap{position:absolute;inset:0;padding:72px 88px;display:flex;flex-direction:column;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:18px;font:600 32px Geist,sans-serif;letter-spacing:-0.02em}
 .brand svg{width:56px;height:56px}
-.kicker{display:inline-block;color:${C.accentDark};background:color-mix(in srgb,${C.accentDark} 12%,#fff);font-size:24px;font-weight:600;padding:6px 18px;border-radius:999px;margin-bottom:24px}
+.kicker{display:inline-block;color:${C.onFill};background:${C.fill};font-size:24px;font-weight:600;padding:6px 18px;border-radius:999px;margin-bottom:24px}
 h1{font:600 ${size}px/1.05 Geist,sans-serif;letter-spacing:-0.04em;max-width:1020px}
 .foot{display:flex;justify-content:space-between;font-size:28px;color:${C.muted}}
 .url{color:${C.accentDark};font-weight:600}

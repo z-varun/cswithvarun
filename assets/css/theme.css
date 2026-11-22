@@ -7,8 +7,8 @@
 :root,
 [data-theme='dark'] {
     /* Solid accent: the gradient look is gone, but the token names stay so components don't change */
-    --gradient-primary: var(--color-primary);
-    --gradient-primary-90: var(--color-primary);
+    --gradient-primary: var(--accent-fill, var(--color-primary));
+    --gradient-primary-90: var(--accent-fill, var(--color-primary));
     --accent-tint: color-mix(in srgb, var(--color-primary) 8%, transparent);
     --accent-tint-strong: color-mix(in srgb, var(--color-primary) 14%, transparent);
     --accent-glow: color-mix(in srgb, var(--color-primary) 30%, transparent);

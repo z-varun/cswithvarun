@@ -179,7 +179,7 @@ a:hover {
 }
 
 .logo-mark-bg {
-    fill: var(--color-primary);
+    fill: var(--accent-fill);
 }
 
 .logo-mark-glyph {
@@ -461,7 +461,7 @@ a:hover {
 }
 
 .footer-section .social-links a:hover {
-    background-color: var(--color-primary);
+    background-color: var(--accent-fill);
     color: var(--on-accent);
     transform: translateY(-3px);
     border-color: var(--color-primary);

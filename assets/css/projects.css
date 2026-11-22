@@ -27,7 +27,7 @@
   position: absolute;
   top: var(--spacing-xl);
   right: var(--spacing-xl);
-  background: var(--color-primary);
+  background: var(--accent-fill);
   color: var(--on-accent);
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius-full);
@@ -365,7 +365,7 @@
 .impact-number {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
+  color: var(--accent-display);
   display: block;
   margin-bottom: var(--spacing-sm);
   line-height: 1.2;

@@ -155,9 +155,9 @@
 }
 
 .btn-outline:hover {
-    background-color: var(--color-primary);
+    background-color: var(--accent-fill);
     color: var(--on-accent);
-    border-color: var(--color-primary);
+    border-color: var(--accent-fill);
     box-shadow: var(--shadow-primary);
 }
 
@@ -181,7 +181,7 @@
 /* Accent text (kept as a class name for the markup; no longer a gradient:
    the gradient is reserved for the one primary button per page) */
 .gradient-text {
-    color: var(--color-primary);
+    color: var(--accent-display);
     display: inline-block;
 }
 
@@ -198,7 +198,7 @@
     display: block;
     font-size: var(--font-size-3xl);
     font-weight: var(--font-weight-bold);
-    color: var(--color-primary);
+    color: var(--accent-display);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -234,9 +234,9 @@
 
 .filter-btn.active,
 .filter-btn.active:hover {
-    background: var(--color-primary);
+    background: var(--accent-fill);
     color: var(--on-accent);
-    border-color: var(--color-primary);
+    border-color: var(--accent-fill);
 }
 
 /* Form elements */

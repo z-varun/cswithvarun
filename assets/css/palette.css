@@ -20,10 +20,15 @@
     --text-secondary: #3d443e;
     --text-muted: #5a625b;
 
-    /* Accent: deep forest green */
+    /* Accent, in three roles:
+       text    - links and small labels; must reach 4.5:1 on every surface
+       fill    - buttons, active pills, chips, logo; a fresh mint with dark text on it (8.7:1)
+       display - large headlines and big numbers; brighter, as large text needs only 3:1 */
     --color-primary: #1f6b38;
     --color-secondary: #165029;
-    --on-accent: #fff;
+    --accent-fill: #8ad897;
+    --on-accent: #0f2e17;
+    --accent-display: #2b9147;
     --color-danger: #b91c1c;
 
     /* Borders: barely-there card edges; stronger edge for form controls (3:1) */
@@ -65,7 +70,9 @@
 
     --color-primary: #86d494;
     --color-secondary: #ade6b6;
+    --accent-fill: #86d494;
     --on-accent: #0e100e;
+    --accent-display: #86d494;
     --color-danger: #f87171;
 
     --border-color: #262b26;

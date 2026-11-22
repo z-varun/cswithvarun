@@ -45,7 +45,7 @@
 }
 
 .hero-title .highlight {
-  color: var(--color-primary);
+  color: var(--accent-display);
 }
 
 .hero-subtitle {
@@ -102,8 +102,8 @@
   display: inline-block;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
-  background: var(--accent-tint-strong);
+  color: var(--on-accent);
+  background: var(--accent-fill);
   padding: 0.25rem 0.75rem;
   border-radius: var(--border-radius-full);
   margin-bottom: var(--spacing-md);

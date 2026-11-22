@@ -65,7 +65,7 @@
 .stat-suffix {
     display: inline-block;
     font-size: 2rem;
-    color: var(--color-primary);
+    color: var(--accent-display);
     margin-left: 0.25rem;
 }
 
@@ -182,7 +182,7 @@
 }
 
 .end-marker {
-    background: var(--color-primary);
+    background: var(--accent-fill);
     box-shadow: 0 5px 20px var(--accent-glow);
     animation: pulseAccent 2s ease-in-out infinite;
 }
@@ -261,7 +261,7 @@
 .timeline-item .timeline-marker {
     width: 20px;
     height: 20px;
-    background: var(--color-primary);
+    background: var(--accent-fill);
     border-radius: 50%;
     position: absolute;
     left: 50%;
@@ -404,7 +404,7 @@
 
 .skill-fill {
     height: 100%;
-    background: var(--color-primary);
+    background: var(--accent-fill);
     border-radius: var(--border-radius-full);
     width: var(--skill-width, 0);
     transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);

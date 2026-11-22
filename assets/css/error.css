@@ -19,7 +19,7 @@
     font-weight: 900;
     line-height: 1;
     margin: 0 0 var(--spacing-md);
-    color: var(--color-primary);
+    color: var(--accent-display);
 }
 
 .error-message {
